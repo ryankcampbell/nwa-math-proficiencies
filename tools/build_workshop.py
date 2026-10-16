@@ -6,7 +6,7 @@ Apps Script cannot load sibling files, so the Workshop carries the public site's
 They go in separate plain files that the template pulls in with include_() at run time.
 They must NOT be pasted into the template itself: Apps Script's template compiler turns
 escape sequences such as \\n inside the code into real line breaks, which breaks the JS
-(the blank-page bug of 2026-10-16). Run after any change to app.js, practice.js or style.css.
+(suspected first, 2026-10-16; the real culprit was the comment stripper below). Run after any change to app.js, practice.js or style.css.
 """
 from pathlib import Path
 
@@ -19,6 +19,11 @@ import re
 bad = [l for l in js.splitlines() if re.search(r'(?<!\\)\\n', l) and not l.strip().startswith(('//', '*', '/*'))]
 assert not bad, 'backslash-n escapes break the Workshop (use NL): ' + bad[0][:120]
 assert '</style' not in css.lower(), 'CSS contains </style'
+
+# Apps Script strips "//" comments from served pages with a crude scanner that can also cut a
+# URL inside a string ('https://www.khan…' lost everything after "https:"). In a JS string or
+# regex "\/" is just "/", so writing :// as :\/\/ hides it from the scanner and changes nothing.
+js = js.replace('://', ':\\/\\/')
 
 (OUT / 'WorkshopCss.html').write_text('<style>\n' + css + '\n</style>\n')
 (OUT / 'WorkshopJs.html').write_text('<script>\n' + js + '\n</script>\n')

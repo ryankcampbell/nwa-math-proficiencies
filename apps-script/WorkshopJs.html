@@ -335,11 +335,11 @@ window.NWAPractice = { mount, fill, sample, ev, frac, plotSvg };
 'use strict';
 
 const WS = !!window.NWA_WORKSHOP;
-const PUBLIC_URL = 'https://ryankcampbell.github.io/nwa-math-proficiencies/';
+const PUBLIC_URL = 'https:\/\/ryankcampbell.github.io/nwa-math-proficiencies/';
 const BASE = WS ? PUBLIC_URL : '';          // where published files (practice sets, plans) live
 const VENDOR = WS ? {
-  xlsx: 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
-  qr: 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
+  xlsx: 'https:\/\/cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
+  qr: 'https:\/\/cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
 } : { xlsx: 'vendor/xlsx.full.min.js', qr: 'vendor/qrcode.min.js' };
 
 /* Which earlier courses feed each course — drives "prepare for…" in Assign. */
@@ -764,7 +764,7 @@ function practiceUrl(st) {
 }
 
 function khan(p) {
-  return 'https://www.khanacademy.org/search?page_search_query=' + encodeURIComponent(p.text.replace(/\(.*?\)/g, ''));
+  return 'https:\/\/www.khanacademy.org/search?page_search_query=' + encodeURIComponent(p.text.replace(/\(.*?\)/g, ''));
 }
 
 function vPractice(params) {
@@ -1076,7 +1076,7 @@ document.addEventListener('click', async e => {
       const p = P.get(d.code);
       promptModal(`Add a resource for ${p.code}`, [
         { label: 'Title', placeholder: 'e.g. Khan Academy: Graphing rational functions' },
-        { label: 'Link', placeholder: 'https://…', help: 'Paste a link, or choose a file below instead.' },
+        { label: 'Link', placeholder: 'https:\/\/…', help: 'Paste a link, or choose a file below instead.' },
         { label: 'Or upload a file (PDF, image, doc)', type: 'file' },
         { label: 'Kind', type: 'select', value: 'video', options: [['video', 'Video'], ['practice', 'Practice problems'], ['notes', 'Notes'], ['interactive', 'Interactive'], ['link', 'Other link']] },
       ], async ([title, url, file, kind]) => {
@@ -1084,7 +1084,7 @@ document.addEventListener('click', async e => {
           if (file.size > 20e6) { toast('Files must be under 20 MB'); throw new Error('too big'); }
           return edit({ op: 'uploadResource', code: p.code, title: title || file.name, kind, name: file.name, mime: file.type, b64: await fileToB64(file) }, 'Uploaded');
         }
-        if (!/^https?:\/\//.test(url)) { toast('Paste a full link starting with https://'); throw new Error('bad url'); }
+        if (!/^https?:\/\//.test(url)) { toast('Paste a full link starting with https:\/\/'); throw new Error('bad url'); }
         return edit({ op: 'addResource', code: p.code, title: title || url, url, kind }, 'Resource added');
       });
       break;
