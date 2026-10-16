@@ -32,6 +32,9 @@ const FEEDS = {
   PA2: ['PA1'], PA3: ['PA2'], IM1: ['PA3'], IM2: ['IM1'], IM3: ['IM2'],
   PC: ['IM3'], APC: ['IM3'], CALC: ['APC', 'PC'], ST1: ['IM3'], ST2: ['ST1'],
 };
+// Line breaks for confirm() and email text. Never write a backslash-n escape in this file: Apps Script
+// turns it into a real line break when it serves the Workshop, which breaks the JS (blank page).
+const NL = String.fromCharCode(10), NL2 = NL + NL;
 const BAND_NAME = { ms: 'Middle School', hs: 'High School', el: 'Electives', st: 'Statistics' };
 const KIND = { gap: 'Gap', overlap: 'Overlap', order: 'Sequence', todo: 'To do' };
 
@@ -728,7 +731,7 @@ document.addEventListener('click', async e => {
     }
     case 'copyEmail': {
       const st = assignState();
-      const txt = `${st.title || 'Math practice'}\n\n${st.note ? st.note + '\n\n' : ''}Your practice list (${st.picked.length} proficiencies)${st.due ? ', due ' + st.due : ''}:\n${$('#plink').value}\n\nEach item has links to practice resources. Check things off as you go.`;
+      const txt = `${st.title || 'Math practice'}${NL2}${st.note ? st.note + NL2 : ''}Your practice list (${st.picked.length} proficiencies)${st.due ? ', due ' + st.due : ''}:${NL}${$('#plink').value}${NL2}Each item has links to practice resources. Check things off as you go.`;
       navigator.clipboard.writeText(txt).then(() => toast('Email text copied')); break;
     }
     /* ── workshop edits ── */
@@ -741,7 +744,7 @@ document.addEventListener('click', async e => {
     }
     case 'retire': {
       const p = P.get(d.code);
-      if (confirm(`Retire ${p.code}: “${p.text}”?\n\nIt disappears from the site. The code is never reused, and old practice links will say it is no longer in the curriculum.`))
+      if (confirm(`Retire ${p.code}: “${p.text}”?${NL2}It disappears from the site. The code is never reused, and old practice links will say it is no longer in the curriculum.`))
         await edit({ op: 'retireProf', code: p.code }, `${p.code} retired`);
       break;
     }
@@ -802,7 +805,7 @@ document.addEventListener('click', async e => {
       break;
     case 'refresh': google.script.run.withSuccessHandler(data => { D = data; index(); render(); toast('Up to date'); }).getData(); break;
     case 'publish':
-      if (confirm('Publish the current Sheet to the public site?\n\nThis replaces what parents and students see. Every published version is kept in GitHub history.'))
+      if (confirm('Publish the current Sheet to the public site?' + NL2 + 'This replaces what parents and students see. Every published version is kept in GitHub history.'))
         google.script.run.withSuccessHandler(r => toast(r)).withFailureHandler(err => toast('Publish failed: ' + err.message)).publish();
       break;
   }

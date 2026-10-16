@@ -15,6 +15,9 @@ OUT = ROOT / 'apps-script'
 css = (ROOT / 'style.css').read_text()
 js = (ROOT / 'practice.js').read_text() + '\n' + (ROOT / 'app.js').read_text()
 assert '</script' not in js.lower(), 'JS contains </script'
+import re
+bad = [l for l in js.splitlines() if re.search(r'(?<!\\)\\n', l) and not l.strip().startswith(('//', '*', '/*'))]
+assert not bad, 'backslash-n escapes break the Workshop (use NL): ' + bad[0][:120]
 assert '</style' not in css.lower(), 'CSS contains </style'
 
 (OUT / 'WorkshopCss.html').write_text('<style>\n' + css + '\n</style>\n')
