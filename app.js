@@ -13,12 +13,15 @@
      #/review           overlaps and open questions for the department
      #/assign           teacher builds a practice link
      #/p?s=…            student practice page (what an assignment link opens)
+     #/c/K7QM4          a class code: looked up in data/plans.json, then opens its #/p page
+     #/q/IM3-14         practice problems for one proficiency (practice.js)
 */
 (() => {
 'use strict';
 
 const WS = !!window.NWA_WORKSHOP;
 const PUBLIC_URL = 'https://ryankcampbell.github.io/nwa-math-proficiencies/';
+const BASE = WS ? PUBLIC_URL : '';          // where published files (practice sets, plans) live
 const VENDOR = WS ? {
   xlsx: 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
   qr: 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
@@ -33,6 +36,7 @@ const BAND_NAME = { ms: 'Middle School', hs: 'High School', el: 'Electives', st:
 const KIND = { gap: 'Gap', overlap: 'Overlap', order: 'Sequence', todo: 'To do' };
 
 let D, C, S, T, P;          // data; course, strand, thread, proficiency maps
+let PX = {};                // practice/index.json: code → {title, n}
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -64,12 +68,16 @@ const resOf = code => D.resources.filter(r => r.code === code);
 const flagsAt = (tid, cid) => D.flags.filter(f => f.thread === tid && f.course === cid && f.status !== 'resolved');
 const openOverlapsOf = code => D.overlaps.filter(o => o.status === 'open' && (o.a === code || o.b === code));
 const sc = sid => `var(--s-${sid})`;
+const showOv = () => store.get('ovShow', false);   // overlap badges: off unless asked for (they crowd the grid)
 
 async function load() {
   if (window.NWA_DATA) { D = window.NWA_DATA; index(); return; }
   const res = await fetch('data/data.json', { cache: 'no-cache' });
   D = await res.json();
   index();
+}
+async function loadPractice() {
+  try { PX = (await (await fetch(BASE + 'practice/index.json', { cache: 'no-cache' })).json()).sets || {}; } catch (e) { PX = {}; }
 }
 
 /* ───────────────────────── workshop API ───────────────────────── */
@@ -145,14 +153,13 @@ function threadSelect(p) {
 
 function profRow(p, { showCourse = false, showThread = true } = {}) {
   const c = C.get(p.course), t = T.get(p.thread), rs = resOf(p.code), ov = openOverlapsOf(p.code);
-  const reviewOn = WS || store.get('review', false);
   return `<li data-code="${p.code}">
     <span class="code">${p.code}</span>
     <div class="ptext">
       ${esc(p.text)}${p.level === 'unit' ? ' <span class="tag">Unit</span>' : ''}${p.new ? ' <span class="tag">New</span>' : ''}
-      <span class="sub">${showCourse ? `<a href="#/course/${c.id}">${esc(c.name)}</a> · ` : ''}${p.unit && showCourse ? esc(p.unit) + ' · ' : ''}${rs.length ? `${rs.length} resource${rs.length > 1 ? 's' : ''}` : ''}${p.note ? ' ' + esc(p.note) : ''}</span>
+      <span class="sub">${showCourse ? `<a href="#/course/${c.id}">${esc(c.name)}</a> · ` : ''}${p.unit && showCourse ? esc(p.unit) + ' · ' : ''}${rs.length ? `${rs.length} resource${rs.length > 1 ? 's' : ''}` : ''}${p.note ? ' ' + esc(p.note) : ''}${PX[p.code] ? ` <a class="tag prac" href="#/q/${p.code}">Practice · ${PX[p.code].n}</a>` : ''}</span>
       ${WS && p.was ? `<span class="was">was: ${esc(p.was)}</span>` : ''}
-      ${reviewOn && ov.length ? `<span class="sub">${ov.map(o => { const other = o.a === p.code ? o.b : o.a; return `<span class="tag overlap">Overlaps ${other}</span>`; }).join(' ')}</span>` : ''}
+      ${showOv() && ov.length ? `<span class="sub">${ov.map(o => { const other = o.a === p.code ? o.b : o.a; return `<span class="tag overlap">Overlaps ${other}</span>`; }).join(' ')}</span>` : ''}
       ${WS ? `<div class="ws-row">
         ${threadSelect(p)}
         <button class="btn small ghost" data-act="editProf" data-code="${p.code}">Edit wording</button>
@@ -179,6 +186,7 @@ function vHome() {
       <a class="btn" href="#/assign">Assign practice</a>
       <button class="btn" data-act="xlsx">${icon.dl} Download Excel</button>
     </div>
+    ${WS ? '' : codeBox()}
   </section>
   ${bands.map(b => {
     const cs = D.courses.filter(c => c.band === b);
@@ -280,6 +288,7 @@ function vScope(sid) {
   </div>
   <div class="toolbar noprint">
     <label class="check" style="font-size:13px;font-weight:600;color:var(--ink-2)"><input type="checkbox" data-act="review" ${review ? 'checked' : ''} ${WS ? 'disabled' : ''}> Show review notes</label>
+    <label class="check" style="font-size:13px;font-weight:600;color:var(--ink-2)"><input type="checkbox" data-act="ovShow" ${showOv() ? 'checked' : ''}> Show overlaps</label>
     <button class="btn small" data-act="xlsx">${icon.dl} Excel</button>
   </div></div>
   <div class="seg" role="tablist">${D.strands.map(x => `<button role="tab" aria-selected="${x.id === s.id}" class="${x.id === s.id ? 'on' : ''}" style="--c:${sc(x.id)}" data-act="strand" data-strand="${x.id}"><span class="dot"></span>${esc(x.name)}</button>`).join('')}</div>
@@ -293,13 +302,13 @@ function vScope(sid) {
       ${D.courses.map(c => {
         const ps = inCell(t.id, c.id), txt = t.cells?.[c.id] || '';
         const fl = review ? flagsAt(t.id, c.id) : [];
-        const ov = review ? new Set(ps.flatMap(p => openOverlapsOf(p.code).map(o => o.id))).size : 0;
+        const ov = showOv() ? new Set(ps.flatMap(p => openOverlapsOf(p.code).map(o => o.id))).size : 0;
         const tags = fl.map(f => `<span class="tag ${f.kind}">${KIND[f.kind] || f.kind}</span>`).join('') + (ov ? `<span class="tag overlap">${ov} overlap${ov > 1 ? 's' : ''}</span>` : '');
         if (!ps.length && !txt) return `<td><button class="cell na" data-act="cell" data-thread="${t.id}" data-course="${c.id}">n/a${tags ? `<span class="flags">${tags}</span>` : ''}</button></td>`;
-        const w = ps.length ? (0.10 + 0.40 * ps.length / max).toFixed(2) : 0;
+        const w = ps.length ? (ps.length / max).toFixed(2) : 0;   // length of the count bar
         return `<td class="${ps.length ? 'has' : ''}" style="--w:${w}"><button class="cell ${ps.length ? 'has' : ''}" data-act="cell" data-thread="${t.id}" data-course="${c.id}">
-          ${esc(txt || ps.map(p => p.text).slice(0, 2).join('; '))}
-          ${ps.length ? `<span class="n">${ps.length} prof.</span>` : '<span class="n">see note</span>'}
+          ${esc(txt || ps.map(p => p.text).slice(0, 2).join('; ')).replace(/\//g, '/<wbr>')}
+          ${ps.length ? `<span class="n"><span class="bar" aria-hidden="true"></span>${ps.length} prof.</span>` : '<span class="n">see note</span>'}
           ${tags ? `<span class="flags">${tags}</span>` : ''}</button></td>`;
       }).join('')}
     </tr>`).join('')}</tbody>
@@ -447,10 +456,12 @@ function vPractice(params) {
   const key = 'done:' + params.get('s');
   const done = new Set(store.get(key, []));
   const n = ps.filter(p => done.has(p.code)).length;
-  const due = params.get('d');
+  const due = params.get('d'), code = params.get('c');
+  if (code) remember(code, params.get('t') || 'Practice', location.hash);
+  const back = encodeURIComponent(location.hash);
   return `
   <section class="practice-head">
-    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85">NWA Mathematics · Practice</div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85">NWA Mathematics · Practice${code ? ` · code ${esc(code)}` : ''}</div>
     <h1 style="margin-top:6px">${esc(params.get('t') || 'Your practice list')}</h1>
     ${due ? `<div style="margin-top:6px;font-weight:600">Due ${esc(new Date(due + 'T12:00').toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }))}</div>` : ''}
     ${params.get('n') ? `<div class="note">${esc(params.get('n'))}</div>` : ''}
@@ -463,12 +474,66 @@ function vPractice(params) {
     return `<div class="pcard ${done.has(p.code) ? 'done' : ''}">
       <label class="check"><input type="checkbox" data-act="did" data-key="${esc(key)}" data-code="${p.code}" ${done.has(p.code) ? 'checked' : ''}>
         <span class="ptext"><b>${esc(p.text)}</b><span class="sub">${p.code} · ${esc(c.name)}${p.unit ? ' · ' + esc(p.unit) : ''}</span></span></label>
-      <div class="res">${rs.map(r => `<a href="${esc(r.url)}" target="_blank" rel="noopener"><span class="kind">${esc(r.kind || 'link')}</span>${esc(r.title)}</a>`).join('')}
+      <div class="res">${PX[p.code] ? `<a class="prac" href="#/q/${p.code}?back=${back}"><span class="kind">practice</span>${PX[p.code].n} self-check problems</a>` : ''}${rs.map(r => `<a href="${esc(r.url)}" target="_blank" rel="noopener"><span class="kind">${esc(r.kind || 'link')}</span>${esc(r.title)}</a>`).join('')}
         <a class="fallback" href="${khan(p)}" target="_blank" rel="noopener">Search Khan Academy ↗</a></div>
     </div>`;
   }).join('')}
   ${missing.length ? `<p class="muted">Some items on this link (${missing.map(esc).join(', ')}) are no longer in the curriculum. Ask your teacher.</p>` : ''}
   ${!ps.length ? '<div class="empty-note">This link has no proficiencies on it. Ask your teacher for a new one.</div>' : ''}`;
+}
+
+/* Class codes: data/plans.json is written by the Workshop when a teacher saves a plan.
+   The code resolves to an ordinary #/p link, so the page then works offline like any link.
+   Codes a student has opened are remembered on this device (store 'mine'). */
+const CODE_RE = /^[A-HJKMNP-Z2-9]{5}$/;   // no 0/O, 1/I/L: easy to read aloud and type
+function remember(code, title, hash) {
+  const mine = store.get('mine', []).filter(m => m.code !== code);
+  mine.unshift({ code, title, hash, at: Date.now() });
+  store.set('mine', mine.slice(0, 12));
+}
+function vCode(code) {
+  code = (code || '').toUpperCase();
+  const saved = store.get('mine', []).find(m => m.code === code);
+  setTimeout(async () => {
+    try {
+      const plans = await (await fetch(BASE + 'data/plans.json', { cache: 'no-cache' })).json();
+      const pl = plans.plans && plans.plans[code];
+      if (!pl) throw new Error('none');
+      const q = new URLSearchParams({ s: pl.s, c: code });
+      if (pl.t) q.set('t', pl.t); if (pl.n) q.set('n', pl.n); if (pl.d) q.set('d', pl.d);
+      location.replace('#/p?' + q.toString());
+    } catch (e) {
+      if (saved) return location.replace(saved.hash);
+      $('#app').innerHTML = `<div class="empty-note">No practice plan has the code <b>${esc(code)}</b>. Check the letters with your teacher. (Codes never use 0, 1, O, I or L.)</div>${codeBox()}`;
+    }
+  });
+  return `<div class="empty-note">Looking up ${esc(code)}…</div>`;
+}
+function codeBox() {
+  const mine = store.get('mine', []);
+  return `<form class="codebox" data-form="code">
+    <label for="codein"><b>Have a practice code from your teacher?</b></label>
+    <div class="row"><input id="codein" class="inp" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. K7QM4" aria-label="Practice code">
+    <button class="btn primary">Open</button></div>
+    ${mine.length ? `<div class="mine"><span class="muted">Your plans on this device:</span> ${mine.map(m => `<a class="pill" href="${esc(m.hash)}"><b>${esc(m.code)}</b> ${esc(m.title)}</a>`).join(' ')}</div>` : ''}
+  </form>`;
+}
+function vQuiz(code, params) {
+  const p = P.get(code);
+  if (!p || !PX[code]) return vMissing();
+  const back = params.get('back');
+  setTimeout(async () => {
+    const el = $('#quiz');
+    try {
+      const set = await (await fetch(BASE + 'practice/' + code + '.json', { cache: 'no-cache' })).json();
+      if (!window.NWAPractice) await loadScript(BASE + 'practice.js');
+      window.NWAPractice.mount(el, set, { back: back || `#/course/${p.course}` });
+    } catch (e) { el.innerHTML = '<div class="empty-note">Could not load these problems. Check your connection and try again.</div>'; }
+  });
+  return `<div class="crumbs">${back ? `<a href="${esc(back)}">Practice list</a>` : `<a href="#/course/${p.course}">${esc(C.get(p.course).name)}</a>`} / ${p.code}</div>
+  <div class="phead"><div><h1 style="font-size:clamp(22px,3.4vw,30px)">${esc(p.text)}</h1>
+    <p>${p.code} · ${esc(C.get(p.course).name)} · each try gives new numbers; your score stays on this device.</p></div></div>
+  <div id="quiz" class="quiz"><div class="empty-note">Loading problems…</div></div>`;
 }
 
 function vMissing() {
@@ -589,12 +654,14 @@ function render() {
     case 'review': html = vReview(); tab = 'review'; break;
     case 'assign': html = vAssign(params); tab = 'assign'; break;
     case 'p': html = vPractice(params); tab = ''; break;
+    case 'c': html = vCode(id); tab = ''; break;
+    case 'q': html = vQuiz(id, params); tab = ''; break;
     default: html = vHome(); tab = 'home';
   }
   $('#app').innerHTML = html;
   $$('nav.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
-  document.body.classList.toggle('student', v === 'p');
-  const t = { course: C.get(id)?.name, scope: 'Scope & Sequence', thread: T.get(id)?.name, review: 'Department review', assign: 'Assign practice', p: params.get('t') || 'Practice' }[v];
+  document.body.classList.toggle('student', v === 'p' || v === 'c' || (v === 'q' && params.has('back')));
+  const t = { course: C.get(id)?.name, scope: 'Scope & Sequence', thread: T.get(id)?.name, review: 'Department review', assign: 'Assign practice', p: params.get('t') || 'Practice', q: id, c: 'Practice code' }[v];
   document.title = (t ? t + ' · ' : '') + 'NWA Math';
 }
 
@@ -637,7 +704,9 @@ document.addEventListener('click', async e => {
       const out = $('#linkout');
       out.innerHTML = `<div class="linkbox"><input class="inp" readonly value="${esc(url)}" id="plink"><button class="btn small" data-act="copy">Copy</button></div>
         <div class="ws-row"><a class="btn small" href="${esc(url)}" target="_blank" rel="noopener">Preview</a><button class="btn small" data-act="copyEmail">Copy email text</button></div>
-        <div id="qr" aria-label="QR code for the practice link"></div>`;
+        <div id="qr" aria-label="QR code for the practice link"></div>
+        ${WS ? '<div class="ws-row"><button class="btn small primary" data-act="makeCode">Make a class code</button><span class="muted small">A short code students type into the site.</span></div><div id="codeout"></div>'
+             : '<p class="muted small">Need a short code students can type in? Make the list in the Workshop.</p>'}`;
       try {
         if (!window.qrcode) await loadScript(VENDOR.qr);
         const q = window.qrcode(0, 'M'); q.addData(url); q.make();
@@ -646,6 +715,17 @@ document.addEventListener('click', async e => {
       break;
     }
     case 'copy': navigator.clipboard.writeText($('#plink').value).then(() => toast('Link copied')); break;
+    case 'makeCode': {
+      const st = assignState();
+      el.disabled = true;
+      try {
+        const r = await api({ op: 'savePlan', s: encodeCodes(st.picked), t: st.title, n: st.note, d: st.due });
+        $('#codeout').innerHTML = `<div class="bigcode">${esc(r.code)}</div>
+          <p class="small">Students open <b>${esc(PUBLIC_URL.replace(/^https:\/\//, ''))}</b>, type <b>${esc(r.code)}</b>, and get this list with its practice problems.
+          ${r.live ? 'It works now.' : 'It works after the next publish (no GitHub token yet).'}</p>`;
+      } catch (err) { toast('No code: ' + (err.message || err)); el.disabled = false; }
+      break;
+    }
     case 'copyEmail': {
       const st = assignState();
       const txt = `${st.title || 'Math practice'}\n\n${st.note ? st.note + '\n\n' : ''}Your practice list (${st.picked.length} proficiencies)${st.due ? ', due ' + st.due : ''}:\n${$('#plink').value}\n\nEach item has links to practice resources. Check things off as you go.`;
@@ -734,6 +814,7 @@ document.addEventListener('change', async e => {
   const a = el.dataset.act, d = el.dataset;
   if (a === 'pick') { assignSet(st => { st.picked = el.checked ? [...new Set([...st.picked, d.code])] : st.picked.filter(c => c !== d.code); }); render(); }
   if (a === 'review') { store.set('review', el.checked); render(); }
+  if (a === 'ovShow') { store.set('ovShow', el.checked); render(); }
   if (a === 'did') {
     const done = new Set(store.get(d.key, []));
     el.checked ? done.add(d.code) : done.delete(d.code);
@@ -763,6 +844,13 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('submit', e => {
+  if (e.target.dataset.form !== 'code') return;
+  e.preventDefault();
+  const code = $('#codein').value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!CODE_RE.test(code)) { toast('Codes are 5 letters and numbers, like K7QM4'); return; }
+  location.hash = '#/c/' + code;
+});
 
 /* ───────────────────────── boot ───────────────────────── */
 
@@ -792,6 +880,7 @@ function shell() {
 (async () => {
   try {
     await load();
+    await loadPractice();
   } catch (e) {
     document.body.innerHTML = '<p style="padding:40px;font:16px sans-serif">Could not load the curriculum data. Check your connection and reload.</p>';
     return;

@@ -1,0 +1,164 @@
+{
+ "code": "IM3-48",
+ "title": "Amplitude, period, and midline",
+ "version": 1,
+ "demo": true,
+ "questions": [
+  {
+   "id": "IM3-48-001",
+   "kind": "Interactive",
+   "format": "slider",
+   "params": {
+    "a0": {
+     "min": 1,
+     "max": 4
+    },
+    "p0": {
+     "min": 2,
+     "max": 8,
+     "step": 2
+    },
+    "d0": {
+     "min": -3,
+     "max": 3
+    }
+   },
+   "stem": "Set the amplitude $A$, period $P$, and midline $D$ so your curve $y=A\\sin\\!\\left(\\frac{2\\pi x}{P}\\right)+D$ lands on the dashed one.",
+   "graph": {
+    "window": [
+     0,
+     12,
+     -8,
+     8
+    ],
+    "fns": [
+     {
+      "f": "a0*sin(2*pi*x/p0)+d0",
+      "dash": true
+     }
+    ]
+   },
+   "controls": {
+    "A": {
+     "min": 1,
+     "max": 5,
+     "start": 1
+    },
+    "P": {
+     "min": 1,
+     "max": 10,
+     "start": 6
+    },
+    "D": {
+     "min": -4,
+     "max": 4,
+     "start": 0
+    }
+   },
+   "g": "A*sin(2*pi*x/P)+D",
+   "show": "y=[[A]]\\sin\\!\\left(\\tfrac{2\\pi x}{[[P]]}\\right)[[+D]]",
+   "answers": {
+    "A": "a0",
+    "P": "p0",
+    "D": "d0"
+   },
+   "explain": "Midline: halfway between max and min, $y=[[d0]]$. Amplitude: max minus midline, $[[a0]]$. Period: one full cycle takes $[[p0]]$ units."
+  },
+  {
+   "id": "IM3-48-002",
+   "kind": "Read the graph",
+   "format": "numeric",
+   "params": {
+    "a": {
+     "min": 1,
+     "max": 4
+    },
+    "p": {
+     "min": 2,
+     "max": 8,
+     "step": 2
+    },
+    "d": {
+     "min": -3,
+     "max": 3
+    }
+   },
+   "stem": "What is the <b>amplitude</b> of this sinusoid?",
+   "graph": {
+    "window": [
+     0,
+     12,
+     -8,
+     8
+    ],
+    "fns": [
+     {
+      "f": "a*sin(2*pi*x/p)+d"
+     }
+    ]
+   },
+   "answer": "a",
+   "tol": 0.01,
+   "explain": "Max $=[[d+a]]$, min $=[[d-a]]$. $$\\text{amplitude}=\\frac{\\max-\\min}{2}=\\frac{[[d+a]]-([[d-a]])}{2}=[[a]]$$"
+  },
+  {
+   "id": "IM3-48-003",
+   "kind": "Read the graph",
+   "format": "numeric",
+   "params": {
+    "a": {
+     "min": 1,
+     "max": 4
+    },
+    "p": {
+     "min": 2,
+     "max": 8,
+     "step": 2
+    },
+    "d": {
+     "min": -3,
+     "max": 3
+    }
+   },
+   "stem": "What is the <b>period</b> of this sinusoid?",
+   "graph": {
+    "window": [
+     0,
+     12,
+     -8,
+     8
+    ],
+    "fns": [
+     {
+      "f": "a*cos(2*pi*x/p)+d"
+     }
+    ]
+   },
+   "answer": "p",
+   "tol": 0.01,
+   "explain": "It peaks at $x=0$ and next at $x=[[p]]$, so one cycle takes $[[p]]$ units."
+  },
+  {
+   "id": "IM3-48-004",
+   "kind": "Equation",
+   "format": "numeric",
+   "params": {
+    "a": {
+     "min": 2,
+     "max": 6
+    },
+    "d": {
+     "min": -5,
+     "max": 5,
+     "not": [
+      0
+     ]
+    }
+   },
+   "stem": "What is the <b>maximum</b> value of $y=[[a]]\\sin x[[+d]]$?",
+   "answer": "a+d",
+   "tol": 0.01,
+   "explain": "$\\sin x$ is at most $1$, so the maximum is $[[a]]\\cdot 1[[+d]]=[[a+d]]$. (Midline $y=[[d]]$, amplitude $[[a]]$.)"
+  }
+ ]
+}

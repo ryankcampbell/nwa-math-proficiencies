@@ -1,0 +1,153 @@
+{
+ "code": "PA3-19",
+ "title": "Find slope from a graph or two points",
+ "version": 1,
+ "demo": true,
+ "questions": [
+  {
+   "id": "PA3-19-001",
+   "kind": "Read the graph",
+   "format": "numeric",
+   "params": {
+    "x1": {
+     "min": -5,
+     "max": 0
+    },
+    "y1": {
+     "min": -4,
+     "max": 2
+    },
+    "run": {
+     "min": 1,
+     "max": 4
+    },
+    "rise": {
+     "min": -4,
+     "max": 4,
+     "not": [
+      0
+     ]
+    }
+   },
+   "derive": {
+    "x2": "x1+run",
+    "y2": "y1+rise"
+   },
+   "where": "y2>=-5 && y2<=5",
+   "stem": "What is the slope of the line?",
+   "graph": {
+    "window": [
+     -6,
+     6,
+     -6,
+     6
+    ],
+    "fns": [
+     {
+      "f": "y1+rise/run*(x-x1)"
+     }
+    ],
+    "points": [
+     [
+      "x1",
+      "y1"
+     ],
+     [
+      "x2",
+      "y2"
+     ]
+    ]
+   },
+   "answer": "rise/run",
+   "tol": 0.01,
+   "explain": "From $([[x1]],\\,[[y1]])$ to $([[x2]],\\,[[y2]])$ the line rises $[[rise]]$ and runs $[[run]]$: $$m=\\frac{\\text{rise}}{\\text{run}}=\\frac{[[rise]]}{[[run]]}=[[f:rise/run]]$$"
+  },
+  {
+   "id": "PA3-19-002",
+   "kind": "Two points",
+   "format": "numeric",
+   "params": {
+    "x1": {
+     "min": -9,
+     "max": 9
+    },
+    "y1": {
+     "min": -9,
+     "max": 9
+    },
+    "x2": {
+     "min": -9,
+     "max": 9
+    },
+    "y2": {
+     "min": -9,
+     "max": 9
+    }
+   },
+   "where": "x1!=x2 && y1!=y2 && abs((y2-y1)/(x2-x1))<=6",
+   "stem": "Find the slope of the line through $([[x1]],\\,[[y1]])$ and $([[x2]],\\,[[y2]])$.",
+   "answer": "(y2-y1)/(x2-x1)",
+   "tol": 0.01,
+   "explain": "$$m=\\frac{y_2-y_1}{x_2-x_1}=\\frac{[[y2]]-([[y1]])}{[[x2]]-([[x1]])}=\\frac{[[y2-y1]]}{[[x2-x1]]}=[[f:(y2-y1)/(x2-x1)]]$$"
+  },
+  {
+   "id": "PA3-19-003",
+   "kind": "Interactive",
+   "format": "point",
+   "n": 1,
+   "params": {
+    "x0": {
+     "min": -3,
+     "max": 1
+    },
+    "y0": {
+     "min": -3,
+     "max": 1
+    },
+    "rise": {
+     "min": -3,
+     "max": 3,
+     "not": [
+      0
+     ]
+    },
+    "run": {
+     "min": 1,
+     "max": 3
+    }
+   },
+   "where": "rise%run!=0 || run==1",
+   "stem": "The line passes through the marked point and has slope $m=[[f:rise/run]]$. Place another point on the line.",
+   "graph": {
+    "window": [
+     -6,
+     6,
+     -6,
+     6
+    ],
+    "points": [
+     [
+      "x0",
+      "y0"
+     ]
+    ]
+   },
+   "check": "X1!=x0 && abs((Y1-y0)/(X1-x0) - rise/run) < 1e-9",
+   "explain": "From $([[x0]],\\,[[y0]])$ move $[[rise]]$ vertically (negative means down) and $[[run]]$ to the right: $([[x0+run]],\\,[[y0+rise]])$ is on the line. So is $([[x0-run]],\\,[[y0-rise]])$."
+  },
+  {
+   "id": "PA3-19-004",
+   "kind": "Concept",
+   "format": "mc",
+   "stem": "What is the slope of a horizontal line?",
+   "choices": [
+    "$0$",
+    "Undefined",
+    "$1$",
+    "It depends on the line"
+   ],
+   "answer": 0,
+   "explain": "A horizontal line never rises, so $m=\\frac{0}{\\text{run}}=0$. A <em>vertical</em> line is the one with undefined slope."
+  }
+ ]
+}

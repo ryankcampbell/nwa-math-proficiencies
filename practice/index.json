@@ -1,0 +1,24 @@
+{
+ "sets": {
+  "PA3-19": {
+   "title": "Find slope from a graph or two points",
+   "n": 4
+  },
+  "IM1-10": {
+   "title": "Linear vs. exponential functions",
+   "n": 4
+  },
+  "IM2-02": {
+   "title": "Structures of quadratic functions",
+   "n": 4
+  },
+  "IM3-48": {
+   "title": "Amplitude, period, and midline",
+   "n": 4
+  },
+  "IM3-05": {
+   "title": "Exact values of logarithms",
+   "n": 4
+  }
+ }
+}

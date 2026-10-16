@@ -1,0 +1,121 @@
+{
+ "code": "IM1-10",
+ "title": "Linear vs. exponential functions",
+ "version": 1,
+ "demo": true,
+ "questions": [
+  {
+   "id": "IM1-10-001",
+   "kind": "Tables",
+   "format": "mc",
+   "params": {
+    "a": {
+     "min": 2,
+     "max": 5
+    },
+    "b": {
+     "min": 2,
+     "max": 3
+    },
+    "d": {
+     "min": 2,
+     "max": 6
+    }
+   },
+   "stem": "Which table shows an <b>exponential</b> function?\n<div class=\"q-tables\"><table class=\"q-tab\"><caption>Table A</caption><tr><th>$x$</th><th>$y$</th></tr><tr><td>0</td><td>[[a]]</td></tr><tr><td>1</td><td>[[a+d]]</td></tr><tr><td>2</td><td>[[a+2*d]]</td></tr><tr><td>3</td><td>[[a+3*d]]</td></tr></table>\n<table class=\"q-tab\"><caption>Table B</caption><tr><th>$x$</th><th>$y$</th></tr><tr><td>0</td><td>[[a]]</td></tr><tr><td>1</td><td>[[a*b]]</td></tr><tr><td>2</td><td>[[a*b^2]]</td></tr><tr><td>3</td><td>[[a*b^3]]</td></tr></table></div>",
+   "choices": [
+    "Table A",
+    "Table B",
+    "Both",
+    "Neither"
+   ],
+   "answer": 1,
+   "fixed": true,
+   "explain": "Table B <b>multiplies</b> by $[[b]]$ each step: $y=[[a]]\\cdot[[b]]^x$. Table A <b>adds</b> $[[d]]$ each step: $y=[[a]]+[[d]]x$, linear."
+  },
+  {
+   "id": "IM1-10-002",
+   "kind": "Read the graph",
+   "format": "mc",
+   "params": {
+    "a": {
+     "min": 1,
+     "max": 2
+    },
+    "d": {
+     "min": 1,
+     "max": 2
+    }
+   },
+   "stem": "Both functions start at $y=[[a]]$. Which one is exponential?",
+   "graph": {
+    "window": [
+     -1,
+     6,
+     -1,
+     13
+    ],
+    "fns": [
+     {
+      "f": "a+d*x",
+      "label": "f",
+      "at": "5"
+     },
+     {
+      "f": "a*2^x",
+      "label": "g",
+      "at": "3.2"
+     }
+    ]
+   },
+   "choices": [
+    "$f$",
+    "$g$",
+    "Both",
+    "Neither"
+   ],
+   "answer": 1,
+   "fixed": true,
+   "explain": "$g$ curves upward because each step <b>doubles</b>: $g(x)=[[a]]\\cdot 2^x$. $f$ is a straight line because each step <b>adds</b> $[[d]]$."
+  },
+  {
+   "id": "IM1-10-003",
+   "kind": "Compute",
+   "format": "numeric",
+   "params": {
+    "a": {
+     "min": 2,
+     "max": 9
+    },
+    "n": {
+     "min": 3,
+     "max": 6
+    }
+   },
+   "stem": "A population starts at $[[a]]$ and <b>doubles</b> every year. How large is it after $[[n]]$ years?",
+   "answer": "a*2^n",
+   "tol": 0.01,
+   "explain": "$$[[a]]\\cdot 2^{[[n]]}=[[a*2^n]]$$ If it <em>added</em> $[[a]]$ each year instead, it would be linear: $[[a]]+[[a]]\\cdot[[n]]=[[a+a*n]]$."
+  },
+  {
+   "id": "IM1-10-004",
+   "kind": "Concept",
+   "format": "mc",
+   "params": {
+    "r": {
+     "min": 3,
+     "max": 8
+    }
+   },
+   "stem": "A savings account grows by <b>$[[r]]\\%$ each year</b>. What kind of growth is that?",
+   "choices": [
+    "Exponential: it multiplies by $[[1+r/100]]$ each year",
+    "Linear: it adds $\\$[[r]]$ each year",
+    "Linear: the rate stays the same",
+    "Neither"
+   ],
+   "answer": 0,
+   "explain": "A constant <em>percent</em> means multiplying by the same factor every year: $A=P\\,(1+[[r/100]])^t$. That is exponential."
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage{nwa-guide}
+\begin{document}
+\guidetitle{Scope \& Sequence: Chair's Guide}{NWA Mathematics \quad 2026--27}
+
+\textbf{The idea.} Every proficiency lives in one Google Sheet. Teachers edit it through the \emph{Workshop}
+(a web page tied to the Sheet). When you click \ui{Publish}, the public site updates; parents, deans,
+admissions and students only ever see published versions.
+\begin{center}\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+ & \textbf{What it is} & \textbf{Who touches it}\\\hline
+Google Sheet & The master copy: proficiencies, threads, cell descriptions, overlaps, resources, change log & You (teachers may type in the \emph{Threads} tab)\\
+Workshop & The site plus edit buttons; school Google login; every edit saved to the Sheet with the teacher's name & All math teachers\\
+Public site & \href{https://ryankcampbell.github.io/nwa-math-proficiencies/}{ryankcampbell.github.io/nwa-math-proficiencies} --- read-only, works offline, Excel download, practice links & Everyone\\
+\end{tabularx}\end{center}
+
+\begin{multicols}{2}
+\section*{Set up once (about 15 minutes)}
+\begin{enumerate}
+\item \textbf{Connect the script.} Re-run \texttt{clasp login} and tick \emph{every} box (or paste the three
+  files into \ui{Extensions $\to$ Apps Script}). Claude deploys it and hands you the Workshop URL.
+\item \textbf{Open the Workshop URL.} At ``Google hasn't verified this app'' click \ui{Advanced $\to$ Go to\ldots}
+  $\to$ \ui{Allow}. The empty Sheet fills itself with the draft.
+\item \textbf{GitHub token.} github.com $\to$ Settings $\to$ Developer settings $\to$ Fine-grained tokens:
+  only this repo, \emph{Contents: read and write}. Paste via \ui{NWA Math $\to$ Set GitHub token}.
+  Calendar the expiry date.
+\item \textbf{Test.} Change one word, \ui{Publish}, check the site a minute later.
+\end{enumerate}
+
+\section*{The year with the department}
+\begin{description}[style=nextline,leftmargin=0.8em,font=\color{teal}\bfseries]
+\item[Oct 21 meeting (30 min)] Paper first: printed proficiencies, rotating partners find common threads.
+  Then project the draft's \ui{Scope \& Sequence} page and compare. Send the Workshop link.
+\item[Round 1, two weeks: Sort] Each teacher owns their course: move proficiencies to the right thread,
+  fix wording, write their column's cell descriptions.
+\item[Round 2, two weeks: Cross-check] Neighbor pairs (6--7, 8--IM1, IM2--IM3, IM3--PC/APC, APC--Calc)
+  work the \ui{Review} page: mark each overlap \emph{Spiral}, \emph{Redundant} or \emph{Not the same}.
+\item[November meeting] Settle the leftover disagreements and the 8 open questions. Publish v1;
+  download the Excel for administration.
+\item[Spring] At least one resource per proficiency; problem bank (below).
+\item[May--June] Teachers make summer links or class codes (demo: \texttt{NWA26}). Codes go live
+  within a minute; they are saved in the Sheet's \emph{Plans} tab. Each spring: one revision round.
+\end{description}
+
+\section*{Your weekly ten minutes}
+\begin{itemize}
+\item Skim the Sheet's \emph{Changelog} tab: who changed what.
+\item Open \ui{Review}: which overlaps and questions are still undecided?
+\item \ui{Publish} when the state is good. Every version is kept in GitHub history, so nothing is lost.
+\end{itemize}
+
+\section*{How resources get provisioned}
+\textbf{Now:} any teacher clicks \ui{Add resource} on a proficiency and pastes a link (Khan, Desmos, a
+video) or uploads a file. Uploads go to a Drive folder; \ui{Publish} copies them into the site so links
+never break. Until a proficiency has resources, students see a Khan Academy search link.
+
+\textbf{The practice bank} (5 demo sets live: PA3-19, IM1-10, IM2-02, IM3-05, IM3-48). Same engine as the Astronomy site's study sets: one file per
+proficiency (\texttt{IM3-14}) with self-check questions, worked explanations, new numbers each try, figures drawn from the numbers, and \textbf{interactive answers} (place a point, drag a curve, set a slider, mark a region, embedded Desmos),
+progress kept on the student's device.
+\begin{enumerate}
+\item Teachers send you old exams, quizzes (with keys), worksheets and favorite links. Save them in \texttt{deptchair/curriculum\_map/resources/}, links in its \texttt{resources.md}. That folder is private; it is never published.
+\item Ask Claude to mine the folder. It tags every exam question to proficiency codes and writes a \emph{coverage report}:
+  which proficiencies are tested, how often, and which never are.
+\item Claude writes 4--8 \emph{new} parallel problems per proficiency in the style of those exams.
+\item The course's teacher approves or edits them in the Workshop; \ui{Publish}.
+\end{enumerate}
+\end{multicols}
+\vspace{-4pt}
+\note{\textbf{Rules.} Exam questions are never published, only new problems modeled on them (students will
+see the site). Codes like \texttt{IM3-14} are permanent: \ui{Retire}, never renumber, or old practice links
+break. The \texttt{.tex} file is no longer the source; the Sheet is. The draft is public at the URL above.}
+\end{document}

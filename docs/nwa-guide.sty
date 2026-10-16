@@ -1,0 +1,29 @@
+% Shared look for the one-page guides (NWA brand colors).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{nwa-guide}
+\RequirePackage[letterpaper,margin=0.55in,top=0.45in,bottom=0.45in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{enumitem,multicol,tabularx,array,titlesec}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{tcolorbox}
+\definecolor{teal}{HTML}{156875}
+\definecolor{tealL}{HTML}{1B9AAA}
+\definecolor{mustard}{HTML}{D4A849}
+\definecolor{coral}{HTML}{E76F51}
+\definecolor{ink}{HTML}{303030}
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\columnsep}{18pt}
+\titleformat{\section}{\color{teal}\bfseries\large}{\thesection}{6pt}{}
+\titlespacing*{\section}{0pt}{7pt}{2pt}
+\setlist{nosep,leftmargin=1.2em,itemsep=1pt}
+\newcommand{\guidetitle}[2]{%
+  \begin{tcolorbox}[colback=teal,colframe=teal,coltext=white,arc=2pt,boxsep=4pt,left=6pt,right=6pt]
+  {\Large\bfseries #1}\hfill{\small #2}\end{tcolorbox}\vspace{-2pt}}
+\newcommand{\ui}[1]{\textbf{\color{teal}#1}}          % a button or menu name
+\newcommand{\note}[1]{\begin{tcolorbox}[colback=mustard!14,colframe=mustard,arc=2pt,boxsep=2pt,left=5pt,right=5pt,boxrule=0.6pt]\small #1\end{tcolorbox}}

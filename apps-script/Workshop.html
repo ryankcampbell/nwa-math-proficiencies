@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <style>
 /* NWA Math Proficiencies — the program-map look: near-black field, faint grid,
    glowing teal title, teal / mustard / coral / graphite course bands.
@@ -171,14 +174,14 @@ table.heat{border-collapse:separate;border-spacing:3px;min-width:860px;width:100
 .sgrid thead th.tname{z-index:2;background:var(--panel-2)}
 .sgrid th.tname a{color:var(--ink)}
 .sgrid th.tname small{display:block;color:var(--ink-3);font-weight:400;font-size:12px;margin-top:4px}
-.sgrid tr{height:1px}
-.sgrid td{padding:0;height:inherit}
-.sgrid td.has{background:color-mix(in srgb,var(--c) calc(var(--w,0.2) * 100%),transparent)}
-.cell{all:unset;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;width:100%;height:100%;min-height:86px;padding:10px;cursor:pointer;font-size:12.5px;line-height:1.4;color:var(--ink-2)}
+.sgrid td{padding:0}
+.sgrid td.has{background:color-mix(in srgb,var(--c) 9%,transparent)}
+.cell{all:unset;box-sizing:border-box;display:block;width:100%;min-height:86px;overflow-wrap:normal;hyphens:auto;padding:12px;cursor:pointer;font-size:14px;line-height:1.45;color:var(--ink-2)}
 .cell:hover{background:var(--panel-2)}
 .cell.has{color:var(--ink)}
 .cell.has:hover{background:rgba(255,255,255,.05)}
-.cell .n{display:inline-block;font-size:11px;font-weight:700;color:var(--ink-3);margin-top:6px;font-variant-numeric:tabular-nums}
+.cell .n{display:flex;align-items:center;gap:7px;white-space:nowrap;font-size:12px;font-weight:700;color:var(--ink-3);margin-top:8px;font-variant-numeric:tabular-nums}
+.cell .n .bar{display:inline-block;height:6px;border-radius:3px;background:var(--c);width:calc(var(--w,0) * 36px);min-width:5px;flex:0 0 auto}
 .cell.has .n{color:var(--ink-2)}
 .cell.na{color:var(--ink-4);font-style:italic}
 .cell .flags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
@@ -321,6 +324,101 @@ footer{max-width:1240px;margin:0 auto;padding:30px 16px 40px;color:var(--ink-4);
 
 body.student nav.tabs{display:none}
 
+/* ───────── class codes ───────── */
+.codebox{margin-top:22px;max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.codebox label{display:block;margin-bottom:8px;font-size:14px}
+.codebox .row{display:flex;gap:8px}
+.codebox input{flex:1;font:700 20px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.22em;text-transform:uppercase;padding:10px 12px}
+.codebox .mine{margin-top:10px;font-size:13px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.codebox .mine .pill b{font-family:ui-monospace,Menlo,monospace;letter-spacing:.08em;margin-right:4px}
+.bigcode{font:800 34px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.24em;color:var(--teal-ink);background:var(--teal-bg);
+  border:1px dashed var(--teal);border-radius:12px;text-align:center;padding:14px 8px;margin-top:12px}
+.tag.prac,.res a.prac{background:var(--teal-bg);color:var(--teal-ink);border-color:color-mix(in srgb,var(--teal) 40%,transparent)}
+.small{font-size:12.5px}
+
+/* ───────── practice problems ───────── */
+.quiz{max-width:980px}
+.q-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.q-dots{display:flex;gap:6px;flex-wrap:wrap}
+.q-dot{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line-2);background:var(--panel);color:var(--ink-2);font:700 13px var(--sans);cursor:pointer}
+.q-dot.on{border-color:var(--teal);color:var(--teal-ink);box-shadow:0 0 0 3px var(--teal-bg)}
+.q-dot.ok{background:color-mix(in srgb,var(--ok) 22%,var(--panel));border-color:var(--ok);color:var(--ink)}
+.q-dot.no{background:color-mix(in srgb,var(--bad) 20%,var(--panel));border-color:var(--bad);color:var(--ink)}
+.q-score{margin-left:auto;font-size:13px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.q-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow)}
+.q-meta{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+.q-kind{padding:3px 9px;border-radius:999px;background:var(--panel-3);color:var(--ink-2);letter-spacing:.04em}
+.q-kind.live{background:var(--teal-bg);color:var(--teal-ink)}
+.q-stem{font-size:clamp(17px,2.1vw,20px);line-height:1.6;color:var(--ink);margin-bottom:18px}
+.q-stem .katex-display{margin:.7em 0 .2em;font-size:1.12em}
+.q-stem .katex{font-size:1.08em}
+.q-body{display:grid;gap:22px}
+.q-body.has-graph{grid-template-columns:minmax(260px,400px) 1fr;align-items:start}
+@media (max-width:760px){.q-body.has-graph{grid-template-columns:1fr}}
+.q-graph{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:10px}
+.graph{display:block;width:100%;height:auto;touch-action:manipulation}
+.graph.interactive{cursor:crosshair}
+.g-grid{stroke:var(--line);stroke-width:1}
+.g-axis{stroke:var(--ink-3);stroke-width:1.5}
+.g-tick{fill:var(--ink-3);font:600 11px var(--sans)}
+.g-fn{fill:none;stroke:var(--s-F);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.g-fn.c1{stroke:var(--s-G)}
+.g-fn.dash{stroke:var(--ink-3);stroke-width:2.5;stroke-dasharray:7 6}
+.g-fn.student{stroke:var(--teal);stroke-width:3}
+.g-label{font:italic 700 15px Georgia,serif;fill:var(--s-F)}
+.g-label.c1{fill:var(--s-G)}
+.g-pt{fill:var(--s-E);stroke:var(--panel-2);stroke-width:2.5}
+.g-pt.placed{fill:var(--gold);stroke:var(--panel-2);stroke-width:3}
+.g-coord{font:700 12.5px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--panel-2);stroke-width:4px;stroke-linejoin:round}
+.g-hit{fill:transparent}
+.q-legend{display:flex;gap:14px;align-items:center;font-size:12px;color:var(--ink-3);margin:8px 4px 0}
+.q-legend .sw{display:inline-block;width:22px;height:0;border-top:3px solid var(--teal);margin-right:-8px;vertical-align:middle}
+.q-legend .sw.target{border-top:2.5px dashed var(--ink-3)}
+.q-ans{min-width:0}
+.q-choices{display:grid;gap:10px}
+.q-choice{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-size:16px;background:var(--panel);transition:border-color .12s,background .12s}
+.q-choice:hover{border-color:var(--line-2);background:var(--panel-2)}
+.q-choice input{position:absolute;opacity:0;pointer-events:none}
+.q-choice .let{flex:0 0 28px;height:28px;border-radius:8px;display:grid;place-items:center;font:800 13px var(--sans);background:var(--panel-3);color:var(--ink-2)}
+.q-choice:has(input:checked),.q-choice.sel{border-color:var(--teal);background:var(--teal-bg)}
+.q-choice:has(input:checked) .let,.q-choice.sel .let{background:var(--teal);color:#fff}
+.q-choice:has(input:focus-visible){outline:2px solid var(--teal);outline-offset:2px}
+.q-choice.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.q-choice.right .let{background:var(--ok);color:#fff}
+.q-choice.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.q-choice.wrong .let{background:var(--bad);color:#fff}
+.q-numrow{display:flex;gap:10px;align-items:center}
+.q-num{font:600 22px/1.2 var(--sans);padding:12px 14px;max-width:240px;font-variant-numeric:tabular-nums}
+.q-hint{font-size:13px;color:var(--ink-3);margin-top:8px;display:flex;align-items:center;gap:8px}
+.tapdot{width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 30%,transparent)}
+.q-sliders{display:grid;gap:14px}
+.q-slider{display:grid;grid-template-columns:34px 1fr 40px;align-items:center;gap:12px}
+.q-slider .k{font-size:18px;text-align:center}
+.q-slider output{font:700 17px var(--sans);text-align:right;font-variant-numeric:tabular-nums}
+.q-slider input[type=range]{width:100%;accent-color:var(--teal);height:28px}
+.q-mine{margin-top:16px;padding:12px 14px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);font-size:18px;text-align:center;overflow-x:auto}
+.q-result{margin-top:18px;border-radius:14px;padding:14px 16px;border:1px solid}
+.q-result.ok{border-color:color-mix(in srgb,var(--ok) 55%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.q-result.no{border-color:color-mix(in srgb,var(--bad) 55%,transparent);background:color-mix(in srgb,var(--bad) 9%,transparent)}
+.q-verdict{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-weight:800;font-size:16px}
+.q-verdict .mark{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;color:#fff;font-size:13px;margin-right:4px}
+.q-result.ok .mark{background:var(--ok)} .q-result.no .mark{background:var(--bad)}
+.q-correct{font-weight:600;color:var(--ink-2)}
+.q-explain{margin-top:8px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.q-explain .katex-display{margin:.5em 0}
+.q-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.q-need{font-size:13px;font-weight:600;color:var(--gold)}
+.q-tables{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.q-tab{border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums;min-width:120px}
+.q-tab caption{font-weight:800;font-size:13px;color:var(--ink-2);text-align:left;padding-bottom:6px}
+.q-tab th,.q-tab td{border:1px solid var(--line-2);padding:5px 14px;text-align:center}
+.q-tab th{background:var(--panel-2);font-weight:700}
+.q-summary{text-align:center;padding:36px 24px}
+.q-summary h2{margin:16px 0 6px}
+.ring{--p:0;width:120px;height:120px;border-radius:50%;margin:0 auto;display:grid;place-items:center;
+  background:conic-gradient(var(--teal) calc(var(--p)*1%),var(--panel-3) 0)}
+.ring b{width:96px;height:96px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font:900 26px var(--title)}
+
 </style>
 </head>
 <body>
@@ -329,6 +427,322 @@ window.NWA_WORKSHOP = true;
 window.NWA_DATA = <?!= dataJson ?>;
 window.NWA_USER = <?!= userJson ?>;
 window.NWA_CHAIR = <?!= chairJson ?>;
+</script>
+<script>
+/* NWA Math — practice sets: self-check problems for one proficiency.
+
+   One JSON per proficiency code, practice/<CODE>.json; practice/index.json lists them.
+   Same idea as the Astronomy study sets: static, no accounts, new numbers every try,
+   progress only in this browser (localStorage "nwa:q:<question id>" = {right, wrong}).
+
+   Question formats
+     mc       choices[] + answer (index into choices); shuffled unless fixed: true
+     numeric  answer (expression) + tol; students may type 3/4, -2, 0.75
+     point    student taps the grid to place n points; check (expression over X1,Y1,X2,Y2…)
+     slider   student sets controls{} so their curve g matches the dashed target; answers{}
+   Any question may carry a graph: {window:[x0,x1,y0,y1], fns:[{f, label?, at?, dash?}], points:[[x,y]]}.
+
+   Text is trusted HTML with KaTeX math in $…$. Computed values use double brackets, so
+   LaTeX braces stay free:
+     [[expr]]    the value                      [[f:expr]]  the value as a reduced fraction (\frac)
+     [[+expr]]   a signed term: "+ 3", "- 3", or nothing for 0
+     [[c:expr]]  a coefficient: 1 → "", -1 → "-"
+   Params: {name: {min, max, step?, not?:[…]}}; derive: {name: expr} in order;
+   where: an expression that must be true (resampled until it is).
+*/
+(() => {
+'use strict';
+
+/* ───────────── expressions ───────────── */
+
+const FN = new Map();
+const MATH = { sin: Math.sin, cos: Math.cos, tan: Math.tan, sqrt: Math.sqrt, abs: Math.abs, exp: Math.exp,
+  ln: Math.log, log: Math.log10, log2: Math.log2, logb: (b, x) => Math.log(x) / Math.log(b),
+  pi: Math.PI, round: Math.round, floor: Math.floor, min: Math.min, max: Math.max };
+function ev(expr, scope) {
+  const keys = Object.keys(scope);
+  const sig = keys.join(',') + '|' + expr;
+  let f = FN.get(sig);
+  if (!f) {
+    f = new Function(...Object.keys(MATH), ...keys, `return (${String(expr).replace(/\^/g, '**')});`);
+    FN.set(sig, f);
+  }
+  return f(...Object.values(MATH), ...keys.map(k => scope[k]));
+}
+
+const num = n => {
+  if (typeof n !== 'number') return String(n);
+  if (!isFinite(n)) return '\\text{undefined}';
+  return String(Math.round(n * 1e4) / 1e4);
+};
+const tick = n => (n < 0 ? '−' : '') + Math.abs(n);      // SVG labels: a real minus sign
+
+/* Best fraction with denominator ≤ 100, as LaTeX. */
+function frac(x) {
+  if (Number.isInteger(Math.round(x * 1e9) / 1e9)) return String(Math.round(x));
+  let best = [Math.round(x), 1], err = Infinity;
+  for (let d = 2; d <= 100; d++) {
+    const n = Math.round(x * d), e = Math.abs(x - n / d);
+    if (e < err - 1e-12) { best = [n, d]; err = e; }
+    if (e < 1e-9) break;
+  }
+  const [n, d] = best;
+  return (n < 0 ? '-' : '') + `\\frac{${Math.abs(n)}}{${d}}`;
+}
+
+function fill(s, v) {
+  return String(s ?? '').replace(/\[\[(\+|c:|f:)?(.+?)\]\]/g, (_, mod, ex) => {
+    const n = ev(ex, v);
+    if (mod === '+') return n === 0 ? '' : (n < 0 ? ' - ' : ' + ') + num(Math.abs(n));
+    if (mod === 'c:') return n === 1 ? '' : n === -1 ? '-' : num(n);
+    if (mod === 'f:') return frac(n);
+    return num(n);
+  }).replace(/(^|[^A-Za-z\\])\(x\)/g, '$1x');   // (x[[+-h]]) with h = 0 → x, but f(x) stays
+}
+
+function sample(q) {
+  for (let tries = 0; tries < 400; tries++) {
+    const v = {};
+    for (const [k, p] of Object.entries(q.params || {})) {
+      const step = p.step || 1, n = Math.round((p.max - p.min) / step);
+      let x;
+      do { x = +(p.min + step * Math.floor(Math.random() * (n + 1))).toFixed(6); } while ((p.not || []).includes(x));
+      v[k] = x;
+    }
+    for (const [k, ex] of Object.entries(q.derive || {})) v[k] = ev(ex, v);
+    if (!q.where || ev(q.where, v)) return v;
+  }
+  throw new Error('No parameters satisfy ' + q.where);
+}
+
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('nwa:' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('nwa:' + k, JSON.stringify(v)); } catch (e) {} },
+};
+
+function typeset(el) {
+  if (!window.renderMathInElement) return;
+  try {
+    window.renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], throwOnError: false });
+  } catch (e) {}
+}
+
+/* ───────────── graph ───────────── */
+
+const W = 360, H = 360;
+function plotSvg(g, v, extra = {}) {
+  const [x0, x1, y0, y1] = g.window || [-6, 6, -6, 6];
+  const X = x => (x - x0) / (x1 - x0) * W, Y = y => H - (y - y0) / (y1 - y0) * H;
+  const out = [];
+  const every = (lo, hi) => Math.max(1, Math.ceil((hi - lo) / 12));
+  const sx = every(x0, x1), sy = every(y0, y1);
+  for (let x = Math.ceil(x0); x <= x1; x++) out.push(`<line class="g-grid" x1="${X(x)}" x2="${X(x)}" y1="0" y2="${H}"/>`);
+  for (let y = Math.ceil(y0); y <= y1; y++) out.push(`<line class="g-grid" y1="${Y(y)}" y2="${Y(y)}" x1="0" x2="${W}"/>`);
+  const ax = y0 <= 0 && y1 >= 0, ay = x0 <= 0 && x1 >= 0;
+  if (ax) out.push(`<line class="g-axis" x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}"/>`);
+  if (ay) out.push(`<line class="g-axis" y1="0" y2="${H}" x1="${X(0)}" x2="${X(0)}"/>`);
+  const ly = ax ? Y(0) : H - 4, lx = ay ? X(0) : 4;
+  for (let x = Math.ceil(x0 / sx) * sx; x <= x1; x += sx) if (x && x > x0 && x < x1)
+    out.push(`<text class="g-tick" x="${X(x)}" y="${Math.min(H - 4, ly + 15)}" text-anchor="middle">${tick(x)}</text>`);
+  for (let y = Math.ceil(y0 / sy) * sy; y <= y1; y += sy) if (y && y > y0 && y < y1)
+    out.push(`<text class="g-tick" x="${lx > 26 ? lx - 6 : lx + 6}" y="${Y(y) + 4}" text-anchor="${lx > 26 ? 'end' : 'start'}">${tick(y)}</text>`);
+  const curve = (f, cls) => {
+    let d = '', pen = false;
+    for (let i = 0; i <= 600; i++) {
+      const x = x0 + (x1 - x0) * i / 600;
+      let y; try { y = ev(f, { ...v, x }); } catch (e) { y = NaN; }
+      if (!isFinite(y) || y < y0 - (y1 - y0) || y > y1 + (y1 - y0)) { pen = false; continue; }
+      d += (pen ? 'L' : 'M') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1);
+      pen = true;
+    }
+    return `<path class="${cls}" d="${d}"/>`;
+  };
+  (g.fns || []).forEach((fn, i) => {
+    out.push(curve(fn.f, `g-fn c${i}${fn.dash ? ' dash' : ''}`));
+    if (fn.label) {
+      const lx2 = fn.at != null ? ev(fn.at, v) : x0 + (x1 - x0) * 0.85, ly2 = ev(fn.f, { ...v, x: lx2 });
+      out.push(`<text class="g-label c${i}" x="${X(lx2) + 8}" y="${Y(ly2) + 4}">${fn.label}</text>`);
+    }
+  });
+  if (extra.student) out.push(curve(extra.student, 'g-fn student'));
+  for (const [px, py] of g.points || []) out.push(`<circle class="g-pt" cx="${X(ev(px, v))}" cy="${Y(ev(py, v))}" r="5.5"/>`);
+  (extra.placed || []).forEach(([px, py]) => {
+    const right = X(px) < W - 70;
+    out.push(`<circle class="g-pt placed" cx="${X(px)}" cy="${Y(py)}" r="7"/>
+      <text class="g-coord" x="${X(px) + (right ? 11 : -11)}" y="${Y(py) - 10}" text-anchor="${right ? 'start' : 'end'}">(${tick(px)}, ${tick(py)})</text>`);
+  });
+  if (extra.interactive) out.push(`<rect class="g-hit" x="0" y="0" width="${W}" height="${H}"/>`);
+  return `<svg class="graph${extra.interactive ? ' interactive' : ''}" viewBox="-2 -2 ${W + 4} ${H + 4}" role="img" aria-label="Coordinate graph">${out.join('')}</svg>`;
+}
+function toCoords(svg, e, g) {
+  const [x0, x1, y0, y1] = g.window || [-6, 6, -6, 6];
+  const r = svg.getBoundingClientRect();
+  const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+  const snap = g.snap || 1;
+  return [Math.round((x0 + fx * (x1 - x0)) / snap) * snap, Math.round((y1 - fy * (y1 - y0)) / snap) * snap];
+}
+
+/* ───────────── one question ───────────── */
+
+/* The student's curve: slider values written into g, e.g. "A*sin(x)" → "(3)*sin(x)". */
+const bind = (g, ctl) => g.replace(/\b([A-Za-z]\w*)\b/g, m => m in ctl ? `(${ctl[m]})` : m);
+
+function fresh(q) {
+  const it = { v: sample(q), placed: [], result: null, given: null };
+  if (q.format === 'mc') it.order = q.fixed ? q.choices.map((_, i) => i) : shuffle(q.choices.map((_, i) => i));
+  if (q.format === 'slider') it.ctl = Object.fromEntries(Object.entries(q.controls).map(([k, c]) => [k, c.start ?? c.min]));
+  return it;
+}
+
+function parseNum(s) {
+  s = String(s).trim().replace(/[−–]/g, '-').replace(/\s+/g, '');
+  if (/^-?\d*\.?\d+\/-?\d*\.?\d+$/.test(s)) { const [a, b] = s.split('/'); return +a / +b; }
+  return s === '' ? NaN : Number(s);
+}
+
+function grade(q, it, root) {
+  const v = it.v;
+  switch (q.format) {
+    case 'mc': {
+      const pick = root.querySelector('input[name="mc"]:checked');
+      if (!pick) return null;
+      it.given = +pick.value;
+      return it.given === q.answer;
+    }
+    case 'numeric': {
+      const n = parseNum(root.querySelector('.q-num').value);
+      if (isNaN(n)) return null;
+      it.given = root.querySelector('.q-num').value;
+      return Math.abs(n - ev(q.answer, v)) <= (q.tol ?? 0.01);
+    }
+    case 'point': {
+      if (it.placed.length < (q.n || 1)) return null;
+      const s = { ...v };
+      it.placed.forEach(([x, y], i) => { s['X' + (i + 1)] = x; s['Y' + (i + 1)] = y; });
+      return !!ev(q.check, s);
+    }
+    case 'slider':
+      return Object.entries(q.answers).every(([k, ex]) => Math.abs(it.ctl[k] - ev(ex, v)) <= (q.controls[k].tol ?? (q.controls[k].step || 1) / 2 + 1e-9));
+  }
+}
+
+function answerText(q, v) {
+  if (q.format === 'mc') return fill(q.choices[q.answer], v);
+  if (q.format === 'numeric') { const a = ev(q.answer, v); return `$${Number.isInteger(Math.round(a * 1e9) / 1e9) ? num(a) : frac(a)}$` + (q.units ? ' ' + q.units : ''); }
+  return '';
+}
+
+const LET = 'ABCDEF';
+function qHtml(q, it) {
+  const v = it.v, done = it.result != null;
+  const g = q.graph || (q.format === 'point' || q.format === 'slider' ? {} : null);
+  const graph = g ? `<div class="q-graph">${plotSvg(g, v, { placed: it.placed, interactive: q.format === 'point' && !done, student: q.format === 'slider' ? bind(q.g, it.ctl) : null })}
+    ${q.format === 'slider' ? '<div class="q-legend"><span class="sw target"></span>target <span class="sw mine"></span>yours</div>' : ''}</div>` : '';
+  let ans = '';
+  if (q.format === 'mc') ans = `<div class="q-choices" role="radiogroup">${it.order.map((i, k) => {
+    const cls = done ? (i === q.answer ? ' right' : i === it.given ? ' wrong' : '') : '';
+    return `<label class="q-choice${cls}"><input type="radio" name="mc" value="${i}" ${done ? 'disabled' : ''} ${it.given === i ? 'checked' : ''}><span class="let">${LET[k]}</span><span class="txt">${fill(q.choices[i], v)}</span></label>`;
+  }).join('')}</div>`;
+  if (q.format === 'numeric') ans = `<div class="q-numrow"><input class="inp q-num" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Your answer" aria-label="Your answer" ${done ? `disabled value="${String(it.given).replace(/"/g, '&quot;')}"` : ''}>${q.units ? `<span class="muted">${q.units}</span>` : ''}</div>
+    <div class="q-hint">Fractions like 3/4 are fine.</div>`;
+  if (q.format === 'point') ans = `<div class="q-hint"><span class="tapdot"></span>Tap the grid to place ${q.n > 1 ? q.n + ' points' : 'your point'}; tap again to move it.</div>`;
+  if (q.format === 'slider') ans = `<div class="q-sliders">${Object.entries(q.controls).map(([k, c]) => `<label class="q-slider"><span class="k">$${c.label || k}$</span><input type="range" min="${c.min}" max="${c.max}" step="${c.step || 1}" value="${it.ctl[k]}" data-ctl="${k}" ${done ? 'disabled' : ''}><output>${num(it.ctl[k]).replace('-', '−')}</output></label>`).join('')}</div>
+    <div class="q-mine">$${fill(q.show || q.g, it.ctl)}$</div>`;
+  const res = !done ? '' : `<div class="q-result ${it.result ? 'ok' : 'no'}">
+    <div class="q-verdict">${it.result ? '<span class="mark">✓</span> Correct' : '<span class="mark">✗</span> Not quite'}${!it.result && answerText(q, v) ? `<span class="q-correct">Answer: ${answerText(q, v)}</span>` : ''}</div>
+    ${q.explain ? `<div class="q-explain">${fill(q.explain, v)}</div>` : ''}</div>`;
+  return `<div class="q-stem">${fill(q.stem, v)}</div>
+    <div class="q-body${graph ? ' has-graph' : ''}">${graph}<div class="q-ans">${ans}${res}</div></div>`;
+}
+
+/* ───────────── a set ───────────── */
+
+function mount(el, set, opts = {}) {
+  const qs = set.questions;
+  const its = qs.map(fresh);
+  let idx = 0;
+
+  function draw() {
+    const q = qs[idx], it = its[idx];
+    const right = its.filter(i => i.result === true).length;
+    el.innerHTML = `
+      <div class="q-head">
+        <div class="q-dots">${qs.map((x, i) => { const r = its[i].result; return `<button class="q-dot${i === idx ? ' on' : ''}${r === true ? ' ok' : r === false ? ' no' : ''}" data-q="go" data-i="${i}" aria-label="Question ${i + 1}${r === true ? ', correct' : r === false ? ', missed' : ''}">${i + 1}</button>`; }).join('')}</div>
+        <div class="q-score">${right} / ${qs.length} correct</div>
+      </div>
+      <article class="q-card">
+        <div class="q-meta"><span>Question ${idx + 1} of ${qs.length}</span>${q.kind ? `<span class="q-kind${/Interactive/.test(q.kind) ? ' live' : ''}">${q.kind}</span>` : ''}</div>
+        ${qHtml(q, it)}
+        <div class="q-actions">
+          ${it.result == null ? '<button class="btn primary" data-q="check">Check</button>' : '<button class="btn" data-q="again">↻ Try one like it</button>'}
+          ${idx < qs.length - 1 ? `<button class="btn ${it.result != null ? 'primary' : 'ghost'}" data-q="next">Next →</button>` : `<button class="btn ${it.result != null ? 'primary' : 'ghost'}" data-q="done">Finish</button>`}
+          <span class="q-need" aria-live="polite"></span>
+        </div>
+      </article>`;
+    typeset(el);
+    wire(q, it);
+  }
+
+  function summary() {
+    const right = its.filter(i => i.result === true).length;
+    el.innerHTML = `<article class="q-card q-summary">
+      <div class="ring" style="--p:${100 * right / qs.length}"><b>${right}/${qs.length}</b></div>
+      <h2>${right === qs.length ? 'All correct.' : right ? 'Good progress.' : 'Keep going.'}</h2>
+      <p class="muted">${right === qs.length ? 'Come back in a few days and try a fresh set of numbers.' : 'Try the missed ones again. Every try gives new numbers.'}</p>
+      <div class="q-actions" style="justify-content:center"><button class="btn primary" data-q="restart">New numbers, start over</button>
+      ${opts.back ? `<a class="btn" href="${opts.back}">← Back to the list</a>` : ''}</div></article>`;
+    wire();
+  }
+
+  function wire(q, it) {
+    el.querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', e => {
+      e.preventDefault();
+      const a = b.dataset.q;
+      if (a === 'go') { idx = +b.dataset.i; draw(); }
+      if (a === 'next') { idx++; draw(); }
+      if (a === 'done') summary();
+      if (a === 'restart') { qs.forEach((x, i) => { its[i] = fresh(x); }); idx = 0; draw(); }
+      if (a === 'again') { its[idx] = fresh(q); draw(); }
+      if (a === 'check') {
+        const r = grade(q, it, el);
+        if (r == null) { el.querySelector('.q-need').textContent = q.format === 'point' ? 'Place your point first.' : 'Answer first.'; return; }
+        it.result = r;
+        const h = store.get('q:' + q.id, { right: 0, wrong: 0 }); h[r ? 'right' : 'wrong']++; store.set('q:' + q.id, h);
+        draw();
+      }
+    }));
+    if (!q) return;
+    // Listen on the holder, which survives redraws of the svg inside it.
+    const holder = el.querySelector('.q-graph');
+    if (holder && el.querySelector('svg.graph.interactive')) holder.addEventListener('click', e => {
+      const svg = holder.querySelector('svg');
+      const p = toCoords(svg, e, q.graph || {});
+      it.placed = it.placed.length < (q.n || 1) ? [...it.placed, p] : [...it.placed.slice(1), p];
+      holder.innerHTML = plotSvg(q.graph || {}, it.v, { placed: it.placed, interactive: true });
+      el.querySelector('.q-need').textContent = '';
+    });
+    el.querySelectorAll('input[data-ctl]').forEach(r => r.addEventListener('input', () => {
+      it.ctl[r.dataset.ctl] = +r.value;
+      r.nextElementSibling.textContent = num(+r.value).replace('-', '−');
+      el.querySelector('.q-graph svg').outerHTML = plotSvg(q.graph || {}, it.v, { student: bind(q.g, it.ctl) });
+      const mine = el.querySelector('.q-mine');
+      mine.textContent = '$' + fill(q.show || q.g, it.ctl) + '$';
+      typeset(mine);
+    }));
+    el.querySelectorAll('.q-choice input').forEach(r => r.addEventListener('change', () => {
+      el.querySelectorAll('.q-choice').forEach(c => c.classList.toggle('sel', c.contains(r) && r.checked));
+    }));
+    const n = el.querySelector('.q-num');
+    if (n && !n.disabled) n.addEventListener('keydown', e => { if (e.key === 'Enter') el.querySelector('[data-q="check"]')?.click(); });
+  }
+
+  draw();
+}
+
+window.NWAPractice = { mount, fill, sample, ev, frac, plotSvg };
+})();
+
 </script>
 <script>
 /* NWA Math Proficiencies — one app, two homes.
@@ -346,12 +760,15 @@ window.NWA_CHAIR = <?!= chairJson ?>;
      #/review           overlaps and open questions for the department
      #/assign           teacher builds a practice link
      #/p?s=…            student practice page (what an assignment link opens)
+     #/c/K7QM4          a class code: looked up in data/plans.json, then opens its #/p page
+     #/q/IM3-14         practice problems for one proficiency (practice.js)
 */
 (() => {
 'use strict';
 
 const WS = !!window.NWA_WORKSHOP;
 const PUBLIC_URL = 'https://ryankcampbell.github.io/nwa-math-proficiencies/';
+const BASE = WS ? PUBLIC_URL : '';          // where published files (practice sets, plans) live
 const VENDOR = WS ? {
   xlsx: 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
   qr: 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
@@ -366,6 +783,7 @@ const BAND_NAME = { ms: 'Middle School', hs: 'High School', el: 'Electives', st:
 const KIND = { gap: 'Gap', overlap: 'Overlap', order: 'Sequence', todo: 'To do' };
 
 let D, C, S, T, P;          // data; course, strand, thread, proficiency maps
+let PX = {};                // practice/index.json: code → {title, n}
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -397,12 +815,16 @@ const resOf = code => D.resources.filter(r => r.code === code);
 const flagsAt = (tid, cid) => D.flags.filter(f => f.thread === tid && f.course === cid && f.status !== 'resolved');
 const openOverlapsOf = code => D.overlaps.filter(o => o.status === 'open' && (o.a === code || o.b === code));
 const sc = sid => `var(--s-${sid})`;
+const showOv = () => store.get('ovShow', false);   // overlap badges: off unless asked for (they crowd the grid)
 
 async function load() {
   if (window.NWA_DATA) { D = window.NWA_DATA; index(); return; }
   const res = await fetch('data/data.json', { cache: 'no-cache' });
   D = await res.json();
   index();
+}
+async function loadPractice() {
+  try { PX = (await (await fetch(BASE + 'practice/index.json', { cache: 'no-cache' })).json()).sets || {}; } catch (e) { PX = {}; }
 }
 
 /* ───────────────────────── workshop API ───────────────────────── */
@@ -478,14 +900,13 @@ function threadSelect(p) {
 
 function profRow(p, { showCourse = false, showThread = true } = {}) {
   const c = C.get(p.course), t = T.get(p.thread), rs = resOf(p.code), ov = openOverlapsOf(p.code);
-  const reviewOn = WS || store.get('review', false);
   return `<li data-code="${p.code}">
     <span class="code">${p.code}</span>
     <div class="ptext">
       ${esc(p.text)}${p.level === 'unit' ? ' <span class="tag">Unit</span>' : ''}${p.new ? ' <span class="tag">New</span>' : ''}
-      <span class="sub">${showCourse ? `<a href="#/course/${c.id}">${esc(c.name)}</a> · ` : ''}${p.unit && showCourse ? esc(p.unit) + ' · ' : ''}${rs.length ? `${rs.length} resource${rs.length > 1 ? 's' : ''}` : ''}${p.note ? ' ' + esc(p.note) : ''}</span>
+      <span class="sub">${showCourse ? `<a href="#/course/${c.id}">${esc(c.name)}</a> · ` : ''}${p.unit && showCourse ? esc(p.unit) + ' · ' : ''}${rs.length ? `${rs.length} resource${rs.length > 1 ? 's' : ''}` : ''}${p.note ? ' ' + esc(p.note) : ''}${PX[p.code] ? ` <a class="tag prac" href="#/q/${p.code}">Practice · ${PX[p.code].n}</a>` : ''}</span>
       ${WS && p.was ? `<span class="was">was: ${esc(p.was)}</span>` : ''}
-      ${reviewOn && ov.length ? `<span class="sub">${ov.map(o => { const other = o.a === p.code ? o.b : o.a; return `<span class="tag overlap">Overlaps ${other}</span>`; }).join(' ')}</span>` : ''}
+      ${showOv() && ov.length ? `<span class="sub">${ov.map(o => { const other = o.a === p.code ? o.b : o.a; return `<span class="tag overlap">Overlaps ${other}</span>`; }).join(' ')}</span>` : ''}
       ${WS ? `<div class="ws-row">
         ${threadSelect(p)}
         <button class="btn small ghost" data-act="editProf" data-code="${p.code}">Edit wording</button>
@@ -512,6 +933,7 @@ function vHome() {
       <a class="btn" href="#/assign">Assign practice</a>
       <button class="btn" data-act="xlsx">${icon.dl} Download Excel</button>
     </div>
+    ${WS ? '' : codeBox()}
   </section>
   ${bands.map(b => {
     const cs = D.courses.filter(c => c.band === b);
@@ -613,6 +1035,7 @@ function vScope(sid) {
   </div>
   <div class="toolbar noprint">
     <label class="check" style="font-size:13px;font-weight:600;color:var(--ink-2)"><input type="checkbox" data-act="review" ${review ? 'checked' : ''} ${WS ? 'disabled' : ''}> Show review notes</label>
+    <label class="check" style="font-size:13px;font-weight:600;color:var(--ink-2)"><input type="checkbox" data-act="ovShow" ${showOv() ? 'checked' : ''}> Show overlaps</label>
     <button class="btn small" data-act="xlsx">${icon.dl} Excel</button>
   </div></div>
   <div class="seg" role="tablist">${D.strands.map(x => `<button role="tab" aria-selected="${x.id === s.id}" class="${x.id === s.id ? 'on' : ''}" style="--c:${sc(x.id)}" data-act="strand" data-strand="${x.id}"><span class="dot"></span>${esc(x.name)}</button>`).join('')}</div>
@@ -626,13 +1049,13 @@ function vScope(sid) {
       ${D.courses.map(c => {
         const ps = inCell(t.id, c.id), txt = t.cells?.[c.id] || '';
         const fl = review ? flagsAt(t.id, c.id) : [];
-        const ov = review ? new Set(ps.flatMap(p => openOverlapsOf(p.code).map(o => o.id))).size : 0;
+        const ov = showOv() ? new Set(ps.flatMap(p => openOverlapsOf(p.code).map(o => o.id))).size : 0;
         const tags = fl.map(f => `<span class="tag ${f.kind}">${KIND[f.kind] || f.kind}</span>`).join('') + (ov ? `<span class="tag overlap">${ov} overlap${ov > 1 ? 's' : ''}</span>` : '');
         if (!ps.length && !txt) return `<td><button class="cell na" data-act="cell" data-thread="${t.id}" data-course="${c.id}">n/a${tags ? `<span class="flags">${tags}</span>` : ''}</button></td>`;
-        const w = ps.length ? (0.10 + 0.40 * ps.length / max).toFixed(2) : 0;
+        const w = ps.length ? (ps.length / max).toFixed(2) : 0;   // length of the count bar
         return `<td class="${ps.length ? 'has' : ''}" style="--w:${w}"><button class="cell ${ps.length ? 'has' : ''}" data-act="cell" data-thread="${t.id}" data-course="${c.id}">
-          ${esc(txt || ps.map(p => p.text).slice(0, 2).join('; '))}
-          ${ps.length ? `<span class="n">${ps.length} prof.</span>` : '<span class="n">see note</span>'}
+          ${esc(txt || ps.map(p => p.text).slice(0, 2).join('; ')).replace(/\//g, '/<wbr>')}
+          ${ps.length ? `<span class="n"><span class="bar" aria-hidden="true"></span>${ps.length} prof.</span>` : '<span class="n">see note</span>'}
           ${tags ? `<span class="flags">${tags}</span>` : ''}</button></td>`;
       }).join('')}
     </tr>`).join('')}</tbody>
@@ -780,10 +1203,12 @@ function vPractice(params) {
   const key = 'done:' + params.get('s');
   const done = new Set(store.get(key, []));
   const n = ps.filter(p => done.has(p.code)).length;
-  const due = params.get('d');
+  const due = params.get('d'), code = params.get('c');
+  if (code) remember(code, params.get('t') || 'Practice', location.hash);
+  const back = encodeURIComponent(location.hash);
   return `
   <section class="practice-head">
-    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85">NWA Mathematics · Practice</div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85">NWA Mathematics · Practice${code ? ` · code ${esc(code)}` : ''}</div>
     <h1 style="margin-top:6px">${esc(params.get('t') || 'Your practice list')}</h1>
     ${due ? `<div style="margin-top:6px;font-weight:600">Due ${esc(new Date(due + 'T12:00').toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }))}</div>` : ''}
     ${params.get('n') ? `<div class="note">${esc(params.get('n'))}</div>` : ''}
@@ -796,12 +1221,66 @@ function vPractice(params) {
     return `<div class="pcard ${done.has(p.code) ? 'done' : ''}">
       <label class="check"><input type="checkbox" data-act="did" data-key="${esc(key)}" data-code="${p.code}" ${done.has(p.code) ? 'checked' : ''}>
         <span class="ptext"><b>${esc(p.text)}</b><span class="sub">${p.code} · ${esc(c.name)}${p.unit ? ' · ' + esc(p.unit) : ''}</span></span></label>
-      <div class="res">${rs.map(r => `<a href="${esc(r.url)}" target="_blank" rel="noopener"><span class="kind">${esc(r.kind || 'link')}</span>${esc(r.title)}</a>`).join('')}
+      <div class="res">${PX[p.code] ? `<a class="prac" href="#/q/${p.code}?back=${back}"><span class="kind">practice</span>${PX[p.code].n} self-check problems</a>` : ''}${rs.map(r => `<a href="${esc(r.url)}" target="_blank" rel="noopener"><span class="kind">${esc(r.kind || 'link')}</span>${esc(r.title)}</a>`).join('')}
         <a class="fallback" href="${khan(p)}" target="_blank" rel="noopener">Search Khan Academy ↗</a></div>
     </div>`;
   }).join('')}
   ${missing.length ? `<p class="muted">Some items on this link (${missing.map(esc).join(', ')}) are no longer in the curriculum. Ask your teacher.</p>` : ''}
   ${!ps.length ? '<div class="empty-note">This link has no proficiencies on it. Ask your teacher for a new one.</div>' : ''}`;
+}
+
+/* Class codes: data/plans.json is written by the Workshop when a teacher saves a plan.
+   The code resolves to an ordinary #/p link, so the page then works offline like any link.
+   Codes a student has opened are remembered on this device (store 'mine'). */
+const CODE_RE = /^[A-HJKMNP-Z2-9]{5}$/;   // no 0/O, 1/I/L: easy to read aloud and type
+function remember(code, title, hash) {
+  const mine = store.get('mine', []).filter(m => m.code !== code);
+  mine.unshift({ code, title, hash, at: Date.now() });
+  store.set('mine', mine.slice(0, 12));
+}
+function vCode(code) {
+  code = (code || '').toUpperCase();
+  const saved = store.get('mine', []).find(m => m.code === code);
+  setTimeout(async () => {
+    try {
+      const plans = await (await fetch(BASE + 'data/plans.json', { cache: 'no-cache' })).json();
+      const pl = plans.plans && plans.plans[code];
+      if (!pl) throw new Error('none');
+      const q = new URLSearchParams({ s: pl.s, c: code });
+      if (pl.t) q.set('t', pl.t); if (pl.n) q.set('n', pl.n); if (pl.d) q.set('d', pl.d);
+      location.replace('#/p?' + q.toString());
+    } catch (e) {
+      if (saved) return location.replace(saved.hash);
+      $('#app').innerHTML = `<div class="empty-note">No practice plan has the code <b>${esc(code)}</b>. Check the letters with your teacher. (Codes never use 0, 1, O, I or L.)</div>${codeBox()}`;
+    }
+  });
+  return `<div class="empty-note">Looking up ${esc(code)}…</div>`;
+}
+function codeBox() {
+  const mine = store.get('mine', []);
+  return `<form class="codebox" data-form="code">
+    <label for="codein"><b>Have a practice code from your teacher?</b></label>
+    <div class="row"><input id="codein" class="inp" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. K7QM4" aria-label="Practice code">
+    <button class="btn primary">Open</button></div>
+    ${mine.length ? `<div class="mine"><span class="muted">Your plans on this device:</span> ${mine.map(m => `<a class="pill" href="${esc(m.hash)}"><b>${esc(m.code)}</b> ${esc(m.title)}</a>`).join(' ')}</div>` : ''}
+  </form>`;
+}
+function vQuiz(code, params) {
+  const p = P.get(code);
+  if (!p || !PX[code]) return vMissing();
+  const back = params.get('back');
+  setTimeout(async () => {
+    const el = $('#quiz');
+    try {
+      const set = await (await fetch(BASE + 'practice/' + code + '.json', { cache: 'no-cache' })).json();
+      if (!window.NWAPractice) await loadScript(BASE + 'practice.js');
+      window.NWAPractice.mount(el, set, { back: back || `#/course/${p.course}` });
+    } catch (e) { el.innerHTML = '<div class="empty-note">Could not load these problems. Check your connection and try again.</div>'; }
+  });
+  return `<div class="crumbs">${back ? `<a href="${esc(back)}">Practice list</a>` : `<a href="#/course/${p.course}">${esc(C.get(p.course).name)}</a>`} / ${p.code}</div>
+  <div class="phead"><div><h1 style="font-size:clamp(22px,3.4vw,30px)">${esc(p.text)}</h1>
+    <p>${p.code} · ${esc(C.get(p.course).name)} · each try gives new numbers; your score stays on this device.</p></div></div>
+  <div id="quiz" class="quiz"><div class="empty-note">Loading problems…</div></div>`;
 }
 
 function vMissing() {
@@ -922,12 +1401,14 @@ function render() {
     case 'review': html = vReview(); tab = 'review'; break;
     case 'assign': html = vAssign(params); tab = 'assign'; break;
     case 'p': html = vPractice(params); tab = ''; break;
+    case 'c': html = vCode(id); tab = ''; break;
+    case 'q': html = vQuiz(id, params); tab = ''; break;
     default: html = vHome(); tab = 'home';
   }
   $('#app').innerHTML = html;
   $$('nav.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
-  document.body.classList.toggle('student', v === 'p');
-  const t = { course: C.get(id)?.name, scope: 'Scope & Sequence', thread: T.get(id)?.name, review: 'Department review', assign: 'Assign practice', p: params.get('t') || 'Practice' }[v];
+  document.body.classList.toggle('student', v === 'p' || v === 'c' || (v === 'q' && params.has('back')));
+  const t = { course: C.get(id)?.name, scope: 'Scope & Sequence', thread: T.get(id)?.name, review: 'Department review', assign: 'Assign practice', p: params.get('t') || 'Practice', q: id, c: 'Practice code' }[v];
   document.title = (t ? t + ' · ' : '') + 'NWA Math';
 }
 
@@ -970,7 +1451,9 @@ document.addEventListener('click', async e => {
       const out = $('#linkout');
       out.innerHTML = `<div class="linkbox"><input class="inp" readonly value="${esc(url)}" id="plink"><button class="btn small" data-act="copy">Copy</button></div>
         <div class="ws-row"><a class="btn small" href="${esc(url)}" target="_blank" rel="noopener">Preview</a><button class="btn small" data-act="copyEmail">Copy email text</button></div>
-        <div id="qr" aria-label="QR code for the practice link"></div>`;
+        <div id="qr" aria-label="QR code for the practice link"></div>
+        ${WS ? '<div class="ws-row"><button class="btn small primary" data-act="makeCode">Make a class code</button><span class="muted small">A short code students type into the site.</span></div><div id="codeout"></div>'
+             : '<p class="muted small">Need a short code students can type in? Make the list in the Workshop.</p>'}`;
       try {
         if (!window.qrcode) await loadScript(VENDOR.qr);
         const q = window.qrcode(0, 'M'); q.addData(url); q.make();
@@ -979,6 +1462,17 @@ document.addEventListener('click', async e => {
       break;
     }
     case 'copy': navigator.clipboard.writeText($('#plink').value).then(() => toast('Link copied')); break;
+    case 'makeCode': {
+      const st = assignState();
+      el.disabled = true;
+      try {
+        const r = await api({ op: 'savePlan', s: encodeCodes(st.picked), t: st.title, n: st.note, d: st.due });
+        $('#codeout').innerHTML = `<div class="bigcode">${esc(r.code)}</div>
+          <p class="small">Students open <b>${esc(PUBLIC_URL.replace(/^https:\/\//, ''))}</b>, type <b>${esc(r.code)}</b>, and get this list with its practice problems.
+          ${r.live ? 'It works now.' : 'It works after the next publish (no GitHub token yet).'}</p>`;
+      } catch (err) { toast('No code: ' + (err.message || err)); el.disabled = false; }
+      break;
+    }
     case 'copyEmail': {
       const st = assignState();
       const txt = `${st.title || 'Math practice'}\n\n${st.note ? st.note + '\n\n' : ''}Your practice list (${st.picked.length} proficiencies)${st.due ? ', due ' + st.due : ''}:\n${$('#plink').value}\n\nEach item has links to practice resources. Check things off as you go.`;
@@ -1067,6 +1561,7 @@ document.addEventListener('change', async e => {
   const a = el.dataset.act, d = el.dataset;
   if (a === 'pick') { assignSet(st => { st.picked = el.checked ? [...new Set([...st.picked, d.code])] : st.picked.filter(c => c !== d.code); }); render(); }
   if (a === 'review') { store.set('review', el.checked); render(); }
+  if (a === 'ovShow') { store.set('ovShow', el.checked); render(); }
   if (a === 'did') {
     const done = new Set(store.get(d.key, []));
     el.checked ? done.add(d.code) : done.delete(d.code);
@@ -1096,6 +1591,13 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('submit', e => {
+  if (e.target.dataset.form !== 'code') return;
+  e.preventDefault();
+  const code = $('#codein').value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!CODE_RE.test(code)) { toast('Codes are 5 letters and numbers, like K7QM4'); return; }
+  location.hash = '#/c/' + code;
+});
 
 /* ───────────────────────── boot ───────────────────────── */
 
@@ -1125,6 +1627,7 @@ function shell() {
 (async () => {
   try {
     await load();
+    await loadPractice();
   } catch (e) {
     document.body.innerHTML = '<p style="padding:40px;font:16px sans-serif">Could not load the curriculum data. Check your connection and reload.</p>';
     return;

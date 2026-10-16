@@ -1,7 +1,7 @@
 /* NWA Math Proficiencies — Workshop backend (bound to the "NWA Math Proficiencies" Sheet).
 
    The Sheet IS the database while the department works:
-     Courses · Strands · Threads · Proficiencies · Overlaps · Flags · Resources · Changelog · Config
+     Courses · Strands · Threads · Proficiencies · Overlaps · Flags · Resources · Plans · Changelog · Config
    Teachers can edit it directly (the Threads tab is the admin template: one row per
    thread, one column per course) or through the Workshop web app, which is the same
    app as the public site with editing turned on.
@@ -27,6 +27,7 @@ const COLS = {
   Overlaps: ['id', 'a', 'b', 'score', 'status', 'note', 'decided_by', 'decided_at'],
   Flags: ['id', 'kind', 'thread', 'course', 'text', 'status', 'updated_by'],
   Resources: ['id', 'code', 'title', 'url', 'kind', 'file_id', 'added_by', 'added_at'],
+  Plans: ['code', 'title', 'note', 'due', 'codes', 'teacher', 'created_at'],   // class codes → data/plans.json
   Changelog: ['time', 'who', 'op', 'target', 'detail'],
   Config: ['key', 'value'],
 };
@@ -167,8 +168,45 @@ function apply_(op, who) {
     }
     case 'deleteResource':
       return remove_('Resources', 'id', op.id);
+    case 'savePlan': {
+      need_(op.s, 'Pick at least one proficiency');
+      tab_('Plans');
+      const taken = rows_('Plans').map(r => String(r.code));
+      let code;
+      do { code = newCode_(); } while (taken.indexOf(code) >= 0);
+      append_('Plans', { code, title: op.t || '', note: op.n || '', due: op.d || '', codes: op.s, teacher: who, created_at: now });
+      let live = false;
+      try { live = writePlans_(); } catch (e) { /* no token yet: the code goes live at the next publish */ }
+      return { code, live };
+    }
   }
   throw new Error('Unknown edit: ' + op.op);
+}
+
+/* ───────────────────────── class codes ───────────────────────── */
+
+// 5 characters, no 0/O, 1/I/L, so a student can copy it off a whiteboard.
+function newCode_() {
+  const A = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let c = A.charAt(Math.floor(Math.random() * 23));   // starts with a letter, so Sheets keeps it as text
+  for (let i = 1; i < 5; i++) c += A.charAt(Math.floor(Math.random() * A.length));
+  return c;
+}
+
+/** Write every plan to data/plans.json. Any teacher's save triggers it (the script runs as the
+    chair, who holds the token), so a new code works within a minute, without a full publish.
+    Only the plan itself is public: proficiency codes, title, note, due date. No student data. */
+function writePlans_() {
+  const token = PropertiesService.getScriptProperties().getProperty('GITHUB_TOKEN');
+  if (!token) return false;
+  const plans = {};
+  rows_('Plans').forEach(r => {
+    const due = r.due ? String(r.due).slice(0, 10) : '';
+    plans[r.code] = { s: r.codes, t: r.title || '', n: r.note || '', d: due };
+  });
+  const json = JSON.stringify({ plans: plans }, null, 1);
+  ghPut_(token, 'data/plans.json', Utilities.base64Encode(json, Utilities.Charset.UTF_8), 'Update class codes');
+  return true;
 }
 
 /* ───────────────────────── publish ───────────────────────── */
@@ -194,6 +232,7 @@ function publish() {
   data.profs.forEach(p => delete p.was);
   const json = JSON.stringify(data, null, 1);
   ghPut_(token, 'data/data.json', Utilities.base64Encode(json, Utilities.Charset.UTF_8), 'Publish curriculum ' + stamp + ' (' + who + ')');
+  if (book_().getSheetByName('Plans')) writePlans_();
   setConfig_('published_at', stamp);
   log_(who, 'publish', 'data/data.json', copied + ' files');
   return 'Published. The public site updates in about a minute.' + (copied ? ' ' + copied + ' uploaded file(s) copied.' : '');
@@ -233,6 +272,7 @@ function seed() {
     Overlaps: d.overlaps,
     Flags: d.flags,
     Resources: d.resources,
+    Plans: plansSeed_(),
     Changelog: [],
     Config: [{ key: 'year', value: d.year }, { key: 'status', value: 'draft' }, { key: 'published_at', value: '' }],
   };
@@ -258,6 +298,14 @@ function seed() {
   if (first.getName() !== 'Courses' && first.getLastRow() === 0) ss.deleteSheet(first);
   ss.setActiveSheet(thr);
   return 'Seeded ' + d.profs.length + ' proficiencies.';
+}
+
+// Class codes already on GitHub (e.g. the NWA26 demo) carry over into a freshly seeded Sheet.
+function plansSeed_() {
+  try {
+    const p = JSON.parse(UrlFetchApp.fetch(SEED_URL.replace('data.json', 'plans.json')).getContentText()).plans || {};
+    return Object.keys(p).map(code => ({ code, title: p[code].t, note: p[code].n, due: p[code].d, codes: p[code].s, teacher: 'seed', created_at: '' }));
+  } catch (e) { return []; }
 }
 
 /* ───────────────────────── menu actions ───────────────────────── */
@@ -288,6 +336,18 @@ function menuSetToken_() {
 /* ───────────────────────── sheet helpers ───────────────────────── */
 
 function book_() { return SpreadsheetApp.openById(SHEET_ID); }
+
+/** Make sure a tab exists with its header row (for tabs added after the Sheet was seeded). */
+function tab_(name) {
+  const ss = book_();
+  let sh = ss.getSheetByName(name);
+  if (!sh) {
+    sh = ss.insertSheet(name);
+    sh.getRange(1, 1, 1, COLS[name].length).setValues([COLS[name]]).setFontWeight('bold').setBackground('#156875').setFontColor('#ffffff');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
 
 function user_() {
   const email = Session.getActiveUser().getEmail();

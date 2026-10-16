@@ -1,0 +1,94 @@
+{
+ "code": "IM3-05",
+ "title": "Exact values of logarithms",
+ "version": 1,
+ "demo": true,
+ "questions": [
+  {
+   "id": "IM3-05-001",
+   "kind": "Compute",
+   "format": "numeric",
+   "params": {
+    "b": {
+     "min": 2,
+     "max": 5
+    },
+    "n": {
+     "min": 0,
+     "max": 4
+    }
+   },
+   "stem": "Find the exact value: $$\\log_{[[b]]}[[b^n]]$$",
+   "answer": "n",
+   "tol": 0.001,
+   "explain": "Ask: $[[b]]$ to what power is $[[b^n]]$? Since $[[b]]^{[[n]]}=[[b^n]]$, $\\;\\log_{[[b]]}[[b^n]]=[[n]]$."
+  },
+  {
+   "id": "IM3-05-002",
+   "kind": "Compute",
+   "format": "numeric",
+   "params": {
+    "b": {
+     "min": 2,
+     "max": 5
+    },
+    "n": {
+     "min": 1,
+     "max": 3
+    }
+   },
+   "stem": "Find the exact value: $$\\log_{[[b]]}\\frac{1}{[[b^n]]}$$",
+   "answer": "-n",
+   "tol": 0.001,
+   "explain": "$\\dfrac{1}{[[b^n]]}=[[b]]^{-[[n]]}$, so $\\log_{[[b]]}\\dfrac{1}{[[b^n]]}=-[[n]]$."
+  },
+  {
+   "id": "IM3-05-003",
+   "kind": "Interactive",
+   "format": "point",
+   "n": 1,
+   "params": {
+    "n": {
+     "min": 0,
+     "max": 3
+    }
+   },
+   "stem": "Place the point on the graph of $y=\\log_2 x$ where $y=[[n]]$.",
+   "graph": {
+    "window": [
+     -1,
+     10,
+     -4,
+     5
+    ],
+    "fns": [
+     {
+      "f": "log2(x)"
+     }
+    ]
+   },
+   "check": "X1==2^n && Y1==n",
+   "explain": "$\\log_2 x=[[n]]$ means $x=2^{[[n]]}=[[2^n]]$. The point is $([[2^n]],\\,[[n]])$."
+  },
+  {
+   "id": "IM3-05-004",
+   "kind": "Concept",
+   "format": "mc",
+   "params": {
+    "b": {
+     "min": 2,
+     "max": 9
+    }
+   },
+   "stem": "What is $\\log_{[[b]]}1$?",
+   "choices": [
+    "$0$",
+    "$1$",
+    "$[[b]]$",
+    "Undefined"
+   ],
+   "answer": 0,
+   "explain": "Every base to the power $0$ is $1$: $[[b]]^0=1$, so $\\log_{[[b]]}1=0$."
+  }
+ ]
+}

@@ -10,7 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 css = (ROOT / 'style.css').read_text()
 js = (ROOT / 'app.js').read_text()
-for name, src in (('style.css', css), ('app.js', js)):
+pjs = (ROOT / 'practice.js').read_text()
+for name, src in (('style.css', css), ('app.js', js), ('practice.js', pjs)):
     assert '<?' not in src and '?>' not in src, f'{name} contains a scriptlet marker'
     assert '</script' not in src.lower(), f'{name} contains </script'
 
@@ -18,6 +19,9 @@ page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <style>
 {css}
 </style>
@@ -28,6 +32,9 @@ window.NWA_WORKSHOP = true;
 window.NWA_DATA = <?!= dataJson ?>;
 window.NWA_USER = <?!= userJson ?>;
 window.NWA_CHAIR = <?!= chairJson ?>;
+</script>
+<script>
+{pjs}
 </script>
 <script>
 {js}

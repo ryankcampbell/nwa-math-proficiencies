@@ -1,0 +1,177 @@
+{
+ "code": "IM2-02",
+ "title": "Structures of quadratic functions",
+ "version": 1,
+ "demo": true,
+ "questions": [
+  {
+   "id": "IM2-02-001",
+   "kind": "Interactive",
+   "format": "point",
+   "n": 1,
+   "params": {
+    "a": {
+     "min": -2,
+     "max": 2,
+     "not": [
+      0
+     ]
+    },
+    "h": {
+     "min": -4,
+     "max": 4,
+     "not": [
+      0
+     ]
+    },
+    "k": {
+     "min": -4,
+     "max": 4,
+     "not": [
+      0
+     ]
+    }
+   },
+   "stem": "Place the <b>vertex</b> of $$y=[[c:a]](x[[+-h]])^2[[+k]]$$",
+   "graph": {
+    "window": [
+     -6,
+     6,
+     -6,
+     6
+    ]
+   },
+   "check": "X1==h && Y1==k",
+   "explain": "Vertex form $y=a(x-h)^2+k$ has its vertex at $(h,k)$. Here $(x[[+-h]])$ means $h=[[h]]$, so the vertex is $([[h]],\\,[[k]])$."
+  },
+  {
+   "id": "IM2-02-002",
+   "kind": "Interactive",
+   "format": "slider",
+   "params": {
+    "h0": {
+     "min": -4,
+     "max": 4
+    },
+    "k0": {
+     "min": -4,
+     "max": 3
+    }
+   },
+   "where": "h0!=0 || k0!=0",
+   "stem": "Move the sliders until your parabola lands on the dashed one.",
+   "graph": {
+    "window": [
+     -6,
+     6,
+     -6,
+     6
+    ],
+    "fns": [
+     {
+      "f": "(x-h0)^2+k0",
+      "dash": true
+     }
+    ]
+   },
+   "controls": {
+    "h": {
+     "min": -5,
+     "max": 5,
+     "start": 0
+    },
+    "k": {
+     "min": -5,
+     "max": 5,
+     "start": 0
+    }
+   },
+   "g": "(x-h)^2+k",
+   "show": "y=(x[[+-h]])^2[[+k]]",
+   "answers": {
+    "h": "h0",
+    "k": "k0"
+   },
+   "explain": "The target is $y=(x[[+-h0]])^2[[+k0]]$, vertex $([[h0]],\\,[[k0]])$. $h$ slides the parabola left and right; $k$ moves it up and down."
+  },
+  {
+   "id": "IM2-02-003",
+   "kind": "Standard form",
+   "format": "numeric",
+   "params": {
+    "a": {
+     "min": 1,
+     "max": 3
+    },
+    "h": {
+     "min": -4,
+     "max": 4,
+     "not": [
+      0
+     ]
+    },
+    "c": {
+     "min": -9,
+     "max": 9
+    }
+   },
+   "derive": {
+    "b": "-2*a*h"
+   },
+   "stem": "For $y=[[c:a]]x^2[[+b]]x[[+c]]$, what is the $x$-coordinate of the vertex?",
+   "answer": "h",
+   "tol": 0.01,
+   "explain": "$$x=-\\frac{b}{2a}=-\\frac{[[b]]}{2\\cdot[[a]]}=[[h]]$$ That is also the axis of symmetry, $x=[[h]]$."
+  },
+  {
+   "id": "IM2-02-004",
+   "kind": "Read the graph",
+   "format": "mc",
+   "params": {
+    "a": {
+     "min": -1,
+     "max": 1,
+     "not": [
+      0
+     ]
+    },
+    "h": {
+     "min": -3,
+     "max": 3,
+     "not": [
+      0
+     ]
+    },
+    "k": {
+     "min": -3,
+     "max": 3,
+     "not": [
+      0
+     ]
+    }
+   },
+   "stem": "Which equation matches the graph?",
+   "graph": {
+    "window": [
+     -6,
+     6,
+     -6,
+     6
+    ],
+    "fns": [
+     {
+      "f": "a*(x-h)^2+k"
+     }
+    ]
+   },
+   "choices": [
+    "$y=[[c:a]](x[[+-h]])^2[[+k]]$",
+    "$y=[[c:a]](x[[+h]])^2[[+k]]$",
+    "$y=[[c:a]](x[[+-h]])^2[[+-k]]$",
+    "$y=[[c:-a]](x[[+-h]])^2[[+k]]$"
+   ],
+   "answer": 0,
+   "explain": "The vertex is $([[h]],\\,[[k]])$, which gives $(x[[+-h]])^2$ and $[[+k]]$. The sign of $a$ sets the direction: positive opens up, negative opens down. Here $a=[[a]]$."
+  }
+ ]
+}
