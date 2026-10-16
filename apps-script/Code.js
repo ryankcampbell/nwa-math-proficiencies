@@ -18,6 +18,10 @@ const REPO = 'ryankcampbell/nwa-math-proficiencies';
 const SEED_URL = 'https://raw.githubusercontent.com/' + REPO + '/main/data/data.json';
 const DOMAIN = 'nwacademy.org';
 const CHAIRS = ['rcampbell@nwacademy.org'];
+// Who may open the Workshop. The live list is the "editors" row of the Config tab (comma-separated);
+// this is only the starting list written there on first run. Students share the domain, so the
+// domain alone is not enough.
+const EDITORS_START = ['aruiz', 'ddunning', 'bmcnally', 'rcampbell', 'rhanes', 'comelchuck'].map(u => u + '@' + DOMAIN);
 
 const COLS = {
   Courses: ['id', 'name', 'short', 'grade', 'band', 'tagline', 'order'],
@@ -35,8 +39,16 @@ const COLS = {
 /* ───────────────────────── entry points ───────────────────────── */
 
 function doGet() {
-  const who = user_();
+  let who;
+  try { who = user_(); }
+  catch (e) {
+    return HtmlService.createHtmlOutput('<div style="font:16px/1.5 -apple-system,sans-serif;max-width:520px;margin:15vh auto;padding:0 20px">'
+      + '<h2 style="color:#156875">NWA Math Workshop</h2><p>' + e.message + '</p>'
+      + '<p>Looking for the curriculum or a practice code? Go to <a href="https://ryankcampbell.github.io/nwa-math-proficiencies/">the public site</a>.</p></div>')
+      .setTitle('NWA Math · Workshop');
+  }
   if (!book_().getSheetByName('Proficiencies')) seed();
+  else if (CHAIRS.indexOf(who) >= 0 && !('editors' in config_())) setConfig_('editors', EDITORS_START.join(', '));
   const t = HtmlService.createTemplateFromFile('Workshop');
   t.dataJson = JSON.stringify(getData()).replace(/</g, '\\u003c');
   t.userJson = JSON.stringify(who);
@@ -274,7 +286,8 @@ function seed() {
     Resources: d.resources,
     Plans: plansSeed_(),
     Changelog: [],
-    Config: [{ key: 'year', value: d.year }, { key: 'status', value: 'draft' }, { key: 'published_at', value: '' }],
+    Config: [{ key: 'year', value: d.year }, { key: 'status', value: 'draft' }, { key: 'published_at', value: '' },
+             { key: 'editors', value: EDITORS_START.join(', ') }],
   };
   Object.keys(COLS).forEach(name => {
     const head = name === 'Threads' ? COLS.Threads.concat(ids) : COLS[name];
@@ -350,9 +363,21 @@ function tab_(name) {
 }
 
 function user_() {
-  const email = Session.getActiveUser().getEmail();
+  const email = String(Session.getActiveUser().getEmail() || '').toLowerCase();
   if (!email || email.split('@')[1] !== DOMAIN) throw new Error('Sign in with your @' + DOMAIN + ' account.');
+  if (editors_().indexOf(email) < 0) throw new Error('This workshop is for the math department. Ask Ryan Campbell to add ' + email + ' to the editors list.');
   return email;
+}
+
+/** Department editors: Config ▸ editors (comma-separated, bare usernames allowed), plus the chairs.
+    Before the Sheet is seeded, or if the row is missing, the starting list applies. */
+function editors_() {
+  let v = '';
+  try { v = config_().editors || ''; } catch (e) { /* no Config tab yet */ }
+  const list = (v ? String(v).split(/[\s,;]+/) : EDITORS_START)
+    .map(x => x.trim().toLowerCase()).filter(Boolean)
+    .map(x => x.indexOf('@') < 0 ? x + '@' + DOMAIN : x);
+  return list.concat(CHAIRS);
 }
 
 function need_(ok, msg) { if (!ok) throw new Error(msg); }
