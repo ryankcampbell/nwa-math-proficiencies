@@ -1,0 +1,2489 @@
+[
+ {
+  "code": "PA1-01",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and apply basic geometric concepts"
+ },
+ {
+  "code": "PA1-02",
+  "course": "PA1",
+  "unit": "",
+  "text": "Calculate perimeter and area of basic shapes"
+ },
+ {
+  "code": "PA1-03",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and calculate the volume of a prism",
+  "new": true
+ },
+ {
+  "code": "PA1-04",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and work with ratios"
+ },
+ {
+  "code": "PA1-05",
+  "course": "PA1",
+  "unit": "",
+  "text": "Compare and order fractions"
+ },
+ {
+  "code": "PA1-06",
+  "course": "PA1",
+  "unit": "",
+  "text": "Add and subtract fractions with like denominators"
+ },
+ {
+  "code": "PA1-07",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand decimal place value"
+ },
+ {
+  "code": "PA1-08",
+  "course": "PA1",
+  "unit": "",
+  "text": "Add and subtract decimals"
+ },
+ {
+  "code": "PA1-09",
+  "course": "PA1",
+  "unit": "",
+  "text": "Multiply decimals"
+ },
+ {
+  "code": "PA1-10",
+  "course": "PA1",
+  "unit": "",
+  "text": "Divide decimals"
+ },
+ {
+  "code": "PA1-11",
+  "course": "PA1",
+  "unit": "",
+  "text": "Convert between fractions and decimals"
+ },
+ {
+  "code": "PA1-12",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and use percents"
+ },
+ {
+  "code": "PA1-13",
+  "course": "PA1",
+  "unit": "",
+  "text": "Convert between fractions decimals and percents"
+ },
+ {
+  "code": "PA1-14",
+  "course": "PA1",
+  "unit": "",
+  "text": "Identify and extend patterns"
+ },
+ {
+  "code": "PA1-15",
+  "course": "PA1",
+  "unit": "",
+  "text": "Write and evaluate algebraic expressions"
+ },
+ {
+  "code": "PA1-16",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand the concept of variables"
+ },
+ {
+  "code": "PA1-17",
+  "course": "PA1",
+  "unit": "",
+  "text": "Use the order of operations"
+ },
+ {
+  "code": "PA1-18",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and use the distributive property"
+ },
+ {
+  "code": "PA1-19",
+  "course": "PA1",
+  "unit": "",
+  "text": "Combine like terms"
+ },
+ {
+  "code": "PA1-20",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand coordinate plane basics"
+ },
+ {
+  "code": "PA1-21",
+  "course": "PA1",
+  "unit": "",
+  "text": "Plot points on a coordinate plane"
+ },
+ {
+  "code": "PA1-22",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and identify types of angles"
+ },
+ {
+  "code": "PA1-23",
+  "course": "PA1",
+  "unit": "",
+  "text": "Measure angles with a protractor"
+ },
+ {
+  "code": "PA1-24",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand properties of triangles"
+ },
+ {
+  "code": "PA1-25",
+  "course": "PA1",
+  "unit": "",
+  "text": "Solve one-step equations"
+ },
+ {
+  "code": "PA1-26",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand and use inequalities"
+ },
+ {
+  "code": "PA1-27",
+  "course": "PA1",
+  "unit": "",
+  "text": "Collect and organize data"
+ },
+ {
+  "code": "PA1-28",
+  "course": "PA1",
+  "unit": "",
+  "text": "Create and interpret bar graphs"
+ },
+ {
+  "code": "PA1-29",
+  "course": "PA1",
+  "unit": "",
+  "text": "Create and interpret line graphs"
+ },
+ {
+  "code": "PA1-30",
+  "course": "PA1",
+  "unit": "",
+  "text": "Find mean median and mode"
+ },
+ {
+  "code": "PA1-31",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand basic probability concepts"
+ },
+ {
+  "code": "PA1-32",
+  "course": "PA1",
+  "unit": "",
+  "text": "Calculate simple probabilities"
+ },
+ {
+  "code": "PA1-33",
+  "course": "PA1",
+  "unit": "",
+  "text": "Use tree diagrams for counting"
+ },
+ {
+  "code": "PA1-34",
+  "course": "PA1",
+  "unit": "",
+  "text": "Understand prime and composite numbers"
+ },
+ {
+  "code": "PA2-01",
+  "course": "PA2",
+  "unit": "",
+  "text": "Add and subtract fractions with unlike denominators"
+ },
+ {
+  "code": "PA2-02",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and work with proportional relationships"
+ },
+ {
+  "code": "PA2-03",
+  "course": "PA2",
+  "unit": "",
+  "text": "Solve proportion problems"
+ },
+ {
+  "code": "PA2-04",
+  "course": "PA2",
+  "unit": "",
+  "text": "Calculate area and perimeter of complex shapes"
+ },
+ {
+  "code": "PA2-05",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and use scale drawings"
+ },
+ {
+  "code": "PA2-06",
+  "course": "PA2",
+  "unit": "",
+  "text": "Work with similar figures"
+ },
+ {
+  "code": "PA2-07",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and use negative numbers"
+ },
+ {
+  "code": "PA2-08",
+  "course": "PA2",
+  "unit": "",
+  "text": "Add and subtract integers"
+ },
+ {
+  "code": "PA2-09",
+  "course": "PA2",
+  "unit": "",
+  "text": "Find greatest common factor and least common multiple"
+ },
+ {
+  "code": "PA2-10",
+  "course": "PA2",
+  "unit": "",
+  "text": "Simplify fractions"
+ },
+ {
+  "code": "PA2-11",
+  "course": "PA2",
+  "unit": "",
+  "text": "Multiply and divide fractions"
+ },
+ {
+  "code": "PA2-12",
+  "course": "PA2",
+  "unit": "",
+  "text": "Work with mixed numbers"
+ },
+ {
+  "code": "PA2-13",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and use scientific notation"
+ },
+ {
+  "code": "PA2-14",
+  "course": "PA2",
+  "unit": "",
+  "text": "Multiply and divide in scientific notation"
+ },
+ {
+  "code": "PA2-15",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and work with rational numbers"
+ },
+ {
+  "code": "PA2-16",
+  "course": "PA2",
+  "unit": "",
+  "text": "Compare and order rational numbers"
+ },
+ {
+  "code": "PA2-17",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand absolute value"
+ },
+ {
+  "code": "PA2-18",
+  "course": "PA2",
+  "unit": "",
+  "text": "Graph inequalities on a number line"
+ },
+ {
+  "code": "PA2-19",
+  "course": "PA2",
+  "unit": "",
+  "text": "Write and solve inequalities"
+ },
+ {
+  "code": "PA2-20",
+  "course": "PA2",
+  "unit": "",
+  "text": "Understand and use rates and unit rates"
+ },
+ {
+  "code": "PA2-21",
+  "course": "PA2",
+  "unit": "",
+  "text": "Solve multi-step equations"
+ },
+ {
+  "code": "PA2-22",
+  "course": "PA2",
+  "unit": "",
+  "text": "Solve multi-step inequalities"
+ },
+ {
+  "code": "PA2-23",
+  "course": "PA2",
+  "unit": "",
+  "text": "Factor linear expressions"
+ },
+ {
+  "code": "PA2-24",
+  "course": "PA2",
+  "unit": "",
+  "text": "Expand linear expressions"
+ },
+ {
+  "code": "PA2-25",
+  "course": "PA2",
+  "unit": "",
+  "text": "Determine experimental probability"
+ },
+ {
+  "code": "PA2-26",
+  "course": "PA2",
+  "unit": "",
+  "text": "Determine theoretical probability"
+ },
+ {
+  "code": "PA2-27",
+  "course": "PA2",
+  "unit": "",
+  "text": "Use probability to make predictions"
+ },
+ {
+  "code": "PA3-01",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand and perform operations with rational numbers"
+ },
+ {
+  "code": "PA3-02",
+  "course": "PA3",
+  "unit": "",
+  "text": "Simplify expressions with rational numbers"
+ },
+ {
+  "code": "PA3-03",
+  "course": "PA3",
+  "unit": "",
+  "text": "Evaluate expressions with rational numbers"
+ },
+ {
+  "code": "PA3-04",
+  "course": "PA3",
+  "unit": "",
+  "text": "Distinguish between and compare the value of rational and irrational numbers",
+  "new": true
+ },
+ {
+  "code": "PA3-05",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand and use properties of exponents"
+ },
+ {
+  "code": "PA3-06",
+  "course": "PA3",
+  "unit": "",
+  "text": "Apply laws of exponents"
+ },
+ {
+  "code": "PA3-07",
+  "course": "PA3",
+  "unit": "",
+  "text": "Work with powers of 10 and scientific notation"
+ },
+ {
+  "code": "PA3-08",
+  "course": "PA3",
+  "unit": "",
+  "text": "Perform operations in scientific notation"
+ },
+ {
+  "code": "PA3-09",
+  "course": "PA3",
+  "unit": "",
+  "text": "Apply the Pythagorean theorem"
+ },
+ {
+  "code": "PA3-10",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand and perform geometric transformations"
+ },
+ {
+  "code": "PA3-11",
+  "course": "PA3",
+  "unit": "",
+  "text": "Graph transformations on the coordinate plane"
+ },
+ {
+  "code": "PA3-12",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand similarity and congruence"
+ },
+ {
+  "code": "PA3-13",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand and apply properties of similarity to find unknown angles and side lengths",
+  "new": true
+ },
+ {
+  "code": "PA3-14",
+  "course": "PA3",
+  "unit": "",
+  "text": "Identify and use angle relationships"
+ },
+ {
+  "code": "PA3-15",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand the concept of a function"
+ },
+ {
+  "code": "PA3-16",
+  "course": "PA3",
+  "unit": "",
+  "text": "Determine if a relation is a function"
+ },
+ {
+  "code": "PA3-17",
+  "course": "PA3",
+  "unit": "",
+  "text": "Evaluate functions"
+ },
+ {
+  "code": "PA3-18",
+  "course": "PA3",
+  "unit": "",
+  "text": "Graph linear functions"
+ },
+ {
+  "code": "PA3-19",
+  "course": "PA3",
+  "unit": "",
+  "text": "Find slope from a graph or two points"
+ },
+ {
+  "code": "PA3-20",
+  "course": "PA3",
+  "unit": "",
+  "text": "Write equations of lines"
+ },
+ {
+  "code": "PA3-21",
+  "course": "PA3",
+  "unit": "",
+  "text": "Use linear equations to model real-world scenarios",
+  "new": true
+ },
+ {
+  "code": "PA3-22",
+  "course": "PA3",
+  "unit": "",
+  "text": "Identify parallel and perpendicular lines"
+ },
+ {
+  "code": "PA3-23",
+  "course": "PA3",
+  "unit": "",
+  "text": "Solve systems of linear equations graphically"
+ },
+ {
+  "code": "PA3-24",
+  "course": "PA3",
+  "unit": "",
+  "text": "Solve systems of linear equations algebraically"
+ },
+ {
+  "code": "PA3-25",
+  "course": "PA3",
+  "unit": "",
+  "text": "Create and interpret scatter plots"
+ },
+ {
+  "code": "PA3-26",
+  "course": "PA3",
+  "unit": "",
+  "text": "Identify associations in categorical data",
+  "new": true
+ },
+ {
+  "code": "PA3-27",
+  "course": "PA3",
+  "unit": "",
+  "text": "Understand correlation and causation"
+ },
+ {
+  "code": "IM1-01",
+  "course": "IM1",
+  "unit": "",
+  "text": "Identify domain and range",
+  "new": true
+ },
+ {
+  "code": "IM1-02",
+  "course": "IM1",
+  "unit": "",
+  "text": "Use interval notation",
+  "new": true
+ },
+ {
+  "code": "IM1-03",
+  "course": "IM1",
+  "unit": "",
+  "text": "Use function notation",
+  "was": "Understand and use function notation"
+ },
+ {
+  "code": "IM1-04",
+  "course": "IM1",
+  "unit": "",
+  "text": "Identify continuous vs. discrete data",
+  "new": true
+ },
+ {
+  "code": "IM1-05",
+  "course": "IM1",
+  "unit": "",
+  "text": "Write explicit equations",
+  "new": true
+ },
+ {
+  "code": "IM1-06",
+  "course": "IM1",
+  "unit": "",
+  "text": "Write recursive equations",
+  "new": true
+ },
+ {
+  "code": "IM1-07",
+  "course": "IM1",
+  "unit": "",
+  "text": "Graph a function from a table or equation",
+  "was": "Graph and analyze linear functions"
+ },
+ {
+  "code": "IM1-08",
+  "course": "IM1",
+  "unit": "",
+  "text": "Write exponential equations",
+  "new": true
+ },
+ {
+  "code": "IM1-09",
+  "course": "IM1",
+  "unit": "",
+  "text": "Write linear equations",
+  "was": "Write equations of lines in various forms"
+ },
+ {
+  "code": "IM1-10",
+  "course": "IM1",
+  "unit": "",
+  "text": "Understand the difference between linear and exponential functions",
+  "new": true
+ },
+ {
+  "code": "IM1-11",
+  "course": "IM1",
+  "unit": "",
+  "text": "Understand the relationship between fractional exponents and radicals",
+  "new": true
+ },
+ {
+  "code": "IM1-12",
+  "course": "IM1",
+  "unit": "",
+  "text": "Convert negative exponential expressions into positive exponential expressions",
+  "new": true
+ },
+ {
+  "code": "IM1-13",
+  "course": "IM1",
+  "unit": "",
+  "text": "Solve a multi-step equation",
+  "new": true
+ },
+ {
+  "code": "IM1-14",
+  "course": "IM1",
+  "unit": "",
+  "text": "Solve a multi-step inequality",
+  "new": true
+ },
+ {
+  "code": "IM1-15",
+  "course": "IM1",
+  "unit": "",
+  "text": "Rearrange equations to isolate a variable",
+  "new": true
+ },
+ {
+  "code": "IM1-16",
+  "course": "IM1",
+  "unit": "",
+  "text": "Graph inequalities on the coordinate plane",
+  "new": true
+ },
+ {
+  "code": "IM1-17",
+  "course": "IM1",
+  "unit": "",
+  "text": "Graph inequalities on a number line",
+  "new": true
+ },
+ {
+  "code": "IM1-18",
+  "course": "IM1",
+  "unit": "",
+  "text": "Do transformations using construction",
+  "new": true
+ },
+ {
+  "code": "IM1-19",
+  "course": "IM1",
+  "unit": "",
+  "text": "Do transformations on a coordinate plane",
+  "new": true
+ },
+ {
+  "code": "IM1-20",
+  "course": "IM1",
+  "unit": "",
+  "text": "Graph parallel and perpendicular lines",
+  "was": "Identify parallel and perpendicular lines"
+ },
+ {
+  "code": "IM1-21",
+  "course": "IM1",
+  "unit": "",
+  "text": "Construct parallel and perpendicular lines",
+  "new": true
+ },
+ {
+  "code": "IM1-22",
+  "course": "IM1",
+  "unit": "",
+  "text": "Understand rotational and reflectional properties of quadrilaterals",
+  "new": true
+ },
+ {
+  "code": "IM1-23",
+  "course": "IM1",
+  "unit": "",
+  "text": "Solve a system of linear equations using substitution",
+  "was": "Solve systems of linear equations"
+ },
+ {
+  "code": "IM1-24",
+  "course": "IM1",
+  "unit": "",
+  "text": "Solve a system of linear equations using elimination",
+  "new": true
+ },
+ {
+  "code": "IM1-25",
+  "course": "IM1",
+  "unit": "",
+  "text": "Solve a system of linear equations by graphing",
+  "new": true
+ },
+ {
+  "code": "IM1-26",
+  "course": "IM1",
+  "unit": "",
+  "text": "Interpret box and whisker plots",
+  "new": true
+ },
+ {
+  "code": "IM1-27",
+  "course": "IM1",
+  "unit": "",
+  "text": "Create a histogram",
+  "new": true
+ },
+ {
+  "code": "IM1-28",
+  "course": "IM1",
+  "unit": "",
+  "text": "Interpret a histogram",
+  "new": true
+ },
+ {
+  "code": "IM1-29",
+  "course": "IM1",
+  "unit": "",
+  "text": "Understand standard deviation as a measure of spread",
+  "new": true
+ },
+ {
+  "code": "IM2-01",
+  "course": "IM2",
+  "unit": "Unit 1",
+  "text": "Quadratic Functions and Their Model Patterns and Real-World Contexts",
+  "level": "unit",
+  "was": "Unit 1: Functions and Their Inverses"
+ },
+ {
+  "code": "IM2-02",
+  "course": "IM2",
+  "unit": "Unit 2",
+  "text": "Structures of Quadratic Functions (forms and graph features)",
+  "level": "unit",
+  "was": "Unit 2: Logarithmic Functions"
+ },
+ {
+  "code": "IM2-03",
+  "course": "IM2",
+  "unit": "Unit 3",
+  "text": "Solving Quadratic Functions (using graphs and completing the square, the quadratic formula, and examining strategies)",
+  "level": "unit",
+  "was": "Unit 3: Polynomial Functions"
+ },
+ {
+  "code": "IM2-04",
+  "course": "IM2",
+  "unit": "Unit 4",
+  "text": "Piecewise, Absolute Value, and Inverse Equations",
+  "level": "unit",
+  "was": "Unit 4: Polynomial Equations"
+ },
+ {
+  "code": "IM2-05",
+  "course": "IM2",
+  "unit": "Unit 5",
+  "text": "Rational Exponents and Radicals",
+  "level": "unit"
+ },
+ {
+  "code": "IM2-06",
+  "course": "IM2",
+  "unit": "Unit 6",
+  "text": "Similarity and Right Triangle Trigonometry",
+  "level": "unit"
+ },
+ {
+  "code": "IM2-07",
+  "course": "IM2",
+  "unit": "Unit 7",
+  "text": "Circles",
+  "level": "unit"
+ },
+ {
+  "code": "IM2-08",
+  "course": "IM2",
+  "unit": "Unit 8",
+  "text": "Conditional Probability",
+  "level": "unit"
+ },
+ {
+  "code": "IM2-09",
+  "course": "IM2",
+  "unit": "Unit 9",
+  "text": "Modeling Data",
+  "level": "unit"
+ },
+ {
+  "code": "IM2-10",
+  "course": "IM2",
+  "unit": "Unit 10",
+  "text": "Constructions and Proof",
+  "level": "unit"
+ },
+ {
+  "code": "IM3-01",
+  "course": "IM3",
+  "unit": "Unit 1: Functions and Their Inverses",
+  "text": "Create an inverse function from a story context by changing the input and output variables"
+ },
+ {
+  "code": "IM3-02",
+  "course": "IM3",
+  "unit": "Unit 1: Functions and Their Inverses",
+  "text": "Recognize inverse functions in tables, graphs, and equations"
+ },
+ {
+  "code": "IM3-03",
+  "course": "IM3",
+  "unit": "Unit 1: Functions and Their Inverses",
+  "text": "Determine if a function is invertible"
+ },
+ {
+  "code": "IM3-04",
+  "course": "IM3",
+  "unit": "Unit 1: Functions and Their Inverses",
+  "text": "Understand that inverse functions “undo” each other"
+ },
+ {
+  "code": "IM3-05",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Find the exact value of a logarithmic expression when the argument of the logarithm is a power of the base"
+ },
+ {
+  "code": "IM3-06",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Estimate the value of a logarithmic expression when an exact value cannot be found"
+ },
+ {
+  "code": "IM3-07",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Recognize and use the properties of logarithms"
+ },
+ {
+  "code": "IM3-08",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Graph logarithmic functions"
+ },
+ {
+  "code": "IM3-09",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Use the properties of logarithms to find equivalent expressions"
+ },
+ {
+  "code": "IM3-10",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Use base 10 (common) logarithms to solve exponential equations"
+ },
+ {
+  "code": "IM3-11",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Solve logarithmic equations in base 10"
+ },
+ {
+  "code": "IM3-12",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Understand compound interest, including the continuous compound interest formula"
+ },
+ {
+  "code": "IM3-13",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Understand how different factors (interest rate, compounding periods, number of years invested) affect the amount earned from compound interest"
+ },
+ {
+  "code": "IM3-14",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Identify features of a base e exponential function"
+ },
+ {
+  "code": "IM3-15",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Model continuous growth and decay using base e exponential functions"
+ },
+ {
+  "code": "IM3-16",
+  "course": "IM3",
+  "unit": "Unit 2: Logarithms",
+  "text": "Solve exponential equations using common logarithms (base 10) and natural logarithms (base e)"
+ },
+ {
+  "code": "IM3-17",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Identify a cubic function from a rate of change"
+ },
+ {
+  "code": "IM3-18",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Describe the features of cubic functions"
+ },
+ {
+  "code": "IM3-19",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Graph cubic functions"
+ },
+ {
+  "code": "IM3-20",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Describe similarities and differences between cubic functions and quadratic functions"
+ },
+ {
+  "code": "IM3-21",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Add and subtract polynomials both algebraically and geometrically"
+ },
+ {
+  "code": "IM3-22",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Multiply polynomials using the distributive property"
+ },
+ {
+  "code": "IM3-23",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Use Pascal's Triangle to raise a binomial to a power"
+ },
+ {
+  "code": "IM3-24",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Divide polynomials using long division"
+ },
+ {
+  "code": "IM3-25",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Write two equivalent polynomial multiplication statements for each division statement"
+ },
+ {
+  "code": "IM3-26",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Understand the Polynomial Remainder Theorem"
+ },
+ {
+  "code": "IM3-27",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Use the Fundamental Theorem of Algebra to determine the number of roots a polynomial has"
+ },
+ {
+  "code": "IM3-28",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Explain why polynomials are closed under addition, subtraction, and multiplication, but not closed under division"
+ },
+ {
+  "code": "IM3-29",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Write a polynomial in its factored form, given the roots of the polynomial"
+ },
+ {
+  "code": "IM3-30",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Find the other roots of a polynomial, given a factor or not"
+ },
+ {
+  "code": "IM3-31",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Describe pairs of irrational or imaginary roots of polynomials"
+ },
+ {
+  "code": "IM3-32",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Determine the end behavior of a polynomial of a given degree"
+ },
+ {
+  "code": "IM3-33",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Use proper notation to write the end behavior of a given polynomial"
+ },
+ {
+  "code": "IM3-34",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Graph a polynomial given information about its roots and degree"
+ },
+ {
+  "code": "IM3-35",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Determine if a function is even or odd"
+ },
+ {
+  "code": "IM3-36",
+  "course": "IM3",
+  "unit": "Unit 3: Polynomials",
+  "text": "Write the equation of a polynomial in standard and factored form"
+ },
+ {
+  "code": "IM3-37",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Visualize, describe, or draw the cross-sections of a 3D solid intersected by a plane"
+ },
+ {
+  "code": "IM3-38",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Visualize, describe, or draw solids of revolution formed when a 2D figure is rotated about an axis"
+ },
+ {
+  "code": "IM3-39",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Approximate the volume of solids of revolution using formulas for area and volume by decomposing the solid into smaller pieces"
+ },
+ {
+  "code": "IM3-40",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Explain the concept of density"
+ },
+ {
+  "code": "IM3-41",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Find the exact measures of missing sides and angles in special right triangles"
+ },
+ {
+  "code": "IM3-42",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Use the Law of Cosines"
+ },
+ {
+  "code": "IM3-43",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Use the Law of Sines"
+ },
+ {
+  "code": "IM3-44",
+  "course": "IM3",
+  "unit": "Unit 5: Modeling with Geometry",
+  "text": "Identify when to use the Law of Sines or the Law of Cosines"
+ },
+ {
+  "code": "IM3-45",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Apply right triangle trigonometry to calculate how far points on the circle are above or below the center of the circle, or how far to the right or left of the center of the circle"
+ },
+ {
+  "code": "IM3-46",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Calculate the angular speed given the period of rotation of a Ferris wheel, and calculate the period of rotation of a Ferris wheel given its angular speed"
+ },
+ {
+  "code": "IM3-47",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Identify the amplitude, period, and location of the midline from a trigonometric function"
+ },
+ {
+  "code": "IM3-48",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Sketch the graph of a function given the amplitude, period, and midline"
+ },
+ {
+  "code": "IM3-49",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Calculate arc length for angles of rotation measured in degrees or radians, and find the angle of rotation in radians or degrees given the arc length"
+ },
+ {
+  "code": "IM3-50",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Calculate the sine and cosine of an angle of rotation on a circle with a given radius of r"
+ },
+ {
+  "code": "IM3-51",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Calculate the sine and cosine of an angle of rotation on a unit circle"
+ },
+ {
+  "code": "IM3-52",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Label a point on the circle with rectangular coordinates or polar coordinates"
+ },
+ {
+  "code": "IM3-53",
+  "course": "IM3",
+  "unit": "Unit 6: Modeling Periodic Behavior",
+  "text": "Write equations to model the vertical or horizontal positions of a point rotating around a circle using either degrees or radians"
+ },
+ {
+  "code": "IM3-54",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Write trigonometric functions that represent horizontal transformations of the graph or different initial starting positions of the circular motion"
+ },
+ {
+  "code": "IM3-55",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Represent the same trigonometric graph using either sine or cosine functions and using either degrees or radians to measure angles of rotation"
+ },
+ {
+  "code": "IM3-56",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Write trigonometric functions to model periodic behavior that is not about circular motion"
+ },
+ {
+  "code": "IM3-57",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Use the inverse of trigonometric functions represented with tables, graphs, or equations as needed"
+ },
+ {
+  "code": "IM3-58",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Define the tangent function in terms of angles of rotation and sketch its graph"
+ },
+ {
+  "code": "IM3-59",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Find tangent values on the unit circle"
+ },
+ {
+  "code": "IM3-60",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Understand and explain the fundamental trigonometric identities"
+ },
+ {
+  "code": "IM3-61",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Use trigonometric identities and inverse trigonometric functions to solve trigonometric equations"
+ },
+ {
+  "code": "IM3-62",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Understand and explain the derivation of the sum and difference identities and the double angle identities for sine, cosine, and tangent"
+ },
+ {
+  "code": "IM3-63",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Understand and use the restrictions on the definitions of the inverse trigonometric functions"
+ },
+ {
+  "code": "IM3-64",
+  "course": "IM3",
+  "unit": "Unit 7: Trigonometric Functions, Equations, and Identities",
+  "text": "Use algebra, trigonometric identities, and the inverse trigonometric functions to find all solutions of trigonometric functions"
+ },
+ {
+  "code": "IM3-65",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Create a table or a graph for a transformation of a parent function whether the transformation is described in geometric notation"
+ },
+ {
+  "code": "IM3-66",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Describe the effects of a transformation on a graph"
+ },
+ {
+  "code": "IM3-67",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Determine the effects of combining functions from two different function families using addition or multiplication"
+ },
+ {
+  "code": "IM3-68",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Find the composition of two functions defined by tables"
+ },
+ {
+  "code": "IM3-69",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Find the function rule for the composition of two or more functions defined with algebraic rules"
+ },
+ {
+  "code": "IM3-70",
+  "course": "IM3",
+  "unit": "Unit 8: Modeling with Functions",
+  "text": "Decompose a function into its component functions"
+ },
+ {
+  "code": "IM3-71",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Describe the features of a normal distribution"
+ },
+ {
+  "code": "IM3-72",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Know and use the 68–95–99.7 rule to interpret a point in a distribution"
+ },
+ {
+  "code": "IM3-73",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Calculate and interpret a z-score"
+ },
+ {
+  "code": "IM3-74",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Estimate population percentages using a normal distribution as a model and using technology or a table to help estimate"
+ },
+ {
+  "code": "IM3-75",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Determine whether or not a sample is random"
+ },
+ {
+  "code": "IM3-76",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Identify different sample types and describe their purposes"
+ },
+ {
+  "code": "IM3-77",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Determine the population, sample, and parameter of interest in a study"
+ },
+ {
+  "code": "IM3-78",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Identify the differences between an experimental study, an observational study, and a survey and describe the strengths and weaknesses of each type"
+ },
+ {
+  "code": "IM3-79",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Use a simulation to predict the likelihood of a given event"
+ },
+ {
+  "code": "IM3-80",
+  "course": "IM3",
+  "unit": "Unit 9: Statistics",
+  "text": "Develop a plan to study a parameter of interest using an appropriate sampling strategy and study design"
+ },
+ {
+  "code": "PC-01",
+  "course": "PC",
+  "unit": "",
+  "text": "Graph exponential and logarithmic functions"
+ },
+ {
+  "code": "PC-02",
+  "course": "PC",
+  "unit": "",
+  "text": "Solve exponential and logarithmic equations"
+ },
+ {
+  "code": "PC-03",
+  "course": "PC",
+  "unit": "",
+  "text": "Use properties of logarithms"
+ },
+ {
+  "code": "PC-04",
+  "course": "PC",
+  "unit": "",
+  "text": "Model with exponential and logarithmic functions"
+ },
+ {
+  "code": "PC-05",
+  "course": "PC",
+  "unit": "",
+  "text": "Understand and work with complex numbers"
+ },
+ {
+  "code": "PC-06",
+  "course": "PC",
+  "unit": "",
+  "text": "Perform operations with complex numbers"
+ },
+ {
+  "code": "PC-07",
+  "course": "PC",
+  "unit": "",
+  "text": "Find complex zeros of polynomials"
+ },
+ {
+  "code": "PC-08",
+  "course": "PC",
+  "unit": "",
+  "text": "Use the Fundamental Theorem of Algebra"
+ },
+ {
+  "code": "PC-09",
+  "course": "PC",
+  "unit": "",
+  "text": "Graph polynomial functions"
+ },
+ {
+  "code": "PC-10",
+  "course": "PC",
+  "unit": "",
+  "text": "Analyze rational functions and asymptotes"
+ },
+ {
+  "code": "PC-11",
+  "course": "PC",
+  "unit": "",
+  "text": "Perform polynomial and rational inequalities"
+ },
+ {
+  "code": "PC-12",
+  "course": "PC",
+  "unit": "",
+  "text": "Graph and analyze conic sections"
+ },
+ {
+  "code": "PC-13",
+  "course": "PC",
+  "unit": "",
+  "text": "Define and evaluate trigonometric functions"
+ },
+ {
+  "code": "PC-14",
+  "course": "PC",
+  "unit": "",
+  "text": "Graph trigonometric functions"
+ },
+ {
+  "code": "PC-15",
+  "course": "PC",
+  "unit": "",
+  "text": "Transform trigonometric functions"
+ },
+ {
+  "code": "PC-16",
+  "course": "PC",
+  "unit": "",
+  "text": "Evaluate inverse trigonometric functions"
+ },
+ {
+  "code": "PC-17",
+  "course": "PC",
+  "unit": "",
+  "text": "Verify trigonometric identities"
+ },
+ {
+  "code": "PC-18",
+  "course": "PC",
+  "unit": "",
+  "text": "Solve trigonometric equations"
+ },
+ {
+  "code": "PC-19",
+  "course": "PC",
+  "unit": "",
+  "text": "Apply sum and difference formulas"
+ },
+ {
+  "code": "PC-20",
+  "course": "PC",
+  "unit": "",
+  "text": "Use double and half-angle formulas"
+ },
+ {
+  "code": "PC-21",
+  "course": "PC",
+  "unit": "",
+  "text": "Understand and apply Laws of Sines and Cosines"
+ },
+ {
+  "code": "PC-22",
+  "course": "PC",
+  "unit": "",
+  "text": "Work with vectors in the plane"
+ },
+ {
+  "code": "PC-23",
+  "course": "PC",
+  "unit": "",
+  "text": "Perform vector operations"
+ },
+ {
+  "code": "PC-24",
+  "course": "PC",
+  "unit": "",
+  "text": "Apply vectors to solve problems"
+ },
+ {
+  "code": "PC-25",
+  "course": "PC",
+  "unit": "",
+  "text": "Work with parametric equations"
+ },
+ {
+  "code": "PC-26",
+  "course": "PC",
+  "unit": "",
+  "text": "Graph parametric equations"
+ },
+ {
+  "code": "PC-27",
+  "course": "PC",
+  "unit": "",
+  "text": "Convert between parametric and rectangular forms"
+ },
+ {
+  "code": "PC-28",
+  "course": "PC",
+  "unit": "",
+  "text": "Understand and work with sequences"
+ },
+ {
+  "code": "PC-29",
+  "course": "PC",
+  "unit": "",
+  "text": "Understand and work with series"
+ },
+ {
+  "code": "ST1-01",
+  "course": "ST1",
+  "unit": "",
+  "text": "Conceptualize and operationalize variables",
+  "new": true
+ },
+ {
+  "code": "ST1-02",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand the iterative process of forming research questions and collecting data",
+  "new": true
+ },
+ {
+  "code": "ST1-03",
+  "course": "ST1",
+  "unit": "",
+  "text": "Distinguish among different types of data",
+  "new": true
+ },
+ {
+  "code": "ST1-04",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand the issues involved in cleaning up data",
+  "new": true
+ },
+ {
+  "code": "ST1-05",
+  "course": "ST1",
+  "unit": "",
+  "text": "Describe and compare distributions using stemplots, histograms, box plots, and ntigrams",
+  "was": "Describe and compare distributions"
+ },
+ {
+  "code": "ST1-06",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate measures of center and spread: mean, median, midrange, and mode; MAD, standard deviation, five-number summaries, and outlier tests",
+  "was": "Calculate measures of center and spread"
+ },
+ {
+  "code": "ST1-07",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate and interpret z-scores",
+  "new": true
+ },
+ {
+  "code": "ST1-08",
+  "course": "ST1",
+  "unit": "",
+  "text": "Use normal distributions, including percentiles",
+  "was": "Use normal distributions"
+ },
+ {
+  "code": "ST1-09",
+  "course": "ST1",
+  "unit": "",
+  "text": "Distinguish among percents, percent change, percentage point change, and percentiles",
+  "new": true
+ },
+ {
+  "code": "ST1-10",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate and interpret index scores",
+  "new": true
+ },
+ {
+  "code": "ST1-11",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand sampling distributions"
+ },
+ {
+  "code": "ST1-12",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand sampling methods and their attendant concerns",
+  "new": true
+ },
+ {
+  "code": "ST1-13",
+  "course": "ST1",
+  "unit": "",
+  "text": "Design surveys, experiments, and observational studies",
+  "was": "Design surveys and experiments"
+ },
+ {
+  "code": "ST1-14",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand bias and variability"
+ },
+ {
+  "code": "ST1-15",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate and interpret correlation, including its non-transitivity and the importance of spurious associations and lurking variables",
+  "was": "Calculate and interpret correlation"
+ },
+ {
+  "code": "ST1-16",
+  "course": "ST1",
+  "unit": "",
+  "text": "Use scatter plots and the quadrant count ratio to describe association",
+  "new": true
+ },
+ {
+  "code": "ST1-17",
+  "course": "ST1",
+  "unit": "",
+  "text": "Perform linear regression"
+ },
+ {
+  "code": "ST1-18",
+  "course": "ST1",
+  "unit": "",
+  "text": "Assess regression models"
+ },
+ {
+  "code": "ST1-19",
+  "course": "ST1",
+  "unit": "",
+  "text": "Transform data for linearity"
+ },
+ {
+  "code": "ST1-20",
+  "course": "ST1",
+  "unit": "",
+  "text": "Interpret models with more than one explanatory variable (multivariable regression)",
+  "new": true
+ },
+ {
+  "code": "ST1-21",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand probability fundamentals, including the basic probability rules",
+  "was": "Understand probability fundamentals"
+ },
+ {
+  "code": "ST1-22",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate conditional probability and apply Bayes' theorem",
+  "was": "Calculate conditional probability"
+ },
+ {
+  "code": "ST1-23",
+  "course": "ST1",
+  "unit": "",
+  "text": "Use probability distributions"
+ },
+ {
+  "code": "ST1-24",
+  "course": "ST1",
+  "unit": "",
+  "text": "Work with binomial distributions"
+ },
+ {
+  "code": "ST1-25",
+  "course": "ST1",
+  "unit": "",
+  "text": "Work with geometric distributions"
+ },
+ {
+  "code": "ST1-26",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand the Central Limit Theorem"
+ },
+ {
+  "code": "ST1-27",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate confidence intervals for proportions"
+ },
+ {
+  "code": "ST1-28",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate confidence intervals for means"
+ },
+ {
+  "code": "ST1-29",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand Type I and Type II errors, and interpret the confidence and power of an experiment",
+  "was": "Understand Type I and Type II errors"
+ },
+ {
+  "code": "ST1-30",
+  "course": "ST1",
+  "unit": "",
+  "text": "Calculate and interpret p-values, understand their meaning and limitations, and use confidence intervals to report results and quantify effect sizes",
+  "was": "Calculate and interpret p-values"
+ },
+ {
+  "code": "ST1-31",
+  "course": "ST1",
+  "unit": "",
+  "text": "Understand the false discovery rate and the false skepticism rate",
+  "new": true
+ },
+ {
+  "code": "ST1-32",
+  "course": "ST1",
+  "unit": "",
+  "text": "Compare two proportions"
+ },
+ {
+  "code": "ST1-33",
+  "course": "ST1",
+  "unit": "",
+  "text": "Compare two means"
+ },
+ {
+  "code": "ST1-34",
+  "course": "ST1",
+  "unit": "",
+  "text": "Analyze categorical data, including calculating and interpreting odds ratios",
+  "was": "Analyze categorical data"
+ },
+ {
+  "code": "ST1-35",
+  "course": "ST1",
+  "unit": "",
+  "text": "Create and interpret statistical reports"
+ },
+ {
+  "code": "ST2-01",
+  "course": "ST2",
+  "unit": "",
+  "text": "Distinguish between samples and populations"
+ },
+ {
+  "code": "ST2-02",
+  "course": "ST2",
+  "unit": "",
+  "text": "Classify different types of data"
+ },
+ {
+  "code": "ST2-03",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply appropriate sampling techniques"
+ },
+ {
+  "code": "ST2-04",
+  "course": "ST2",
+  "unit": "",
+  "text": "Analyze ethical considerations in statistical studies"
+ },
+ {
+  "code": "ST2-05",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct and interpret frequency tables"
+ },
+ {
+  "code": "ST2-06",
+  "course": "ST2",
+  "unit": "",
+  "text": "Create and analyze stem-and-leaf plots and histograms"
+ },
+ {
+  "code": "ST2-07",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct and interpret ogives pie charts bar charts and Pareto charts"
+ },
+ {
+  "code": "ST2-08",
+  "course": "ST2",
+  "unit": "",
+  "text": "Create stacked column charts and time series plots"
+ },
+ {
+  "code": "ST2-09",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct and analyze scatter plots for bivariate data"
+ },
+ {
+  "code": "ST2-10",
+  "course": "ST2",
+  "unit": "",
+  "text": "Calculate and interpret measures of center"
+ },
+ {
+  "code": "ST2-11",
+  "course": "ST2",
+  "unit": "",
+  "text": "Calculate and interpret measures of spread"
+ },
+ {
+  "code": "ST2-12",
+  "course": "ST2",
+  "unit": "",
+  "text": "Determine and interpret measures of position"
+ },
+ {
+  "code": "ST2-13",
+  "course": "ST2",
+  "unit": "",
+  "text": "Calculate and interpret correlation coefficients"
+ },
+ {
+  "code": "ST2-14",
+  "course": "ST2",
+  "unit": "",
+  "text": "Perform linear regression analysis and interpret results"
+ },
+ {
+  "code": "ST2-15",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply basic probability rules including complement rule"
+ },
+ {
+  "code": "ST2-16",
+  "course": "ST2",
+  "unit": "",
+  "text": "Calculate probabilities using union and intersection of events"
+ },
+ {
+  "code": "ST2-17",
+  "course": "ST2",
+  "unit": "",
+  "text": "Determine independence of events and apply conditional probability"
+ },
+ {
+  "code": "ST2-18",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply counting rules including permutations and combinations"
+ },
+ {
+  "code": "ST2-19",
+  "course": "ST2",
+  "unit": "",
+  "text": "Identify and work with probability distributions"
+ },
+ {
+  "code": "ST2-20",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply the binomial distribution to solve probability problems"
+ },
+ {
+  "code": "ST2-21",
+  "course": "ST2",
+  "unit": "",
+  "text": "Use the normal distribution to calculate probabilities and z-scores"
+ },
+ {
+  "code": "ST2-22",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply the central limit theorem to sampling distributions"
+ },
+ {
+  "code": "ST2-23",
+  "course": "ST2",
+  "unit": "",
+  "text": "Use the Student's t-distribution for appropriate statistical inference"
+ },
+ {
+  "code": "ST2-24",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct and interpret confidence intervals for a population proportion"
+ },
+ {
+  "code": "ST2-25",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct and interpret confidence intervals for a population mean"
+ },
+ {
+  "code": "ST2-26",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests for a single population proportion"
+ },
+ {
+  "code": "ST2-27",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests for a single population mean"
+ },
+ {
+  "code": "ST2-28",
+  "course": "ST2",
+  "unit": "",
+  "text": "Identify and explain Type I and Type II errors in hypothesis testing"
+ },
+ {
+  "code": "ST2-29",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct confidence intervals for comparing two population proportions"
+ },
+ {
+  "code": "ST2-30",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests comparing two population proportions"
+ },
+ {
+  "code": "ST2-31",
+  "course": "ST2",
+  "unit": "",
+  "text": "Construct confidence intervals for comparing two population means"
+ },
+ {
+  "code": "ST2-32",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests comparing two population means"
+ },
+ {
+  "code": "ST2-33",
+  "course": "ST2",
+  "unit": "",
+  "text": "Perform chi-squared goodness of fit tests"
+ },
+ {
+  "code": "ST2-34",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct chi-squared tests for independence"
+ },
+ {
+  "code": "ST2-35",
+  "course": "ST2",
+  "unit": "",
+  "text": "Interpret results of chi-squared analyses"
+ },
+ {
+  "code": "ST2-36",
+  "course": "ST2",
+  "unit": "",
+  "text": "Understand and apply the F distribution"
+ },
+ {
+  "code": "ST2-37",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct one-way ANOVA to compare multiple means"
+ },
+ {
+  "code": "ST2-38",
+  "course": "ST2",
+  "unit": "",
+  "text": "Perform pairwise comparison of means using appropriate methods"
+ },
+ {
+  "code": "ST2-39",
+  "course": "ST2",
+  "unit": "",
+  "text": "Perform comprehensive linear regression analysis"
+ },
+ {
+  "code": "ST2-40",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests for correlation coefficients"
+ },
+ {
+  "code": "ST2-41",
+  "course": "ST2",
+  "unit": "",
+  "text": "Conduct hypothesis tests for linear regression parameters"
+ },
+ {
+  "code": "ST2-42",
+  "course": "ST2",
+  "unit": "",
+  "text": "Calculate and interpret prediction intervals"
+ },
+ {
+  "code": "ST2-43",
+  "course": "ST2",
+  "unit": "",
+  "text": "Apply statistical methods to analyze real-world data sets"
+ },
+ {
+  "code": "ST2-44",
+  "course": "ST2",
+  "unit": "",
+  "text": "Present statistical findings clearly and accurately"
+ },
+ {
+  "code": "ST2-45",
+  "course": "ST2",
+  "unit": "",
+  "text": "Evaluate the validity and limitations of statistical conclusions"
+ },
+ {
+  "code": "APC-01",
+  "course": "APC",
+  "unit": "",
+  "text": "Graph functions and their transformations"
+ },
+ {
+  "code": "APC-02",
+  "course": "APC",
+  "unit": "",
+  "text": "Solve equations graphically and algebraically"
+ },
+ {
+  "code": "APC-03",
+  "course": "APC",
+  "unit": "",
+  "text": "Graph exponential and logarithmic functions"
+ },
+ {
+  "code": "APC-04",
+  "course": "APC",
+  "unit": "",
+  "text": "Solve problems involving exponents and logarithms"
+ },
+ {
+  "code": "APC-05",
+  "course": "APC",
+  "unit": "",
+  "text": "Graph quadratic and higher degree polynomial functions"
+ },
+ {
+  "code": "APC-06",
+  "course": "APC",
+  "unit": "",
+  "text": "Find zeros of polynomial functions"
+ },
+ {
+  "code": "APC-07",
+  "course": "APC",
+  "unit": "",
+  "text": "Use long division and synthetic division of polynomials"
+ },
+ {
+  "code": "APC-08",
+  "course": "APC",
+  "unit": "",
+  "text": "Perform operations with complex numbers"
+ },
+ {
+  "code": "APC-09",
+  "course": "APC",
+  "unit": "",
+  "text": "Determine complex zeros using the Fundamental Theorem of Algebra"
+ },
+ {
+  "code": "APC-10",
+  "course": "APC",
+  "unit": "",
+  "text": "Graph rational functions"
+ },
+ {
+  "code": "APC-11",
+  "course": "APC",
+  "unit": "",
+  "text": "Find asymptotes of rational functions"
+ },
+ {
+  "code": "APC-12",
+  "course": "APC",
+  "unit": "",
+  "text": "Understand and correctly use both radian and degree measure"
+ },
+ {
+  "code": "APC-13",
+  "course": "APC",
+  "unit": "",
+  "text": "Define and evaluate trigonometric functions using the unit circle"
+ },
+ {
+  "code": "APC-14",
+  "course": "APC",
+  "unit": "",
+  "text": "Use reference angles to evaluate trigonometric functions"
+ },
+ {
+  "code": "APC-15",
+  "course": "APC",
+  "unit": "",
+  "text": "Graph trigonometric functions and their transformations"
+ },
+ {
+  "code": "APC-16",
+  "course": "APC",
+  "unit": "",
+  "text": "Evaluate inverse trigonometric functions"
+ },
+ {
+  "code": "APC-17",
+  "course": "APC",
+  "unit": "",
+  "text": "Define and evaluate trigonometric functions using right triangles"
+ },
+ {
+  "code": "APC-18",
+  "course": "APC",
+  "unit": "",
+  "text": "Use trigonometric formulas and laws of sines and cosines"
+ },
+ {
+  "code": "APC-19",
+  "course": "APC",
+  "unit": "",
+  "text": "Verify trigonometric identities using fundamental identities"
+ },
+ {
+  "code": "APC-20",
+  "course": "APC",
+  "unit": "",
+  "text": "Apply addition and subtraction formulas for trigonometric functions"
+ },
+ {
+  "code": "APC-21",
+  "course": "APC",
+  "unit": "",
+  "text": "Use double-angle and half-angle formulas"
+ },
+ {
+  "code": "APC-22",
+  "course": "APC",
+  "unit": "",
+  "text": "Solve trigonometric equations"
+ },
+ {
+  "code": "APC-23",
+  "course": "APC",
+  "unit": "",
+  "text": "Use limit laws to calculate limits as variable approaches constant"
+ },
+ {
+  "code": "APC-24",
+  "course": "APC",
+  "unit": "",
+  "text": "Demonstrate how to find the slope of a tangent line to a curve"
+ },
+ {
+  "code": "APC-25",
+  "course": "APC",
+  "unit": "",
+  "text": "Determine continuity of a function on a given domain"
+ },
+ {
+  "code": "APC-26",
+  "course": "APC",
+  "unit": "",
+  "text": "Calculate a derivative using the definition"
+ },
+ {
+  "code": "APC-27",
+  "course": "APC",
+  "unit": "",
+  "text": "Demonstrate understanding of the derivative as a function"
+ },
+ {
+  "code": "APC-28",
+  "course": "APC",
+  "unit": "",
+  "text": "Recall basic algebraic and trigonometric derivatives from memory"
+ },
+ {
+  "code": "APC-29",
+  "course": "APC",
+  "unit": "",
+  "text": "Calculate derivatives using product and quotient rules"
+ },
+ {
+  "code": "APC-30",
+  "course": "APC",
+  "unit": "",
+  "text": "Calculate derivatives using the chain rule"
+ },
+ {
+  "code": "APC-31",
+  "course": "APC",
+  "unit": "",
+  "text": "Calculate higher derivatives"
+ },
+ {
+  "code": "APC-32",
+  "course": "APC",
+  "unit": "",
+  "text": "Use implicit differentiation to find a derivative"
+ },
+ {
+  "code": "APC-33",
+  "course": "APC",
+  "unit": "",
+  "text": "Use derivatives to describe rates of change"
+ },
+ {
+  "code": "APC-34",
+  "course": "APC",
+  "unit": "",
+  "text": "Solve related rate problems"
+ },
+ {
+  "code": "APC-35",
+  "course": "APC",
+  "unit": "",
+  "text": "Use linear approximation to solve problems"
+ },
+ {
+  "code": "CALC-CS1",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Simplify expressions using algebra skills",
+  "new": true
+ },
+ {
+  "code": "CALC-CS2",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Demonstrate an understanding of mathematical concepts and reasoning by appropriately using definitions, arguments, and proofs",
+  "new": true
+ },
+ {
+  "code": "CALC-CS3",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Apply and adapt various strategies for problem solving at the calculus level, showing perseverance and creativity",
+  "new": true
+ },
+ {
+  "code": "CALC-CS4",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Communicate mathematical thinking clearly to others, including written work that is thorough, organized, and carefully labeled, and oral explanations that are fluent",
+  "new": true
+ },
+ {
+  "code": "CALC-CS5",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Complete and submit assignments on time",
+  "new": true
+ },
+ {
+  "code": "CALC-CS6",
+  "course": "CALC",
+  "unit": "Continuous Skills",
+  "text": "Use graphing software to investigate and verify functions and their graphs (a graphing calculator, GeoGebra or Desmos — any is fine)",
+  "was": "Use a graphing calculator"
+ },
+ {
+  "code": "CALC-P02",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Describe basic classes of functions graphically, algebraically and verbally"
+ },
+ {
+  "code": "CALC-P03",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Transform functions using translation, scaling and reflection"
+ },
+ {
+  "code": "CALC-P04",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Use limit laws to calculate limits as the variable approaches a constant"
+ },
+ {
+  "code": "CALC-P06",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Determine the continuity of a function on a given domain"
+ },
+ {
+  "code": "CALC-P05",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Demonstrate how to find the slope of a tangent line to a curve"
+ },
+ {
+  "code": "CALC-P07",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Calculate a derivative using the definition"
+ },
+ {
+  "code": "CALC-P08",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Demonstrate understanding of the derivative as a function"
+ },
+ {
+  "code": "CALC-P09",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Recall the basic algebraic and trigonometric derivatives from memory"
+ },
+ {
+  "code": "CALC-P10",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Calculate appropriate derivatives using the product and quotient rules"
+ },
+ {
+  "code": "CALC-P12",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Calculate higher derivatives"
+ },
+ {
+  "code": "CALC-P11",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Calculate derivatives using the chain rule"
+ },
+ {
+  "code": "CALC-P13",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Use implicit differentiation to find a derivative"
+ },
+ {
+  "code": "CALC-P14",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Use derivatives to describe rates of change"
+ },
+ {
+  "code": "CALC-P15",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Solve related rate problems"
+ },
+ {
+  "code": "CALC-P16",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Use linear approximation to solve problems"
+ },
+ {
+  "code": "CALC-P43",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Evaluate Taylor polynomials"
+ },
+ {
+  "code": "CALC-P25",
+  "course": "CALC",
+  "unit": "Unit 1 — Review of Limits and Derivatives",
+  "text": "Use L'Hôpital's rule to determine limits of indeterminate forms",
+  "was": "Use L'Hôpital's rule to determine limits of quotients"
+ },
+ {
+  "code": "CALC-P23",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Calculate critical points to determine the extreme values of a function"
+ },
+ {
+  "code": "CALC-P21",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Understand the Mean Value Theorem"
+ },
+ {
+  "code": "CALC-P24",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Sketch the graph of a function using first and second derivatives"
+ },
+ {
+  "code": "CALC-P22",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Use limit laws to calculate limits as the variable approaches infinity"
+ },
+ {
+  "code": "CALC-P26",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Solve optimization problems"
+ },
+ {
+  "code": "CALC-P44",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Use Newton's method to approximate the roots of an equation",
+  "new": true
+ },
+ {
+  "code": "CALC-P27",
+  "course": "CALC",
+  "unit": "Unit 2 — Applications of Differentiation",
+  "text": "Find the antiderivative of a basic function"
+ },
+ {
+  "code": "CALC-P28",
+  "course": "CALC",
+  "unit": "Unit 3 — The Integral",
+  "text": "Use rectangular approximations and integrals to find area under curves"
+ },
+ {
+  "code": "CALC-P29",
+  "course": "CALC",
+  "unit": "Unit 3 — The Integral",
+  "text": "Evaluate definite and indefinite integrals"
+ },
+ {
+  "code": "CALC-P32",
+  "course": "CALC",
+  "unit": "Unit 3 — The Integral",
+  "text": "Apply the Fundamental Theorem of Calculus"
+ },
+ {
+  "code": "CALC-P30",
+  "course": "CALC",
+  "unit": "Unit 3 — The Integral",
+  "text": "Solve problems involving net change"
+ },
+ {
+  "code": "CALC-P36",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Use integrals to determine the area between two curves"
+ },
+ {
+  "code": "CALC-P38",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Calculate the volume of a solid with given base and cross section"
+ },
+ {
+  "code": "CALC-P37",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Calculate volumes using disk, annulus and shell methods"
+ },
+ {
+  "code": "CALC-P31",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Calculate volumes of revolution using discs or cylindrical shells"
+ },
+ {
+  "code": "CALC-P45",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Calculate the average value of a function, and solve problems involving density",
+  "new": true
+ },
+ {
+  "code": "CALC-P40",
+  "course": "CALC",
+  "unit": "Unit 4 — Applications of Integration",
+  "text": "Solve problems involving applications to physics and engineering"
+ },
+ {
+  "code": "CALC-P17",
+  "course": "CALC",
+  "unit": "Unit 5 — Inverse Functions",
+  "text": "Determine the inverse of a function when appropriate"
+ },
+ {
+  "code": "CALC-P18",
+  "course": "CALC",
+  "unit": "Unit 5 — Inverse Functions",
+  "text": "Use exponential and logarithmic laws to simplify expressions"
+ },
+ {
+  "code": "CALC-P19",
+  "course": "CALC",
+  "unit": "Unit 5 — Inverse Functions",
+  "text": "Calculate derivatives involving exponential and logarithmic functions"
+ },
+ {
+  "code": "CALC-P39",
+  "course": "CALC",
+  "unit": "Unit 5 — Inverse Functions",
+  "text": "Solve problems involving exponential growth and decay"
+ },
+ {
+  "code": "CALC-P20",
+  "course": "CALC",
+  "unit": "Unit 5 — Inverse Functions",
+  "text": "Calculate derivatives involving inverse trigonometric functions"
+ },
+ {
+  "code": "CALC-P33",
+  "course": "CALC",
+  "unit": "Unit 6 — Techniques of Integration",
+  "text": "Use integration methods: substitution, parts, trigonometric integrals, trigonometric substitution, and partial fractions",
+  "was": "Use integration methods: substitution parts partial fractions",
+  "note": "Substitution is introduced in Unit 3 — The Integral."
+ },
+ {
+  "code": "CALC-P34",
+  "course": "CALC",
+  "unit": "Unit 6 — Techniques of Integration",
+  "text": "Use Simpson, trapezoidal and midpoint approximations"
+ },
+ {
+  "code": "CALC-P35",
+  "course": "CALC",
+  "unit": "Unit 6 — Techniques of Integration",
+  "text": "Identify improper integrals and evaluate them using limits and comparisons",
+  "was": "Identify improper integrals and know how to evaluate them"
+ },
+ {
+  "code": "CALC-P42",
+  "course": "CALC",
+  "unit": "Unit 7 — Further Applications of Integration",
+  "text": "Calculate arc length and surface area"
+ },
+ {
+  "code": "CALC-P41",
+  "course": "CALC",
+  "unit": "Unit 7 — Further Applications of Integration",
+  "text": "Use integrals to determine probabilities"
+ }
+]
