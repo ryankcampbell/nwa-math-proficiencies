@@ -273,11 +273,69 @@ function vCourse(cid) {
       <button class="${mode !== 'strand' ? 'on' : ''}" style="--c:var(--teal)" data-act="courseMode" data-mode="unit">In course order</button>
       <button class="${mode === 'strand' ? 'on' : ''}" style="--c:var(--teal)" data-act="courseMode" data-mode="strand">By strand</button></div>` : ''}
     <span style="flex:1"></span>
+    <label class="check small noprint" title="Include codes like IM3-14 in the copy and PDF"><input type="checkbox" data-act="docCodes" ${store.get('docCodes', true) ? 'checked' : ''}> Include codes</label>
+    <button class="btn small" data-act="copyCourse" data-course="${cid}" title="Copy a formatted list to paste into Word or Google Docs">Copy for Word</button>
+    <button class="btn small" data-act="pdfCourse" data-course="${cid}" title="Print or save this course's proficiencies as a PDF">${icon.dl} PDF</button>
     <a class="btn small" href="#/assign?c=${cid}">Assign practice from this course</a>
     ${WS ? `<button class="btn small" data-act="addProf" data-course="${cid}">+ Add proficiency</button>` : ''}
   </div>
   ${fl.length && (WS || store.get('review', false)) ? `<div class="card" style="margin-top:16px"><h3>Open questions for this course</h3>${fl.map(f => `<div class="item"><span class="tag ${f.kind}">${KIND[f.kind] || f.kind}</span> ${esc(f.text)}</div>`).join('')}</div>` : ''}
   ${body}`;
+}
+
+/* A course's proficiencies as a plain document, for pasting into Word/Docs or printing to PDF.
+   Inline styles only: Word keeps them when pasting. Groups follow the course page's current view. */
+function courseDoc(cid) {
+  const c = C.get(cid), ps = ofCourse(cid), codes = store.get('docCodes', true);
+  const byStrand = store.get('courseMode', 'unit') === 'strand' || !ps.some(p => p.unit);
+  const groups = byStrand
+    ? D.strands.map(s => [s.name, ps.filter(p => T.get(p.thread)?.strand === s.id)]).filter(g => g[1].length)
+    : [...new Set(ps.map(p => p.unit || ''))].map(u => [u || 'Proficiencies', ps.filter(p => (p.unit || '') === u)]);
+  const font = 'font-family:Calibri,Arial,sans-serif;';
+  const html = `<div style="${font}color:#000">
+    <h2 style="${font}font-size:16pt;margin:0 0 2pt">${esc(c.name)}: Proficiencies</h2>
+    <p style="${font}font-size:10pt;color:#555;margin:0 0 10pt">${esc(c.grade)} · Northwest Academy Mathematics · ${esc(D.year)}</p>
+    ${groups.map(([g, list]) => `<h3 style="${font}font-size:12pt;margin:10pt 0 3pt">${esc(g)}</h3>
+      <ul style="${font}font-size:11pt;margin:0 0 4pt;padding-left:18pt">${list.map(p =>
+        `<li style="margin:0 0 2pt">${codes ? `<b>${p.code}</b>  ` : ''}${esc(p.text)}</li>`).join('')}</ul>`).join('')}
+  </div>`;
+  const text = [`${c.name}: Proficiencies`, `${c.grade} · Northwest Academy Mathematics · ${D.year}`, '',
+    ...groups.flatMap(([g, list]) => [g, ...list.map(p => `• ${codes ? p.code + '  ' : ''}${p.text}`), ''])].join(NL);
+  return { html, text, title: `${c.short} proficiencies` };
+}
+
+async function copyRich(html, text) {
+  try {
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) })]);
+    return true;
+  } catch (e) {
+    // Older browsers and the Workshop's sandboxed frame: copy a selected, formatted element instead.
+    const box = document.createElement('div');
+    box.contentEditable = 'true';
+    box.style.cssText = 'position:fixed;left:-9999px;top:0;background:#fff';
+    box.innerHTML = html;
+    document.body.appendChild(box);
+    const r = document.createRange(); r.selectNodeContents(box);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    let ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
+    sel.removeAllRanges(); box.remove();
+    return ok;
+  }
+}
+
+/* Print only the document: everything else is hidden while #printdoc exists (see style.css). */
+function printDoc(html, title) {
+  $('#printdoc')?.remove();
+  const d = document.createElement('div');
+  d.id = 'printdoc';
+  d.innerHTML = html;
+  document.body.appendChild(d);
+  const old = document.title;
+  document.title = title;            // becomes the suggested PDF file name
+  const done = () => { d.remove(); document.title = old; window.removeEventListener('afterprint', done); };
+  window.addEventListener('afterprint', done);
+  setTimeout(() => window.print(), 50);
 }
 
 function vScope(sid) {
@@ -719,6 +777,12 @@ document.addEventListener('click', async e => {
       break;
     }
     case 'copy': navigator.clipboard.writeText($('#plink').value).then(() => toast('Link copied')); break;
+    case 'copyCourse': {
+      const doc = courseDoc(d.course);
+      toast(await copyRich(doc.html, doc.text) ? 'Copied. Paste into Word or Google Docs.' : 'Could not copy. Try the PDF button instead.');
+      break;
+    }
+    case 'pdfCourse': { const doc = courseDoc(d.course); printDoc(doc.html, doc.title); break; }
     case 'makeCode': {
       const st = assignState();
       el.disabled = true;
@@ -819,6 +883,7 @@ document.addEventListener('change', async e => {
   if (a === 'pick') { assignSet(st => { st.picked = el.checked ? [...new Set([...st.picked, d.code])] : st.picked.filter(c => c !== d.code); }); render(); }
   if (a === 'review') { store.set('review', el.checked); render(); }
   if (a === 'ovShow') { store.set('ovShow', el.checked); render(); }
+  if (a === 'docCodes') store.set('docCodes', el.checked);
   if (a === 'did') {
     const done = new Set(store.get(d.key, []));
     el.checked ? done.add(d.code) : done.delete(d.code);

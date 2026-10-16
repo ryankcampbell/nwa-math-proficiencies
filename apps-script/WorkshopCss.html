@@ -307,7 +307,10 @@ footer{max-width:1240px;margin:0 auto;padding:30px 16px 40px;color:var(--ink-4);
   .plist li{flex-direction:column;gap:2px}
   .res{margin-left:0}
 }
+#printdoc{display:none}
 @media print{
+  body:has(#printdoc)>*:not(#printdoc){display:none!important}
+  #printdoc{display:block;background:#fff;color:#000}
   :root{color-scheme:light}
   body{background:#fff;color:#000}
   #bar,.ws-banner,footer,.noprint,.btn{display:none!important}

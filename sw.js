@@ -6,7 +6,7 @@
 
    Bump VERSION when the shell (index.html, app.js, style.css) changes so
    installed copies drop the old shell. */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const SHELL = `nwa-shell-${VERSION}`;
 const FILES = ['./', 'index.html', 'style.css', 'app.js', 'data/data.json', 'manifest.webmanifest',
                'icons/icon-192.png', 'icons/icon-512.png', 'vendor/qrcode.min.js', 'practice.js', 'practice/index.json',
