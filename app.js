@@ -877,17 +877,27 @@ function shell() {
   $('#scrim').addEventListener('click', e => { if (e.target.id === 'scrim') closeModal(); });
 }
 
+/* In the Workshop a blank page helps nobody: show what broke, so it can be reported. */
+function fatal(e) {
+  const msg = WS ? `<b>The Workshop hit an error.</b> Send this to Ryan:<pre style="white-space:pre-wrap;font:12px ui-monospace,monospace;margin-top:10px">${esc(e && (e.stack || e.message) || e)}</pre>`
+                 : 'Could not load the curriculum data. Check your connection and reload.';
+  document.body.insertAdjacentHTML('afterbegin', `<div style="padding:24px 28px;margin:16px;border-radius:12px;background:#3a1f1a;color:#ffd9cf;font:15px/1.5 sans-serif">${msg}</div>`);
+}
+if (WS) window.addEventListener('error', e => fatal(e.error || e.message));
+
 (async () => {
   try {
     await load();
-    await loadPractice();
   } catch (e) {
-    document.body.innerHTML = '<p style="padding:40px;font:16px sans-serif">Could not load the curriculum data. Check your connection and reload.</p>';
+    fatal(e);
     return;
   }
-  shell();
-  window.addEventListener('hashchange', onRoute);
-  onRoute();
+  await loadPractice();
+  try {
+    shell();
+    window.addEventListener('hashchange', onRoute);
+    onRoute();
+  } catch (e) { fatal(e); }
   if (!WS && 'serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 })();
 })();

@@ -38,7 +38,8 @@ const COLS = {
 
 /* ───────────────────────── entry points ───────────────────────── */
 
-function doGet() {
+function doGet(e) {
+  if (e && e.parameter && e.parameter.check) return check_();
   let who;
   try { who = user_(); }
   catch (e) {
@@ -70,6 +71,23 @@ function onOpen() {
 }
 
 /* ───────────────────────── read ───────────────────────── */
+
+/** ?check=1 on the Workshop URL: a plain-text health report (chair only). */
+function check_() {
+  const out = [];
+  try {
+    const who = user_();
+    out.push('user: ' + who + (CHAIRS.indexOf(who) >= 0 ? ' (chair)' : ''));
+    book_().getSheets().forEach(sh => out.push('tab ' + sh.getName() + ': ' + Math.max(0, sh.getLastRow() - 1) + ' rows'));
+    const d = getData();
+    ['courses', 'strands', 'threads', 'profs', 'overlaps', 'flags', 'resources'].forEach(k => out.push('data ' + k + ': ' + d[k].length));
+    out.push('json bytes: ' + JSON.stringify(d).length);
+    out.push('token set: ' + !!PropertiesService.getScriptProperties().getProperty('GITHUB_TOKEN'));
+  } catch (err) {
+    out.push('ERROR: ' + err.message + '\n' + (err.stack || ''));
+  }
+  return ContentService.createTextOutput(out.join('\n'));
+}
 
 function getData() {
   user_();
