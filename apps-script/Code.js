@@ -72,6 +72,12 @@ function onOpen() {
 
 /* ───────────────────────── read ───────────────────────── */
 
+/** Raw contents of another HTML file in this project (the Workshop's CSS and JS). Inserted by
+    <?!= ?> at run time, so the template compiler never sees, and never mangles, the code. */
+function include_(name) {
+  return HtmlService.createHtmlOutputFromFile(name).getContent();
+}
+
 /** ?check=1 on the Workshop URL: a plain-text health report (chair only). */
 function check_() {
   const out = [];
