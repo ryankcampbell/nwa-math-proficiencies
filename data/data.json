@@ -2,7 +2,7 @@
  "title": "NWA Math Proficiencies",
  "year": "2026–27",
  "status": "draft",
- "published": null,
+ "published": "2026-10-16",
  "courses": [
   {
    "id": "PA1",
@@ -497,9 +497,9 @@
     "PA2": "Experimental vs. theoretical probability; predictions",
     "IM2": "Unit: conditional probability",
     "IM3": "Simulation",
+    "CALC": "Probability with integrals (see Applications of integrals)",
     "ST1": "Probability rules, Bayes, binomial and geometric distributions",
-    "ST2": "Rules, counting, binomial distribution",
-    "CALC": "Probability with integrals (see Applications of integrals)"
+    "ST2": "Rules, counting, binomial distribution"
    }
   },
   {
@@ -624,8 +624,8 @@
    "course": "PA1",
    "unit": "",
    "text": "Understand and calculate the volume of a prism",
-   "new": true,
-   "thread": "G1"
+   "thread": "G1",
+   "new": true
   },
   {
    "code": "PA1-04",
@@ -1059,8 +1059,8 @@
    "course": "PA3",
    "unit": "",
    "text": "Distinguish between and compare the value of rational and irrational numbers",
-   "new": true,
-   "thread": "N3"
+   "thread": "N3",
+   "new": true
   },
   {
    "code": "PA3-05",
@@ -1123,8 +1123,8 @@
    "course": "PA3",
    "unit": "",
    "text": "Understand and apply properties of similarity to find unknown angles and side lengths",
-   "new": true,
-   "thread": "G3"
+   "thread": "G3",
+   "new": true
   },
   {
    "code": "PA3-14",
@@ -1180,8 +1180,8 @@
    "course": "PA3",
    "unit": "",
    "text": "Use linear equations to model real-world scenarios",
-   "new": true,
-   "thread": "F2"
+   "thread": "F2",
+   "new": true
   },
   {
    "code": "PA3-22",
@@ -1216,8 +1216,8 @@
    "course": "PA3",
    "unit": "",
    "text": "Identify associations in categorical data",
-   "new": true,
-   "thread": "D3"
+   "thread": "D3",
+   "new": true
   },
   {
    "code": "PA3-27",
@@ -1231,23 +1231,22 @@
    "course": "IM1",
    "unit": "",
    "text": "Identify domain and range",
-   "new": true,
-   "thread": "F1"
+   "thread": "F1",
+   "new": true
   },
   {
    "code": "IM1-02",
    "course": "IM1",
    "unit": "",
    "text": "Use interval notation",
-   "new": true,
-   "thread": "F1"
+   "thread": "F1",
+   "new": true
   },
   {
    "code": "IM1-03",
    "course": "IM1",
    "unit": "",
    "text": "Use function notation",
-   "was": "Understand and use function notation",
    "thread": "F1"
   },
   {
@@ -1255,31 +1254,30 @@
    "course": "IM1",
    "unit": "",
    "text": "Identify continuous vs. discrete data",
-   "new": true,
-   "thread": "F1"
+   "thread": "F1",
+   "new": true
   },
   {
    "code": "IM1-05",
    "course": "IM1",
    "unit": "",
    "text": "Write explicit equations",
-   "new": true,
-   "thread": "E5"
+   "thread": "E5",
+   "new": true
   },
   {
    "code": "IM1-06",
    "course": "IM1",
    "unit": "",
    "text": "Write recursive equations",
-   "new": true,
-   "thread": "E5"
+   "thread": "E5",
+   "new": true
   },
   {
    "code": "IM1-07",
    "course": "IM1",
    "unit": "",
    "text": "Graph a function from a table or equation",
-   "was": "Graph and analyze linear functions",
    "thread": "F1"
   },
   {
@@ -1287,15 +1285,14 @@
    "course": "IM1",
    "unit": "",
    "text": "Write exponential equations",
-   "new": true,
-   "thread": "F3"
+   "thread": "F3",
+   "new": true
   },
   {
    "code": "IM1-09",
    "course": "IM1",
    "unit": "",
    "text": "Write linear equations",
-   "was": "Write equations of lines in various forms",
    "thread": "F2"
   },
   {
@@ -1303,87 +1300,86 @@
    "course": "IM1",
    "unit": "",
    "text": "Understand the difference between linear and exponential functions",
-   "new": true,
-   "thread": "F3"
+   "thread": "F3",
+   "new": true
   },
   {
    "code": "IM1-11",
    "course": "IM1",
    "unit": "",
    "text": "Understand the relationship between fractional exponents and radicals",
-   "new": true,
-   "thread": "N4"
+   "thread": "N4",
+   "new": true
   },
   {
    "code": "IM1-12",
    "course": "IM1",
    "unit": "",
    "text": "Convert negative exponential expressions into positive exponential expressions",
-   "new": true,
-   "thread": "N4"
+   "thread": "N4",
+   "new": true
   },
   {
    "code": "IM1-13",
    "course": "IM1",
    "unit": "",
    "text": "Solve a multi-step equation",
-   "new": true,
-   "thread": "E2"
+   "thread": "E2",
+   "new": true
   },
   {
    "code": "IM1-14",
    "course": "IM1",
    "unit": "",
    "text": "Solve a multi-step inequality",
-   "new": true,
-   "thread": "E2"
+   "thread": "E2",
+   "new": true
   },
   {
    "code": "IM1-15",
    "course": "IM1",
    "unit": "",
    "text": "Rearrange equations to isolate a variable",
-   "new": true,
-   "thread": "E2"
+   "thread": "E2",
+   "new": true
   },
   {
    "code": "IM1-16",
    "course": "IM1",
    "unit": "",
    "text": "Graph inequalities on the coordinate plane",
-   "new": true,
-   "thread": "E2"
+   "thread": "E2",
+   "new": true
   },
   {
    "code": "IM1-17",
    "course": "IM1",
    "unit": "",
    "text": "Graph inequalities on a number line",
-   "new": true,
-   "thread": "E2"
+   "thread": "E2",
+   "new": true
   },
   {
    "code": "IM1-18",
    "course": "IM1",
    "unit": "",
    "text": "Do transformations using construction",
-   "new": true,
-   "thread": "G3"
+   "thread": "G3",
+   "new": true
   },
   {
    "code": "IM1-19",
    "course": "IM1",
    "unit": "",
    "text": "Do transformations on a coordinate plane",
-   "new": true,
-   "thread": "G3"
+   "thread": "G3",
+   "new": true
   },
   {
    "code": "IM1-20",
    "course": "IM1",
    "unit": "",
    "text": "Graph parallel and perpendicular lines",
-   "was": "Identify parallel and perpendicular lines",
    "thread": "F2"
   },
   {
@@ -1391,23 +1387,22 @@
    "course": "IM1",
    "unit": "",
    "text": "Construct parallel and perpendicular lines",
-   "new": true,
-   "thread": "G2"
+   "thread": "G2",
+   "new": true
   },
   {
    "code": "IM1-22",
    "course": "IM1",
    "unit": "",
    "text": "Understand rotational and reflectional properties of quadrilaterals",
-   "new": true,
-   "thread": "G2"
+   "thread": "G2",
+   "new": true
   },
   {
    "code": "IM1-23",
    "course": "IM1",
    "unit": "",
    "text": "Solve a system of linear equations using substitution",
-   "was": "Solve systems of linear equations",
    "thread": "E3"
   },
   {
@@ -1415,138 +1410,134 @@
    "course": "IM1",
    "unit": "",
    "text": "Solve a system of linear equations using elimination",
-   "new": true,
-   "thread": "E3"
+   "thread": "E3",
+   "new": true
   },
   {
    "code": "IM1-25",
    "course": "IM1",
    "unit": "",
    "text": "Solve a system of linear equations by graphing",
-   "new": true,
-   "thread": "E3"
+   "thread": "E3",
+   "new": true
   },
   {
    "code": "IM1-26",
    "course": "IM1",
    "unit": "",
    "text": "Interpret box and whisker plots",
-   "new": true,
-   "thread": "D1"
+   "thread": "D1",
+   "new": true
   },
   {
    "code": "IM1-27",
    "course": "IM1",
    "unit": "",
    "text": "Create a histogram",
-   "new": true,
-   "thread": "D1"
+   "thread": "D1",
+   "new": true
   },
   {
    "code": "IM1-28",
    "course": "IM1",
    "unit": "",
    "text": "Interpret a histogram",
-   "new": true,
-   "thread": "D1"
+   "thread": "D1",
+   "new": true
   },
   {
    "code": "IM1-29",
    "course": "IM1",
    "unit": "",
    "text": "Understand standard deviation as a measure of spread",
-   "new": true,
-   "thread": "D2"
+   "thread": "D2",
+   "new": true
   },
   {
    "code": "IM2-01",
    "course": "IM2",
    "unit": "Unit 1",
    "text": "Quadratic Functions and Their Model Patterns and Real-World Contexts",
-   "level": "unit",
-   "was": "Unit 1: Functions and Their Inverses",
-   "thread": "F4"
+   "thread": "F4",
+   "level": "unit"
   },
   {
    "code": "IM2-02",
    "course": "IM2",
    "unit": "Unit 2",
    "text": "Structures of Quadratic Functions (forms and graph features)",
-   "level": "unit",
-   "was": "Unit 2: Logarithmic Functions",
-   "thread": "F4"
+   "thread": "F4",
+   "level": "unit"
   },
   {
    "code": "IM2-03",
    "course": "IM2",
    "unit": "Unit 3",
    "text": "Solving Quadratic Functions (using graphs and completing the square, the quadratic formula, and examining strategies)",
-   "level": "unit",
-   "was": "Unit 3: Polynomial Functions",
-   "thread": "E4"
+   "thread": "E4",
+   "level": "unit"
   },
   {
    "code": "IM2-04",
    "course": "IM2",
    "unit": "Unit 4",
    "text": "Piecewise, Absolute Value, and Inverse Equations",
-   "level": "unit",
-   "was": "Unit 4: Polynomial Equations",
-   "thread": "F5"
+   "thread": "F5",
+   "level": "unit"
   },
   {
    "code": "IM2-05",
    "course": "IM2",
    "unit": "Unit 5",
    "text": "Rational Exponents and Radicals",
-   "level": "unit",
-   "thread": "N4"
+   "thread": "N4",
+   "level": "unit"
   },
   {
    "code": "IM2-06",
    "course": "IM2",
    "unit": "Unit 6",
    "text": "Similarity and Right Triangle Trigonometry",
-   "level": "unit",
-   "thread": "G4"
+   "thread": "G4",
+   "level": "unit"
   },
   {
    "code": "IM2-07",
    "course": "IM2",
    "unit": "Unit 7",
    "text": "Circles",
-   "level": "unit",
-   "thread": "G2"
+   "thread": "G2",
+   "level": "unit"
   },
   {
    "code": "IM2-08",
    "course": "IM2",
    "unit": "Unit 8",
    "text": "Conditional Probability",
-   "level": "unit",
-   "thread": "D4"
+   "thread": "D4",
+   "level": "unit"
   },
   {
    "code": "IM2-09",
    "course": "IM2",
    "unit": "Unit 9",
    "text": "Modeling Data",
-   "level": "unit",
-   "thread": "D3"
+   "thread": "D3",
+   "level": "unit"
   },
   {
    "code": "IM2-10",
    "course": "IM2",
    "unit": "Unit 10",
    "text": "Constructions and Proof",
-   "level": "unit",
-   "thread": "G2"
+   "thread": "G2",
+   "level": "unit"
   },
   {
    "code": "IM3-01",
    "course": "IM3",
    "unit": "Unit 1: Functions and Their Inverses",
-   "text": "Create an inverse function from a story context by changing the input and output variables",
+   "text": "Create an inverse function from a story context by changing the input and output variables TEST",
    "thread": "F6"
   },
   {
@@ -2310,39 +2301,38 @@
    "course": "ST1",
    "unit": "",
    "text": "Conceptualize and operationalize variables",
-   "new": true,
-   "thread": "D5"
+   "thread": "D5",
+   "new": true
   },
   {
    "code": "ST1-02",
    "course": "ST1",
    "unit": "",
    "text": "Understand the iterative process of forming research questions and collecting data",
-   "new": true,
-   "thread": "D5"
+   "thread": "D5",
+   "new": true
   },
   {
    "code": "ST1-03",
    "course": "ST1",
    "unit": "",
    "text": "Distinguish among different types of data",
-   "new": true,
-   "thread": "D5"
+   "thread": "D5",
+   "new": true
   },
   {
    "code": "ST1-04",
    "course": "ST1",
    "unit": "",
    "text": "Understand the issues involved in cleaning up data",
-   "new": true,
-   "thread": "D5"
+   "thread": "D5",
+   "new": true
   },
   {
    "code": "ST1-05",
    "course": "ST1",
    "unit": "",
    "text": "Describe and compare distributions using stemplots, histograms, box plots, and ntigrams",
-   "was": "Describe and compare distributions",
    "thread": "D1"
   },
   {
@@ -2350,7 +2340,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Calculate measures of center and spread: mean, median, midrange, and mode; MAD, standard deviation, five-number summaries, and outlier tests",
-   "was": "Calculate measures of center and spread",
    "thread": "D2"
   },
   {
@@ -2358,15 +2347,14 @@
    "course": "ST1",
    "unit": "",
    "text": "Calculate and interpret z-scores",
-   "new": true,
-   "thread": "D2"
+   "thread": "D2",
+   "new": true
   },
   {
    "code": "ST1-08",
    "course": "ST1",
    "unit": "",
    "text": "Use normal distributions, including percentiles",
-   "was": "Use normal distributions",
    "thread": "D2"
   },
   {
@@ -2374,16 +2362,16 @@
    "course": "ST1",
    "unit": "",
    "text": "Distinguish among percents, percent change, percentage point change, and percentiles",
-   "new": true,
-   "thread": "N1"
+   "thread": "N1",
+   "new": true
   },
   {
    "code": "ST1-10",
    "course": "ST1",
    "unit": "",
    "text": "Calculate and interpret index scores",
-   "new": true,
-   "thread": "D2"
+   "thread": "D2",
+   "new": true
   },
   {
    "code": "ST1-11",
@@ -2397,15 +2385,14 @@
    "course": "ST1",
    "unit": "",
    "text": "Understand sampling methods and their attendant concerns",
-   "new": true,
-   "thread": "D5"
+   "thread": "D5",
+   "new": true
   },
   {
    "code": "ST1-13",
    "course": "ST1",
    "unit": "",
    "text": "Design surveys, experiments, and observational studies",
-   "was": "Design surveys and experiments",
    "thread": "D5"
   },
   {
@@ -2420,7 +2407,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Calculate and interpret correlation, including its non-transitivity and the importance of spurious associations and lurking variables",
-   "was": "Calculate and interpret correlation",
    "thread": "D3"
   },
   {
@@ -2428,8 +2414,8 @@
    "course": "ST1",
    "unit": "",
    "text": "Use scatter plots and the quadrant count ratio to describe association",
-   "new": true,
-   "thread": "D3"
+   "thread": "D3",
+   "new": true
   },
   {
    "code": "ST1-17",
@@ -2457,15 +2443,14 @@
    "course": "ST1",
    "unit": "",
    "text": "Interpret models with more than one explanatory variable (multivariable regression)",
-   "new": true,
-   "thread": "D3"
+   "thread": "D3",
+   "new": true
   },
   {
    "code": "ST1-21",
    "course": "ST1",
    "unit": "",
    "text": "Understand probability fundamentals, including the basic probability rules",
-   "was": "Understand probability fundamentals",
    "thread": "D4"
   },
   {
@@ -2473,7 +2458,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Calculate conditional probability and apply Bayes' theorem",
-   "was": "Calculate conditional probability",
    "thread": "D4"
   },
   {
@@ -2523,7 +2507,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Understand Type I and Type II errors, and interpret the confidence and power of an experiment",
-   "was": "Understand Type I and Type II errors",
    "thread": "D6"
   },
   {
@@ -2531,7 +2514,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Calculate and interpret p-values, understand their meaning and limitations, and use confidence intervals to report results and quantify effect sizes",
-   "was": "Calculate and interpret p-values",
    "thread": "D6"
   },
   {
@@ -2539,8 +2521,8 @@
    "course": "ST1",
    "unit": "",
    "text": "Understand the false discovery rate and the false skepticism rate",
-   "new": true,
-   "thread": "D6"
+   "thread": "D6",
+   "new": true
   },
   {
    "code": "ST1-32",
@@ -2561,7 +2543,6 @@
    "course": "ST1",
    "unit": "",
    "text": "Analyze categorical data, including calculating and interpreting odds ratios",
-   "was": "Analyze categorical data",
    "thread": "D3"
   },
   {
@@ -3136,47 +3117,46 @@
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Simplify expressions using algebra skills",
-   "new": true,
-   "thread": "P1"
+   "thread": "P1",
+   "new": true
   },
   {
    "code": "CALC-CS2",
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Demonstrate an understanding of mathematical concepts and reasoning by appropriately using definitions, arguments, and proofs",
-   "new": true,
-   "thread": "P1"
+   "thread": "P1",
+   "new": true
   },
   {
    "code": "CALC-CS3",
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Apply and adapt various strategies for problem solving at the calculus level, showing perseverance and creativity",
-   "new": true,
-   "thread": "P1"
+   "thread": "P1",
+   "new": true
   },
   {
    "code": "CALC-CS4",
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Communicate mathematical thinking clearly to others, including written work that is thorough, organized, and carefully labeled, and oral explanations that are fluent",
-   "new": true,
-   "thread": "P1"
+   "thread": "P1",
+   "new": true
   },
   {
    "code": "CALC-CS5",
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Complete and submit assignments on time",
-   "new": true,
-   "thread": "P1"
+   "thread": "P1",
+   "new": true
   },
   {
    "code": "CALC-CS6",
    "course": "CALC",
    "unit": "Continuous Skills",
    "text": "Use graphing software to investigate and verify functions and their graphs (a graphing calculator, GeoGebra or Desmos — any is fine)",
-   "was": "Use a graphing calculator",
    "thread": "P1"
   },
   {
@@ -3296,7 +3276,6 @@
    "course": "CALC",
    "unit": "Unit 1 — Review of Limits and Derivatives",
    "text": "Use L'Hôpital's rule to determine limits of indeterminate forms",
-   "was": "Use L'Hôpital's rule to determine limits of quotients",
    "thread": "C2"
   },
   {
@@ -3339,8 +3318,8 @@
    "course": "CALC",
    "unit": "Unit 2 — Applications of Differentiation",
    "text": "Use Newton's method to approximate the roots of an equation",
-   "new": true,
-   "thread": "C4"
+   "thread": "C4",
+   "new": true
   },
   {
    "code": "CALC-P27",
@@ -3410,8 +3389,8 @@
    "course": "CALC",
    "unit": "Unit 4 — Applications of Integration",
    "text": "Calculate the average value of a function, and solve problems involving density",
-   "new": true,
-   "thread": "C6"
+   "thread": "C6",
+   "new": true
   },
   {
    "code": "CALC-P40",
@@ -3460,9 +3439,8 @@
    "course": "CALC",
    "unit": "Unit 6 — Techniques of Integration",
    "text": "Use integration methods: substitution, parts, trigonometric integrals, trigonometric substitution, and partial fractions",
-   "was": "Use integration methods: substitution parts partial fractions",
-   "note": "Substitution is introduced in Unit 3 — The Integral.",
-   "thread": "C5"
+   "thread": "C5",
+   "note": "Substitution is introduced in Unit 3 — The Integral."
   },
   {
    "code": "CALC-P34",
@@ -3476,7 +3454,6 @@
    "course": "CALC",
    "unit": "Unit 6 — Techniques of Integration",
    "text": "Identify improper integrals and evaluate them using limits and comparisons",
-   "was": "Identify improper integrals and know how to evaluate them",
    "thread": "C5"
   },
   {
@@ -3563,7 +3540,7 @@
    "id": "PA2-18~IM1-17",
    "a": "PA2-18",
    "b": "IM1-17",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3603,7 +3580,7 @@
    "id": "PA3-11~IM1-19",
    "a": "PA3-11",
    "b": "IM1-19",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3611,7 +3588,7 @@
    "id": "PA3-22~IM1-20",
    "a": "PA3-22",
    "b": "IM1-20",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3819,7 +3796,7 @@
    "id": "ST1-23~ST2-19",
    "a": "ST1-23",
    "b": "ST2-19",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3859,7 +3836,7 @@
    "id": "APC-23~CALC-P04",
    "a": "APC-23",
    "b": "CALC-P04",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3875,7 +3852,7 @@
    "id": "APC-24~CALC-P05",
    "a": "APC-24",
    "b": "CALC-P05",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3883,7 +3860,7 @@
    "id": "APC-25~CALC-P06",
    "a": "APC-25",
    "b": "CALC-P06",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3891,7 +3868,7 @@
    "id": "APC-26~CALC-P07",
    "a": "APC-26",
    "b": "CALC-P07",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3899,7 +3876,7 @@
    "id": "APC-27~CALC-P08",
    "a": "APC-27",
    "b": "CALC-P08",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3907,7 +3884,7 @@
    "id": "APC-28~CALC-P09",
    "a": "APC-28",
    "b": "CALC-P09",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3915,7 +3892,7 @@
    "id": "APC-29~CALC-P10",
    "a": "APC-29",
    "b": "CALC-P10",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3923,7 +3900,7 @@
    "id": "APC-30~CALC-P11",
    "a": "APC-30",
    "b": "CALC-P11",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3931,7 +3908,7 @@
    "id": "APC-31~CALC-P12",
    "a": "APC-31",
    "b": "CALC-P12",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3939,7 +3916,7 @@
    "id": "APC-32~CALC-P13",
    "a": "APC-32",
    "b": "CALC-P13",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3947,7 +3924,7 @@
    "id": "APC-33~CALC-P14",
    "a": "APC-33",
    "b": "CALC-P14",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3955,7 +3932,7 @@
    "id": "APC-34~CALC-P15",
    "a": "APC-34",
    "b": "CALC-P15",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   },
@@ -3963,7 +3940,7 @@
    "id": "APC-35~CALC-P16",
    "a": "APC-35",
    "b": "CALC-P16",
-   "score": 1.0,
+   "score": 1,
    "status": "open",
    "note": ""
   }
