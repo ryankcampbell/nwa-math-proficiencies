@@ -336,6 +336,7 @@ window.NWAPractice = { mount, fill, sample, ev, frac, plotSvg };
 
 const WS = !!window.NWA_WORKSHOP;
 const PUBLIC_URL = 'https:\/\/ryankcampbell.github.io/nwa-math-proficiencies/';
+const WORKSHOP_URL = 'https:\/\/script.google.com/a/macros/nwacademy.org/s/AKfycbzJEKrTwjxh110-Bu-ixQHpJGkTp86txvT4JNH9YzL0R-NUxUEWd8y9nwudJxMgcOx6/exec';
 const BASE = WS ? PUBLIC_URL : '';          // where published files (practice sets, plans) live
 const VENDOR = WS ? {
   xlsx: 'https:\/\/cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
@@ -1189,7 +1190,7 @@ function shell() {
     <button class="iconbtn" data-act="theme" title="Light / dark" aria-label="Toggle light or dark theme">${icon.sun}</button>
   </div></header>
   <main id="app"></main>
-  <footer>Northwest Academy Mathematics Department · ${esc(D.year)}${D.published ? ' · published ' + esc(D.published) : ''} · Proficiency codes are permanent: a retired code is never reused.</footer>
+  <footer>Northwest Academy Mathematics Department · ${esc(D.year)}${D.published ? ' · published ' + esc(D.published) : ''} · Proficiency codes are permanent: a retired code is never reused.${WS ? '' : ` · <a href="${WORKSHOP_URL}" target="_top">Teacher workshop</a> (math department, school login)`}</footer>
   <div class="scrim" id="scrim" data-act-scrim><div class="modal" role="dialog" aria-modal="true"><button class="iconbtn x" data-act="close" aria-label="Close">${icon.x}</button><div id="modalbody"></div></div></div>
   <div id="toast" role="status"></div>`;
   $('#scrim').addEventListener('click', e => { if (e.target.id === 'scrim') closeModal(); });
