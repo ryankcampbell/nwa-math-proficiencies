@@ -47,7 +47,8 @@ function doGet() {
       + '<p>Looking for the curriculum or a practice code? Go to <a href="https://ryankcampbell.github.io/nwa-math-proficiencies/">the public site</a>.</p></div>')
       .setTitle('NWA Math · Workshop');
   }
-  if (!book_().getSheetByName('Proficiencies')) seed();
+  const prof = book_().getSheetByName('Proficiencies');
+  if (!prof || prof.getLastRow() < 2) { seed.quiet = true; seed(); }
   else if (CHAIRS.indexOf(who) >= 0 && !('editors' in config_())) setConfig_('editors', EDITORS_START.join(', '));
   const t = HtmlService.createTemplateFromFile('Workshop');
   t.dataJson = JSON.stringify(getData()).replace(/</g, '\\u003c');
@@ -269,11 +270,25 @@ const gh_ = token => ({ Authorization: 'Bearer ' + token, Accept: 'application/v
 
 /* ───────────────────────── seed ───────────────────────── */
 
-/** Fill an empty Sheet from the draft on GitHub. Refuses to touch a Sheet that has data. */
+/** Fill an empty Sheet from the draft on GitHub. Refuses to touch a Sheet that has data.
+    Locked: the first page load can arrive twice (e.g. right after the permission screen). */
 function seed() {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(60000);
+  try {
+    const p = book_().getSheetByName('Proficiencies');
+    if (p && p.getLastRow() > 1) {
+      if (seed.quiet) return 'Already seeded.';
+      throw new Error('The Sheet already has proficiencies; not overwriting.');
+    }
+    return seed_();
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function seed_() {
   const ss = book_();
-  const existing = ss.getSheetByName('Proficiencies');
-  if (existing && existing.getLastRow() > 1) throw new Error('The Sheet already has proficiencies; not overwriting.');
   const d = JSON.parse(UrlFetchApp.fetch(SEED_URL).getContentText());
   const ids = d.courses.map(c => c.id);
   const tables = {
@@ -291,7 +306,8 @@ function seed() {
   };
   Object.keys(COLS).forEach(name => {
     const head = name === 'Threads' ? COLS.Threads.concat(ids) : COLS[name];
-    let sh = ss.getSheetByName(name) || ss.insertSheet(name);
+    let sh = ss.getSheetByName(name);
+    if (!sh) { try { sh = ss.insertSheet(name); } catch (e) { SpreadsheetApp.flush(); sh = ss.getSheetByName(name); } }
     sh.clear();
     const values = [head].concat(tables[name].map(r => head.map(h => r[h] === undefined || r[h] === null ? '' : r[h])));
     sh.getRange(1, 1, values.length, head.length).setValues(values);
