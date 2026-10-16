@@ -741,7 +741,8 @@ function vReview() {
         const a = P.get(o.a), b = P.get(o.b);
         if (!a || !b) return '';
         return `<div class="item"><div class="row"><span class="status">${o.status === 'open' ? 'Undecided' : esc(o.status)}</span><span class="muted" style="font-size:12px">${esc(T.get(a.thread)?.name || '')}</span></div>
-          <div class="pair"><div><span class="code">${a.code} · ${esc(C.get(a.course).short)}</span>${esc(a.text)}</div><div><span class="code">${b.code} · ${esc(C.get(b.course).short)}</span>${esc(b.text)}</div></div>
+          <div class="pair">${[[a, b], [b, a]].map(([x, y]) => `<div><span class="code">${x.code} · ${esc(C.get(x.course).short)}</span>${esc(x.text)}
+            ${WS ? `<button class="btn small ghost pairedit" data-act="editProf" data-code="${x.code}" data-other="${y.code}">Edit wording</button>` : ''}</div>`).join('')}</div>
           ${o.note ? `<div class="muted" style="font-size:13px">${esc(o.note)}</div>` : ''}
           ${WS ? `<div class="decide">${opt.map(([k, l]) => `<button class="${o.status === k ? 'on' : ''}" data-act="decide" data-id="${esc(o.id)}" data-status="${k}">${l}</button>`).join('')}</div>` : ''}</div>`;
       }).join('') : '<div class="empty-note">Nothing here.</div>'}
@@ -1118,7 +1119,10 @@ document.addEventListener('click', async e => {
     case 'saveCell': await edit({ op: 'setCell', thread: d.thread, course: d.course, text: $('#celltext').value.trim() }); cellModal(d.thread, d.course); break;
     case 'editProf': {
       const p = P.get(d.code);
-      promptModal(`Edit ${p.code}`, [{ label: 'Proficiency wording (imperative voice, sentence case)', type: 'textarea', value: p.text, help: 'The old wording is kept as history.' }],
+      // From an overlap card, show the neighbor so the two can be worded to say what differs.
+      const o = d.other && P.get(d.other);
+      const help = (o ? `Overlaps with ${o.code} (${C.get(o.course).short}): “${o.text}”. Make the difference clear, e.g. what's new or deeper in this course. ` : '') + 'The old wording is kept as history.';
+      promptModal(`Edit ${p.code}`, [{ label: 'Proficiency wording (imperative voice, sentence case)', type: 'textarea', value: p.text, help }],
         ([text]) => text && text !== p.text ? edit({ op: 'editProf', code: p.code, text }) : Promise.resolve());
       break;
     }

@@ -413,3 +413,5 @@ body.student nav.tabs{display:none}
 .ring{--p:0;width:120px;height:120px;border-radius:50%;margin:0 auto;display:grid;place-items:center;
   background:conic-gradient(var(--teal) calc(var(--p)*1%),var(--panel-3) 0)}
 .ring b{width:96px;height:96px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font:900 26px var(--title)}
+
+.pair .pairedit{display:flex;margin-top:8px;width:max-content}
