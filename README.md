@@ -30,3 +30,10 @@ python3 tools/build_workshop.py          # after editing app.js or style.css
 
 `tools/parse_tex.py` and `tools/draft_scope.py` produced the first draft from
 `proficiencies25-26.tex`. They were seeding tools; the Sheet is now the source.
+
+## Workshop deployment
+
+- Script (bound to the Sheet): https://script.google.com/d/1AhSKgJMUsJXVWtaBwaj_BpeZ1YBD648cw3IUcu4nDPu9WGBeJC4uA0mN/edit
+- Workshop URL: https://script.google.com/a/macros/nwacademy.org/s/AKfycbzJEKrTwjxh110-Bu-ixQHpJGkTp86txvT4JNH9YzL0R-NUxUEWd8y9nwudJxMgcOx6/exec
+- Update the code behind the same URL:
+  `python3 tools/build_workshop.py && cd apps-script && clasp push -f && clasp create-deployment -i AKfycbzJEKrTwjxh110-Bu-ixQHpJGkTp86txvT4JNH9YzL0R-NUxUEWd8y9nwudJxMgcOx6 -d "update"`
