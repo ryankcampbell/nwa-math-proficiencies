@@ -415,3 +415,26 @@ body.student nav.tabs{display:none}
 .ring b{width:96px;height:96px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font:900 26px var(--title)}
 
 .pair .pairedit{display:flex;margin-top:8px;width:max-content}
+
+/* Pre-meeting homework (Workshop) */
+.hw{margin-bottom:22px}
+.hw .row{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.hwgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px 0 4px;font-size:13px;color:var(--ink-2)}
+.hwgrid b{font-size:17px;color:var(--ink)}
+.hw .bar{height:6px;border-radius:3px;background:var(--panel-2);margin-top:6px;overflow:hidden}
+.hw .bar i{display:block;height:100%;background:var(--teal)}
+.roster{width:100%;border-collapse:collapse;font-size:13px}
+.roster th,.roster td{text-align:left;padding:6px 8px;border-top:1px solid var(--line)}
+.roster th{border-top:0;color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.roster tr.done td:last-child{color:var(--teal-ink);font-weight:700}
+.vote{margin-top:8px}
+.vote .decide{margin-top:0}
+.vote .decide button b{color:var(--teal-ink);margin-left:2px}
+.vote .reason{width:100%;margin-top:6px;font-size:13px;padding:5px 8px}
+.vote .tally{font-size:12px;color:var(--ink-3);margin-top:4px}
+.decide .meeting{font-size:12px;align-self:center}
+.pcourses{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+.pcourses .check{gap:6px;font-size:13px}
+.item.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{background:var(--teal-bg)}100%{background:transparent}}
+@media (max-width:760px){.hwgrid{grid-template-columns:1fr 1fr}}

@@ -353,6 +353,11 @@ const FEEDS = {
 const NL = String.fromCharCode(10), NL2 = NL + NL;
 const BAND_NAME = { ms: 'Middle School', hs: 'High School', el: 'Electives', st: 'Statistics' };
 const KIND = { gap: 'Gap', overlap: 'Overlap', order: 'Sequence', todo: 'To do' };
+/* Pre-meeting votes. Keys are what the Sheet's Votes tab stores; never rename them. */
+const CHOICES = [['keep', 'Keep both', 'Different depth: both stay'], ['move', 'Move to one course', ''], ['merge', 'Merge wording', ''],
+  ['add', 'Add a proficiency', ''], ['discuss', 'Needs discussion', 'Bring it to the meeting']];
+const PTYPE = { hole: 'Hole', collision: 'Collision', other: 'Other' };
+let R = window.NWA_REVIEW || null;   // Workshop only: my votes, tallies, proposals, homework (Code.js review_)
 
 let D, C, S, T, P;          // data; course, strand, thread, proficiency maps
 let PX = {};                // practice/index.json: code → {title, n}
@@ -425,6 +430,7 @@ function patch(op, r) {
     case 'addFlag': D.flags.push(r); break;
     case 'addResource': case 'uploadResource': D.resources.push(r); break;
     case 'deleteResource': D.resources = D.resources.filter(x => x.id !== op.id); break;
+    case 'vote': case 'propose': case 'withdraw': case 'markReviewed': R = r; break;
   }
 }
 
@@ -593,6 +599,8 @@ function vCourse(cid) {
     <button class="btn small" data-act="pdfCourse" data-course="${cid}" title="Print or save this course's proficiencies as a PDF">${icon.dl} PDF</button>
     <a class="btn small" href="#/assign?c=${cid}">Assign practice from this course</a>
     ${WS ? `<button class="btn small" data-act="addProf" data-course="${cid}">+ Add proficiency</button>` : ''}
+    ${hw() ? (() => { const on = R.me.reviewed.includes(cid); return `<button class="btn small ${on ? 'primary' : ''}" data-act="reviewed" data-course="${cid}" data-on="${on ? '' : '1'}"
+      title="Homework: tick this once you've read every proficiency in ${esc(c.short)}">${on ? '✓ Read through' : 'Mark as read through'}</button>`; })() : ''}
   </div>
   ${fl.length && (WS || store.get('review', false)) ? `<div class="card" style="margin-top:16px"><h3>Open questions for this course</h3>${fl.map(f => `<div class="item"><span class="tag ${f.kind}">${KIND[f.kind] || f.kind}</span> ${esc(f.text)}</div>`).join('')}</div>` : ''}
   ${body}`;
@@ -714,26 +722,126 @@ function vThread(tid) {
   }).join('')}</ol>`;
 }
 
+/* ── Pre-meeting homework (Workshop only) ── */
+
+const hw = () => WS && R && !R.error;
+const longDay = ymd => new Date(ymd + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+/* One click per card: five choices, an optional one-line reason, and (once you've voted) the tally. */
+function voteBar(kind, id) {
+  if (!hw()) return '';
+  const k = kind + ':' + id, mine = R.mine[k], t = R.tally[k];
+  const names = (R.votes || []).filter(v => v.k === k);
+  return `<div class="vote" data-k="${esc(k)}">
+    <div class="decide">${CHOICES.map(([c, l, tip]) => `<button class="${mine?.choice === c ? 'on' : ''}" data-act="vote" data-kind="${kind}" data-id="${esc(id)}" data-choice="${c}"
+      ${tip ? `title="${esc(tip)}"` : ''} ${R.open ? '' : 'disabled'}>${l}${t?.[c] ? ` <b>${t[c]}</b>` : ''}</button>`).join('')}</div>
+    ${mine ? `<input class="inp reason" data-act="reason" data-kind="${kind}" data-id="${esc(id)}" value="${esc(mine.reason)}" maxlength="300"
+      placeholder="Why? (optional, one line)" ${R.open ? '' : 'disabled'}>` : ''}
+    ${t ? `<div class="tally">${t.n} vote${t.n > 1 ? 's' : ''}${names.length ? ': ' + names.map(v => `${esc(v.who)} ${esc(CHOICES.find(c => c[0] === v.choice)?.[1] || v.choice)}${v.reason ? ` (“${esc(v.reason)}”)` : ''}`).join(' · ')
+      : t.reasons.length ? ' · ' + t.reasons.map(r => `“${esc(r)}”`).join(' · ') : ''}</div>` : ''}
+  </div>`;
+}
+
+function homeworkStrip() {
+  if (!WS || !R) return '';
+  if (R.error) return `<div class="card hw"><b>Homework tracker unavailable:</b> ${esc(R.error)}</div>`;
+  const m = R.me, left = Math.ceil((new Date(R.deadline + 'T23:59:59') - new Date()) / 864e5);
+  const pct = m.total ? Math.round(100 * m.voted / m.total) : 0;
+  const reviewed = m.reviewed.map(id => C.get(id)?.short || id);
+  return `<section class="card hw">
+    <div class="row"><h3 style="margin:0">My homework</h3><span class="muted">${R.open ? `due ${longDay(R.deadline)} · ${left <= 1 ? 'last day' : left + ' days left'}` : `voting closed ${longDay(R.deadline)}`}</span></div>
+    <div class="hwgrid">
+      <div><b>${m.voted} of ${m.total}</b> votes cast<div class="bar"><i style="width:${pct}%"></i></div></div>
+      <div><b>${m.edited}</b> proficienc${m.edited === 1 ? 'y' : 'ies'} updated since ${longDay(R.since)}</div>
+      <div><b>${reviewed.length}</b> course${reviewed.length === 1 ? '' : 's'} read through${reviewed.length ? ': ' + esc(reviewed.join(', ')) : ' (mark it from a course page)'}</div>
+      <div><b>${m.proposed}</b> proposal${m.proposed === 1 ? '' : 's'} made</div>
+    </div>
+    <div class="ws-row">${m.voted < m.total ? `<button class="btn small primary" data-act="nextVote">Next card to vote on ↓</button>` : m.total ? '<span class="tag">✓ All votes in</span>' : ''}
+      ${R.open ? '<button class="btn small" data-act="propose">+ Propose an item</button>' : ''}</div>
+  </section>
+  ${R.roster ? `<section class="card hw"><h3>Who's done · chair view</h3>
+    <table class="roster"><thead><tr><th>Teacher</th><th>Votes</th><th>Updated</th><th>Read through</th><th>Proposals</th><th></th></tr></thead><tbody>
+    ${R.roster.map(h => `<tr class="${h.done ? 'done' : ''}"><td>${esc(h.who.split('@')[0])}</td><td>${h.voted} / ${h.total}</td><td>${h.edited}</td>
+      <td>${esc(h.reviewed.map(id => C.get(id)?.short || id).join(', ')) || '–'}</td><td>${h.proposed}</td><td>${h.done ? '✓ done' : 'not yet'}</td></tr>`).join('')}
+    </tbody></table></section>` : ''}`;
+}
+
+function proposalsCard() {
+  if (!hw()) return '';
+  const ps = R.proposals;
+  return `<section class="card" style="margin-top:22px"><h3>Proposals · ${ps.length}</h3>
+    <p class="muted" style="margin:0 0 6px;font-size:13px">Holes, collisions and anything else a teacher wants on the agenda. Vote on these too.</p>
+    ${ps.map(p => `<div class="item"><div class="row"><span class="tag ${p.type === 'hole' ? 'gap' : p.type === 'collision' ? 'overlap' : 'todo'}">${PTYPE[p.type] || esc(p.type)}</span>
+        <span class="muted" style="font-size:12px">${p.mine ? 'yours' : 'from ' + esc(p.by)}${p.courses.length ? ' · ' + p.courses.map(id => `<a href="#/course/${id}">${esc(C.get(id)?.short || id)}</a>`).join(', ') : ''}</span></div>
+      <div style="margin-top:6px">${esc(p.text)}</div>
+      ${voteBar('proposal', p.id)}
+      ${p.mine || window.NWA_CHAIR ? `<div class="ws-row"><button class="btn small ghost" data-act="withdraw" data-id="${esc(p.id)}">Withdraw</button></div>` : ''}</div>`).join('') || '<div class="empty-note">None yet.</div>'}
+    ${R.open ? '<div class="ws-row" style="margin-top:10px"><button class="btn small" data-act="propose">+ Propose an item</button></div>' : ''}
+  </section>`;
+}
+
+function proposeModal() {
+  modal(`<h2>Propose an item for Dec 2</h2>
+    <p class="muted" style="font-size:13px">Something the department should decide: a skill no course teaches (a hole), two courses teaching the same thing (a collision), or anything else.</p>
+    <div class="seg" id="ptype" style="margin:12px 0">${Object.entries(PTYPE).map(([k, l], i) => `<button class="${i ? '' : 'on'}" style="--c:var(--teal)" data-type="${k}">${l}</button>`).join('')}</div>
+    <div class="muted" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Courses involved</div>
+    <div class="pcourses">${D.courses.map(c => `<label class="check small"><input type="checkbox" value="${c.id}"> ${esc(c.short)}</label>`).join('')}</div>
+    <label class="muted" for="ptext" style="display:block;font-size:12px;font-weight:700;margin-top:14px;text-transform:uppercase;letter-spacing:.05em">Short description</label>
+    <textarea class="inp" id="ptext" maxlength="600" autofocus placeholder="e.g. Conic sections are not taught anywhere after IM2."></textarea>
+    <div class="ws-row" style="margin-top:16px"><button class="btn primary" id="psave">Propose</button><button class="btn ghost" data-act="close">Cancel</button></div>`);
+  $$('#ptype button').forEach(b => b.onclick = () => $$('#ptype button').forEach(x => x.classList.toggle('on', x === b)));
+  $('#psave').onclick = async () => {
+    const text = $('#ptext').value.trim();
+    if (!text) { toast('Describe it in a line or two'); return; }
+    $('#psave').disabled = true;
+    try {
+      await edit({ op: 'propose', type: $('#ptype .on').dataset.type, courses: $$('.pcourses input:checked').map(i => i.value).join(','), text }, 'Proposed. It is on everyone’s ballot now.');
+      closeModal();
+    } catch (e) { $('#psave').disabled = false; }
+  };
+}
+
+/* Optimistic: the chip lights at once; the server's answer (with fresh tallies) replaces R. */
+async function castVote(kind, id, choice, reason) {
+  const k = kind + ':' + id, before = R.mine[k];
+  if (choice) R.mine[k] = { choice, reason: reason ?? before?.reason ?? '' }; else delete R.mine[k];
+  render();
+  try {
+    R = await api({ op: 'vote', kind, id, choice, reason: R.mine[k]?.reason || '' });
+    render();
+    toast(choice ? 'Vote saved' : 'Vote taken back');
+  } catch (e) {
+    if (before) R.mine[k] = before; else delete R.mine[k];
+    render();
+    toast('Not saved: ' + (e.message || e));
+  }
+}
+
 function vReview() {
   const filt = store.get('ovFilter', 'open');
   const ov = D.overlaps.filter(o => filt === 'all' || (filt === 'open' ? o.status === 'open' : o.status !== 'open'));
   const fl = D.flags;
   const opt = [['spiral', 'Spiral: taught again, deeper'], ['redundant', 'Redundant: one should go'], ['distinct', 'Not the same thing']];
+  const chair = WS && window.NWA_CHAIR;
   return `
   <div class="phead"><div><h1>Department review</h1>
-    <p>Open questions and possible overlaps. A repeated proficiency is fine when it's a <b>spiral</b> (taught again at more depth); it's a problem when it's <b>redundant</b>. Each overlap needs one of those decisions.</p></div></div>
+    <p>Open questions and possible overlaps. A repeated proficiency is fine when it's a <b>spiral</b> (taught again at more depth); it's a problem when it's <b>redundant</b>.
+    ${hw() ? `Before the Dec 2 meeting, <b>vote on every card</b>: one click each, and you can change your vote until ${longDay(R.deadline)}.` : 'Each overlap needs one of those decisions.'}</p></div></div>
+  ${homeworkStrip()}
   <div class="cols">
-    <section class="card"><h3>Open questions · ${fl.filter(f => f.status !== 'resolved').length}</h3>
+    <div><section class="card"><h3>Open questions · ${fl.filter(f => f.status !== 'resolved').length}</h3>
       ${fl.map(f => {
         const t = T.get(f.thread), c = C.get(f.course);
         return `<div class="item"><div class="row"><span class="tag ${f.kind}">${KIND[f.kind] || f.kind}</span>
           <span class="status">${f.status === 'resolved' ? 'Resolved' : ''}</span></div>
           <div style="margin-top:6px">${esc(f.text)}</div>
           <div class="sub muted" style="font-size:12px;margin-top:4px">${c ? `<a href="#/course/${c.id}">${esc(c.name)}</a>` : ''}${t ? ` · <a href="#/thread/${t.id}">${esc(t.name)}</a>` : ''}</div>
-          ${WS ? `<div class="decide"><button class="${f.status === 'resolved' ? 'on' : ''}" data-act="flag" data-id="${f.id}" data-status="${f.status === 'resolved' ? 'open' : 'resolved'}">${f.status === 'resolved' ? 'Reopen' : 'Mark resolved'}</button></div>` : ''}</div>`;
+          ${f.status !== 'resolved' ? voteBar('flag', f.id) : ''}
+          ${chair ? `<div class="decide"><span class="muted meeting">Meeting decision:</span><button class="${f.status === 'resolved' ? 'on' : ''}" data-act="flag" data-id="${f.id}" data-status="${f.status === 'resolved' ? 'open' : 'resolved'}">${f.status === 'resolved' ? 'Reopen' : 'Mark resolved'}</button></div>` : ''}</div>`;
       }).join('')}
-      ${WS ? `<div class="ws-row" style="margin-top:10px"><button class="btn small" data-act="addFlag">+ Raise a question</button></div>` : ''}
+      ${chair ? `<div class="ws-row" style="margin-top:10px"><button class="btn small" data-act="addFlag">+ Raise a question</button></div>` : ''}
     </section>
+    ${proposalsCard()}</div>
     <section class="card"><h3>Possible overlaps · ${D.overlaps.filter(o => o.status === 'open').length} undecided</h3>
       <p class="muted" style="margin:0 0 6px;font-size:13px">Found automatically: proficiencies in the same thread, in courses a student takes in sequence, with nearly the same wording.</p>
       <div class="seg" style="margin:8px 0">${[['open', 'Undecided'], ['done', 'Decided'], ['all', 'All']].map(([k, l]) => `<button class="${filt === k ? 'on' : ''}" style="--c:var(--teal)" data-act="ovFilter" data-f="${k}">${l}</button>`).join('')}</div>
@@ -744,7 +852,8 @@ function vReview() {
           <div class="pair">${[[a, b], [b, a]].map(([x, y]) => `<div><span class="code">${x.code} · ${esc(C.get(x.course).short)}</span>${esc(x.text)}
             ${WS ? `<button class="btn small ghost pairedit" data-act="editProf" data-code="${x.code}" data-other="${y.code}">Edit wording</button>` : ''}</div>`).join('')}</div>
           ${o.note ? `<div class="muted" style="font-size:13px">${esc(o.note)}</div>` : ''}
-          ${WS ? `<div class="decide">${opt.map(([k, l]) => `<button class="${o.status === k ? 'on' : ''}" data-act="decide" data-id="${esc(o.id)}" data-status="${k}">${l}</button>`).join('')}</div>` : ''}</div>`;
+          ${o.status === 'open' ? voteBar('overlap', o.id) : ''}
+          ${chair ? `<div class="decide"><span class="muted meeting">Meeting decision:</span>${opt.map(([k, l]) => `<button class="${o.status === k ? 'on' : ''}" data-act="decide" data-id="${esc(o.id)}" data-status="${k}">${l}</button>`).join('')}</div>` : ''}</div>`;
       }).join('') : '<div class="empty-note">Nothing here.</div>'}
     </section>
   </div>`;
@@ -1180,6 +1289,22 @@ document.addEventListener('click', async e => {
       break;
     }
     case 'flag': await edit({ op: 'setFlag', id: d.id, status: d.status }); break;
+    case 'vote': {
+      const k = d.kind + ':' + d.id;
+      await castVote(d.kind, d.id, R.mine[k]?.choice === d.choice ? '' : d.choice);   // clicking your vote again takes it back
+      break;
+    }
+    case 'nextVote': {
+      const next = $$('.vote').find(v => !R.mine[v.dataset.k]);
+      if (next) { next.closest('.item').scrollIntoView({ behavior: 'smooth', block: 'center' }); next.closest('.item').classList.add('flash'); }
+      else if (store.get('ovFilter', 'open') !== 'open') { store.set('ovFilter', 'open'); render(); toast('Showing undecided overlaps; click again'); }
+      break;
+    }
+    case 'propose': proposeModal(); break;
+    case 'withdraw':
+      if (confirm('Withdraw this proposal? It comes off everyone’s ballot.')) await edit({ op: 'withdraw', id: d.id }, 'Withdrawn');
+      break;
+    case 'reviewed': await edit({ op: 'markReviewed', course: d.course, on: !!d.on }, d.on ? 'Marked as read through' : 'Unmarked'); break;
     case 'addFlag': promptModal('Raise a question for the department', [
         { label: 'Question or issue', type: 'textarea' },
         { label: 'Kind', type: 'select', value: 'todo', options: Object.entries(KIND) },
@@ -1187,7 +1312,12 @@ document.addEventListener('click', async e => {
         { label: 'Thread', type: 'select', value: D.threads[0].id, options: D.threads.map(t => [t.id, `${S.get(t.strand).name} › ${t.name}`]) },
       ], ([text, kind, course, thread]) => text ? edit({ op: 'addFlag', text, kind, course, thread }, 'Question added') : Promise.resolve());
       break;
-    case 'refresh': google.script.run.withSuccessHandler(data => { D = data; index(); render(); toast('Up to date'); }).getData(); break;
+    case 'refresh':
+      google.script.run.withSuccessHandler(data => {
+        D = data; index(); render(); toast('Up to date');
+        google.script.run.withSuccessHandler(r => { R = r; render(); }).withFailureHandler(() => {}).getReview();
+      }).getData();
+      break;
     case 'publish':
       if (confirm('Publish the current Sheet to the public site?' + NL2 + 'This replaces what parents and students see. Every published version is kept in GitHub history.'))
         google.script.run.withSuccessHandler(r => toast(r)).withFailureHandler(err => toast('Publish failed: ' + err.message)).publish();
@@ -1203,6 +1333,10 @@ document.addEventListener('change', async e => {
   if (a === 'review') { store.set('review', el.checked); render(); }
   if (a === 'ovShow') { store.set('ovShow', el.checked); render(); }
   if (a === 'docCodes') store.set('docCodes', el.checked);
+  if (a === 'reason') {
+    const k = d.kind + ':' + d.id;
+    if (R.mine[k] && el.value.trim() !== R.mine[k].reason) await castVote(d.kind, d.id, R.mine[k].choice, el.value.trim());
+  }
   if (a === 'did') {
     const done = new Set(store.get(d.key, []));
     el.checked ? done.add(d.code) : done.delete(d.code);
@@ -1231,7 +1365,10 @@ document.addEventListener('input', e => {
   if (['at', 'an', 'ad'].includes(e.target.id)) assignSet(st => { st[{ at: 'title', an: 'note', ad: 'due' }[e.target.id]] = e.target.value; });
 });
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Enter' && e.target.dataset?.act === 'reason') e.target.blur();   // Enter saves the reason
+});
 document.addEventListener('submit', e => {
   if (e.target.dataset.form !== 'code') return;
   e.preventDefault();
