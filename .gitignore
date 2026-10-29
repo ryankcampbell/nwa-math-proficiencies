@@ -4,3 +4,7 @@ __pycache__/
 
 # Presenter scripts: Ryan's meeting notes, kept local (2026-10-28)
 docs/meeting-script.*
+
+# Project STATE/LOG: working notes for the hub, kept local (2026-10-29)
+STATE.md
+LOG.md
