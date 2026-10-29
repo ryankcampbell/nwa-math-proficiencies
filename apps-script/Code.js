@@ -2,6 +2,8 @@
 
    The Sheet IS the database while the department works:
      Courses · Strands · Threads · Proficiencies · Overlaps · Flags · Resources · Plans · Changelog · Config
+   plus the pre-meeting homework tabs (Votes · Proposals · Reviewed · Results), which stay in the
+   Sheet: getData() never reads them, so they are never published.
    Teachers can edit it directly (the Threads tab is the admin template: one row per
    thread, one column per course) or through the Workshop web app, which is the same
    app as the public site with editing turned on.
@@ -34,7 +36,16 @@ const COLS = {
   Plans: ['code', 'title', 'note', 'due', 'codes', 'teacher', 'created_at'],   // class codes → data/plans.json
   Changelog: ['time', 'who', 'op', 'target', 'detail'],
   Config: ['key', 'value'],
+  // Pre-meeting homework. Column order is a contract: the hub reads these tabs (README ▸ Sheet tabs).
+  Votes: ['id', 'item_kind', 'item_id', 'voter', 'choice', 'reason', 'voted_at'],       // id = kind:item|voter
+  Proposals: ['id', 'type', 'courses', 'text', 'proposed_by', 'proposed_at', 'status'],
+  Reviewed: ['id', 'course', 'teacher', 'reviewed_at'],                                 // id = course|teacher
+  Results: ['item_kind', 'item_id', 'summary', 'courses', 'keep', 'move', 'merge', 'add', 'discuss', 'n_votes', 'leading', 'reasons', 'updated_at'],
 };
+const VOTE_CHOICES = ['keep', 'move', 'merge', 'add', 'discuss'];
+const PROPOSAL_TYPES = ['hole', 'collision', 'other'];
+const HOMEWORK_OPS = ['editProf', 'moveProf', 'addProf', 'retireProf'];   // Changelog ops that count as "updated"
+const DEFAULTS = { vote_deadline: '2026-11-25', homework_since: '2026-10-21' };
 
 /* ───────────────────────── entry points ───────────────────────── */
 
@@ -50,11 +61,18 @@ function doGet(e) {
   }
   const prof = book_().getSheetByName('Proficiencies');
   if (!prof || prof.getLastRow() < 2) { seed.quiet = true; seed(); }
-  else if (CHAIRS.indexOf(who) >= 0 && !('editors' in config_())) setConfig_('editors', EDITORS_START.join(', '));
+  else if (isChair_(who)) {
+    const cfg = config_();
+    if (!('editors' in cfg)) setConfig_('editors', EDITORS_START.join(', '));
+    Object.keys(DEFAULTS).forEach(k => { if (!(k in cfg)) setConfig_(k, DEFAULTS[k]); });
+  }
   const t = HtmlService.createTemplateFromFile('Workshop');
   t.dataJson = JSON.stringify(getData()).replace(/</g, '\\u003c');
   t.userJson = JSON.stringify(who);
-  t.chairJson = JSON.stringify(CHAIRS.indexOf(who) >= 0);
+  t.chairJson = JSON.stringify(isChair_(who));
+  let review;
+  try { review = review_(who); } catch (err) { review = { error: err.message }; }   // never let homework break editing
+  t.reviewJson = JSON.stringify(review).replace(/</g, '\\u003c');
   return t.evaluate()
     .setTitle('NWA Math · Workshop')
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
@@ -180,8 +198,10 @@ function apply_(op, who) {
       return { id, strand: op.strand, order, name: op.name, note: '', cells: {} };
     }
     case 'decideOverlap':
+      need_(isChair_(who), 'Only the chair records meeting decisions. Vote instead.');
       return set_('Overlaps', 'id', op.id, { status: op.status, note: op.note || '', decided_by: who, decided_at: now });
     case 'setFlag':
+      need_(isChair_(who), 'Only the chair resolves open questions. Vote instead.');
       return set_('Flags', 'id', op.id, { status: op.status, updated_by: who });
     case 'addFlag': {
       const id = 'FL' + (rows_('Flags').length + 1);
@@ -216,9 +236,148 @@ function apply_(op, who) {
       try { live = writePlans_(); } catch (e) { /* no token yet: the code goes live at the next publish */ }
       return { code, live };
     }
+    case 'vote': {
+      need_(votingOpen_(), 'Voting closed on ' + deadline_() + '.');
+      need_(!op.choice || VOTE_CHOICES.indexOf(op.choice) >= 0, 'Unknown choice: ' + op.choice);
+      need_(ballot_().some(i => i.kind === op.kind && String(i.id) === String(op.id)), 'That item is not open for votes.');
+      tab_('Votes');
+      const id = op.kind + ':' + op.id + '|' + who;
+      if (!op.choice) { try { remove_('Votes', 'id', id); } catch (e) { /* no vote to take back */ } }
+      else {
+        const r = { item_kind: op.kind, item_id: op.id, voter: who, choice: op.choice, reason: String(op.reason || '').trim().slice(0, 300), voted_at: now };
+        try { set_('Votes', 'id', id, r); } catch (e) { append_('Votes', Object.assign({ id }, r)); }
+      }
+      writeResults_();
+      return review_(who);
+    }
+    case 'propose': {
+      need_(votingOpen_(), 'Proposals closed on ' + deadline_() + '.');
+      need_(PROPOSAL_TYPES.indexOf(op.type) >= 0, 'Pick a type: hole, collision or other.');
+      const ids = rows_('Courses').map(c => c.id);
+      const courses = String(op.courses || '').split(',').map(c => c.trim()).filter(c => ids.indexOf(c) >= 0);
+      const text = String(op.text || '').trim().slice(0, 600);
+      need_(text, 'Describe it in a line or two.');
+      tab_('Proposals');
+      const n = rows_('Proposals').map(p => +String(p.id).replace(/^PR/, '') || 0);
+      append_('Proposals', { id: 'PR' + (Math.max(0, ...n) + 1), type: op.type, courses: courses.join(','), text, proposed_by: who, proposed_at: now, status: 'open' });
+      writeResults_();
+      return review_(who);
+    }
+    case 'withdraw': {
+      const p = get_('Proposals', 'id', op.id);
+      need_(p.proposed_by === who || isChair_(who), 'Only the person who proposed it can withdraw it.');
+      set_('Proposals', 'id', op.id, { status: 'withdrawn' });
+      writeResults_();
+      return review_(who);
+    }
+    case 'markReviewed': {
+      need_(courseExists_(op.course), 'No such course');
+      tab_('Reviewed');
+      const id = op.course + '|' + who;
+      if (op.on) { try { get_('Reviewed', 'id', id); } catch (e) { append_('Reviewed', { id, course: op.course, teacher: who, reviewed_at: now }); } }
+      else { try { remove_('Reviewed', 'id', id); } catch (e) { /* not marked */ } }
+      return review_(who);
+    }
   }
   throw new Error('Unknown edit: ' + op.op);
 }
+
+/* ───────────────────────── pre-meeting homework ─────────────────────────
+   Before the Dec 2 meeting each teacher votes on every open overlap, open question and
+   proposal, and can propose new items. Votes are private to the voter and the chair until
+   the meeting; other teachers see a card's tally only after voting on it themselves. */
+
+function getReview() { return review_(user_()); }
+
+/** Everything the Review tab's homework needs, as seen by `who`. */
+function review_(who) {
+  const chair = isChair_(who);
+  const items = ballot_(), open = {};
+  items.forEach(i => { open[i.kind + ':' + i.id] = true; });
+  const votes = rowsIf_('Votes'), props = rowsIf_('Proposals'), rev = rowsIf_('Reviewed');
+  const tally = {}, mine = {};
+  votes.forEach(v => {
+    const k = v.item_kind + ':' + v.item_id, t = tally[k] || (tally[k] = { n: 0, reasons: [] });
+    t[v.choice] = (t[v.choice] || 0) + 1; t.n++;
+    if (v.reason) t.reasons.push(v.reason);
+    if (v.voter === who) mine[k] = { choice: v.choice, reason: v.reason || '' };
+  });
+  if (!chair) Object.keys(tally).forEach(k => { if (!mine[k]) delete tally[k]; });
+  const since = since_(), log = rowsIf_('Changelog').filter(r => HOMEWORK_OPS.indexOf(r.op) >= 0 && ptDay_(r.time) >= since);
+  const homework = e => {
+    const voted = Object.keys(open).filter(k => votes.some(v => v.voter === e && v.item_kind + ':' + v.item_id === k)).length;
+    const edited = {};
+    log.filter(r => r.who === e).forEach(r => { edited[r.target] = true; });
+    return {
+      who: e, voted, total: items.length, edited: Object.keys(edited).length,
+      reviewed: rev.filter(r => r.teacher === e).map(r => r.course),
+      proposed: props.filter(p => p.proposed_by === e && p.status !== 'withdrawn').length,
+      done: items.length > 0 && voted === items.length,
+    };
+  };
+  const out = {
+    deadline: deadline_(), open: votingOpen_(), since,
+    proposals: props.filter(p => p.status !== 'withdrawn').map(p => ({
+      id: p.id, type: p.type, courses: String(p.courses || '').split(',').filter(Boolean), text: p.text,
+      by: String(p.proposed_by).split('@')[0], mine: p.proposed_by === who })),
+    mine, tally, me: homework(who),
+  };
+  if (chair) {
+    out.roster = roster_().map(homework);
+    out.votes = votes.map(v => ({ k: v.item_kind + ':' + v.item_id, who: String(v.voter).split('@')[0], choice: v.choice, reason: v.reason || '' }));
+  }
+  return out;
+}
+
+/** What is open for votes: undecided overlaps, unresolved questions, live proposals. */
+function ballot_() {
+  const P = {}, short = {};
+  rows_('Courses').forEach(c => { short[c.id] = c.short || c.id; });
+  rows_('Proficiencies').forEach(p => { P[p.code] = p; });
+  const side = code => code + ' (' + (P[code] ? short[P[code].course] || P[code].course : '?') + '): ' + (P[code] ? P[code].text : '');
+  const items = [];
+  rowsIf_('Overlaps').filter(o => (o.status || 'open') === 'open').forEach(o => items.push({
+    kind: 'overlap', id: o.id, summary: side(o.a) + '  ⟷  ' + side(o.b),
+    courses: [o.a, o.b].map(c => P[c] && P[c].course).filter(Boolean).join(',') }));
+  rowsIf_('Flags').filter(f => f.status !== 'resolved').forEach(f => items.push({
+    kind: 'flag', id: f.id, summary: '[' + f.kind + '] ' + f.text, courses: f.course || '' }));
+  rowsIf_('Proposals').filter(p => p.status !== 'withdrawn').forEach(p => items.push({
+    kind: 'proposal', id: p.id, summary: '[' + p.type + '] ' + p.text + ' (proposed by ' + String(p.proposed_by).split('@')[0] + ')', courses: p.courses || '' }));
+  return items;
+}
+
+/** Rebuild the Results tab: one row per open item, tallied. Written after every vote so the
+    hub can read final numbers straight from the Sheet. */
+function writeResults_() {
+  const sh = tab_('Results'), head = COLS.Results, now = new Date();
+  const votes = rowsIf_('Votes');
+  const rows = ballot_().map(i => {
+    const vs = votes.filter(v => v.item_kind === i.kind && String(v.item_id) === String(i.id));
+    const n = {};
+    VOTE_CHOICES.forEach(c => { n[c] = vs.filter(v => v.choice === c).length; });
+    const top = Math.max(0, ...VOTE_CHOICES.map(c => n[c]));
+    const leading = top ? VOTE_CHOICES.filter(c => n[c] === top).join('/') : '';
+    const reasons = vs.filter(v => v.reason).map(v => String(v.voter).split('@')[0] + ': ' + v.reason).join(' | ');
+    return [i.kind, i.id, i.summary, i.courses].concat(VOTE_CHOICES.map(c => n[c]), [vs.length, leading, reasons, now]);
+  });
+  if (sh.getLastRow() > 1) sh.getRange(2, 1, sh.getLastRow() - 1, head.length).clearContent();
+  if (rows.length) sh.getRange(2, 1, rows.length, head.length).setValues(rows);
+}
+
+/** Who owes homework: the editors list, chair included, each once. */
+function roster_() {
+  return editors_().filter((e, i, a) => a.indexOf(e) === i);
+}
+
+/** A date (Date, ISO string or yyyy-MM-dd typed into the Sheet) as yyyy-MM-dd in Portland. */
+function ptDay_(v) {
+  if (!v) return '';
+  if (/^\d{4}-\d{2}-\d{2}$/.test(String(v))) return String(v);
+  return Utilities.formatDate(v instanceof Date ? v : new Date(v), 'America/Los_Angeles', 'yyyy-MM-dd');
+}
+const deadline_ = () => ptDay_(config_().vote_deadline || DEFAULTS.vote_deadline);
+const since_ = () => ptDay_(config_().homework_since || DEFAULTS.homework_since);
+const votingOpen_ = () => ptDay_(new Date()) <= deadline_();   // open through 11:59 pm Pacific on the deadline
 
 /* ───────────────────────── class codes ───────────────────────── */
 
@@ -326,7 +485,9 @@ function seed_() {
     Plans: plansSeed_(),
     Changelog: [],
     Config: [{ key: 'year', value: d.year }, { key: 'status', value: 'draft' }, { key: 'published_at', value: '' },
-             { key: 'editors', value: EDITORS_START.join(', ') }],
+             { key: 'editors', value: EDITORS_START.join(', ') }]
+             .concat(Object.keys(DEFAULTS).map(key => ({ key, value: DEFAULTS[key] }))),
+    Votes: [], Proposals: [], Reviewed: [], Results: [],
   };
   Object.keys(COLS).forEach(name => {
     const head = name === 'Threads' ? COLS.Threads.concat(ids) : COLS[name];
@@ -420,6 +581,8 @@ function editors_() {
   return list.concat(CHAIRS);
 }
 
+const isChair_ = who => CHAIRS.indexOf(who) >= 0;
+
 function need_(ok, msg) { if (!ok) throw new Error(msg); }
 
 function table_(name) {
@@ -435,6 +598,11 @@ function rows_(name) {
     t.head.forEach((h, i) => { o[h] = r[i] instanceof Date ? r[i].toISOString() : r[i]; });
     return o;
   });
+}
+
+/** rows_ for a tab that may not exist yet (the homework tabs appear on first use). */
+function rowsIf_(name) {
+  return book_().getSheetByName(name) ? rows_(name) : [];
 }
 
 function find_(t, key, val) {
